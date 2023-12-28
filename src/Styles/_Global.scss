@@ -1,0 +1,48 @@
+@use "./Variables" as *;
+//Global Styling
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  text-decoration: none;
+  font-family: "Alice", serif;
+}
+html {
+  font-size: 65px;
+}
+li{
+    list-style: none;
+}
+// Colors
+.font-primary {
+  color: $primaryColor;
+}
+.font-secondary {
+  color: $secondaryColor;
+}
+
+// Headings
+h1 {
+  font-size: $sliderHeading;
+  font-weight: 700;
+}
+h2 {
+  font-size: $sectionHeading;
+}
+h3 {
+  font-size: $subHeadings;
+  font-weight: 700;
+}
+h4 {
+  font-size: $smallHeadings;
+}
+// paragraphs
+.large-paragrapgh {
+  font-size: $largePragraph;
+}
+.small-paragrapgh {
+  font-size: $smallPragraph;
+}
+button {
+  font-size: $buttonFont;
+}

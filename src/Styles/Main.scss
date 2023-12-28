@@ -1,0 +1,24 @@
+// Tailwind
+@use "tailwindcss/base";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+
+// Main styling
+@use "./Global";
+@use "./EventClasses";
+
+// Layout
+@use "../Components/layout/blocker/Blocker";
+@use "../Components/layout/footer/Footer";
+@use "../Components/layout/top_button/TopButton";
+
+// Components
+@use "../Components/pages/home/components/Slider/Slider";
+@use "../Components/pages/products/components/filter_board/FilterBoard";
+@use "../Components/common/cards/info_card/InfoCard";
+@use "../Components/common/cards/product_card/ProductCard";
+@use "../Components/common/hero_headings/HeroHeadings";
+@use "../Components/common/sections/breadcrumb/Breadcrumb";
+
+// Responsive design
+@use "./Responsive";
