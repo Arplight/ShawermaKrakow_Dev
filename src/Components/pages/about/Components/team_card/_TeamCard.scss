@@ -1,0 +1,42 @@
+@use "../../../../../Styles/Variables" as *;
+.team-card {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  padding: $cardPadding;
+  .member-image {
+    overflow: hidden;
+  }
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: $transitionDuration;
+  }
+  .member-info {
+    bottom: -35px;
+    width: 70%;
+    text-align: center;
+    position: absolute;
+    .member-name {
+      background-color: $secondaryColor;
+      padding: 5px;
+    }
+    .member-position {
+      background-color: $primaryColor;
+      padding: 5px;
+      p {
+        letter-spacing: 2px;
+      }
+    }
+  }
+}

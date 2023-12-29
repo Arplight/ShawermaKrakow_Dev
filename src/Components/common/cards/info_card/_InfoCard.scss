@@ -1,0 +1,16 @@
+@use "../../../../Styles/Variables" as *;
+.info-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 300px;
+  gap: 10px;
+  padding: $cardPadding;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}

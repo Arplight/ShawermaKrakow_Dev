@@ -1,0 +1,49 @@
+@use "../../../../Styles/Variables" as *;
+
+.product-card {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  flex-direction: column;
+  padding: $cardPadding;
+  width: 300px;
+  .card-top {
+    padding-inline: 20px;
+    .card-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      overflow: hidden;
+      svg {
+        font-size: 25px;
+        fill: $primaryColor;
+        transition: $transitionDuration;
+        transform: translateY(100%);
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+  }
+  .card-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  img {
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+    cursor: pointer;
+    transition: $transitionDuration;
+  }
+  &:hover {
+    svg {
+      opacity: 1 !important;
+      transform: translateY(0%) !important;
+    }
+    img {
+      transform: scale(1.1);
+    }
+  }
+}

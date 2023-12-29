@@ -6,6 +6,9 @@ html {
 body {
   position: relative;
 }
+.container {
+  padding-inline: 20px;
+}
 * {
   box-sizing: border-box;
   padding: 0px;
@@ -13,7 +16,13 @@ body {
   text-decoration: none;
   font-family: "Alice", serif;
 }
-
+img {
+  user-select: none;
+}
+::selection {
+  background-color: $primaryColor;
+  color: $secondaryColor;
+}
 li {
   list-style: none;
 }

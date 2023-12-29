@@ -1,0 +1,36 @@
+@use "../../../Styles/Variables" as *;
+// Inputs
+input,
+textarea,
+select {
+  font-size: $smallPragraph !important;
+  border: $borderLight;
+  border-radius: $templateBorderRadious;
+  padding: 8px;
+  color: $primaryColor;
+  transition: $transitionDuration;
+  outline: 1px solid rgba(255, 255, 255, 0.137);
+  background-color: $secondaryColor;
+  &:focus {
+    outline: 1px solid $primaryColor;
+  }
+}
+textarea {
+  width: 100%;
+  max-height: 300px;
+}
+input[type="range"],
+input[type="radio"],
+input[type="checkbox"] {
+  outline: none;
+  accent-color: $primaryColor;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+label {
+  width: max-content;
+}

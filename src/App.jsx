@@ -27,7 +27,9 @@ import "./Styles/Main.scss";
 function App() {
   return (
     <div className="wrapper">
-      <Template />
+      {/* <Template /> */}
+      <Header />
+      <Navbar />
     </div>
   );
 }

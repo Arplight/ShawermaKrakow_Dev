@@ -39,6 +39,7 @@
     align-items: center;
     gap: 10px;
     position: relative;
+    overflow: hidden;
     &::after {
       content: "";
       position: absolute;
@@ -115,7 +116,7 @@
     background-color: $primaryColor;
     color: $secondaryColor;
     padding: 8px;
-    border-radius: 3px;
+    border-radius: $templateBorderRadious;
     border: $borderPrimary;
     &:hover {
       background-color: $secondaryColor;
