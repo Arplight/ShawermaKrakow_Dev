@@ -19,6 +19,9 @@
 @use "../Components/common/cards/product_card/ProductCard";
 @use "../Components/common/hero_headings/HeroHeadings";
 @use "../Components/common/sections/breadcrumb/Breadcrumb";
+@use "../Components/common/buttons/Buttons";
+@use "../Components/common/sections/products_section/pagination/Pagination";
+@use "../Components/common/forms/Inputs";
 
 // Responsive design
 @use "./Responsive";

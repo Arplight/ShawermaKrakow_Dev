@@ -1,0 +1,34 @@
+@use "../../../Styles/Mixins" as *;
+@use "../../../Styles/Variables" as *;
+
+.main-button {
+  @include Buttons("main", false);
+}
+.full-button {
+  @include Buttons("main", true);
+}
+.hollow-button {
+  @include Buttons("hollow", false);
+}
+.arrow-button {
+  @include Buttons("arrow", false);
+}
+.dark-button {
+  @include Buttons("dark", false);
+}
+.top-button {
+  @include Buttons("top", false);
+}
+.quantity-button {
+  @include Buttons("quantity", false);
+}
+.close-button {
+  @include Buttons("close", false);
+}
+.remove-button {
+  @include Buttons("remove", false);
+}
+
+.button-arrow {
+  transition: 0.1s linear;
+}

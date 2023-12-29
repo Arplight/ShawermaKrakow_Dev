@@ -1,5 +1,11 @@
 @use "./Variables" as *;
 //Global Styling
+html {
+  font-size: 65px;
+}
+body {
+  position: relative;
+}
 * {
   box-sizing: border-box;
   padding: 0px;
@@ -7,11 +13,9 @@
   text-decoration: none;
   font-family: "Alice", serif;
 }
-html {
-  font-size: 65px;
-}
-li{
-    list-style: none;
+
+li {
+  list-style: none;
 }
 // Colors
 .font-primary {
@@ -43,6 +47,9 @@ h4 {
 .small-paragrapgh {
   font-size: $smallPragraph;
 }
+// Buttons
 button {
   font-size: $buttonFont;
+  transition: $transitionDuration;
+  padding: 8px 18px;
 }

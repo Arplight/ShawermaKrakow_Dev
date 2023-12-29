@@ -3,7 +3,7 @@ $primaryColor: #12342f;
 $primaryDark: #0f2f2a;
 $secondaryColor: #ffffff;
 $headerBorderColor: #e9e9e9;
-$successColor:#4f8a10;
+$successColor: #4f8a10;
 $errorColor: #ff0000d8;
 $bgLight: #f9f7ed;
 $bgDark: #191919;
@@ -13,8 +13,14 @@ $cardBg: #f9f7ee4d;
 //Template font sizes
 $sliderHeading: 1rem;
 $sectionHeading: 0.8rem;
-$subHeadings:0.45rem;
-$buttonFont:0.35rem;
-$smallHeadings:0.3rem;
-$largePragraph:0.3rem;
-$smallPragraph:0.25rem;
+$subHeadings: 0.45rem;
+$buttonFont: 0.35rem;
+$smallHeadings: 0.3rem;
+$largePragraph: 0.3rem;
+$smallPragraph: 0.25rem;
+
+// Transition
+$transitionDuration: 0.3s linear;
+
+// Template borders
+$borderPrimary: 1px solid $primaryColor;

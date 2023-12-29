@@ -1,0 +1,125 @@
+@use "./Variables" as *;
+
+// Buttons Styling
+@mixin Buttons($type, $isFull) {
+  @if ($type == "main") {
+    background-color: $primaryColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: $borderPrimary;
+    &:hover {
+      background-color: $secondaryColor;
+      color: $primaryColor;
+      .button-arrow {
+        transform: translateX(5px);
+      }
+    }
+    @if ($isFull) {
+      width: 100%;
+    }
+  } @else if($type == "hollow") {
+    background-color: $secondaryColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: $borderPrimary;
+    &:hover {
+      background-color: $primaryColor;
+      color: $secondaryColor;
+      .button-arrow {
+        transform: translateX(5px);
+      }
+    }
+  } @else if($type == "arrow") {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: $primaryColor;
+      bottom: 0;
+      left: -100%;
+      transition: $transitionDuration;
+    }
+    &:hover {
+      &::after {
+        transform: translateX(100%);
+      }
+      .button-arrow {
+        transform: translateX(5px);
+      }
+    }
+  } @else if($type == "dark") {
+    background-color: $bgDark;
+    color: $secondaryColor;
+    font-size: $smallPragraph;
+    &:hover {
+      background-color: $secondaryColor;
+      color: $primaryColor;
+    }
+  } @else if($type == "quantity") {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    border: $borderPrimary;
+    .plus,
+    .minus {
+      font-size: 0.2rem;
+      background-color: $primaryColor;
+      color: $secondaryColor;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background-color: $secondaryColor;
+        color: $primaryColor;
+      }
+    }
+    span {
+      font-size: 0.3rem;
+      line-height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $primaryColor;
+      width: 45px;
+    }
+  } @else if($type == "close") {
+    background-color: $primaryColor;
+    padding: 3px;
+    font-size: 18px;
+    color: $secondaryColor;
+    border: $borderPrimary;
+    &:hover {
+      background-color: $secondaryColor;
+      color: $primaryColor;
+    }
+  } @else if($type == "remove") {
+    padding: 3px;
+    font-size: 18px;
+    color: $primaryColor;
+  } @else if($type == "top") {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background-color: $primaryColor;
+    color: $secondaryColor;
+    padding: 8px;
+    border-radius: 3px;
+    border: $borderPrimary;
+    &:hover {
+      background-color: $secondaryColor;
+      color: $primaryColor;
+    }
+  }
+}
