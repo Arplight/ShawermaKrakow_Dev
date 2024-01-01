@@ -1,0 +1,19 @@
+.burger-opened {
+  span:nth-child(2) {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  span:first-child {
+    transform-origin: center;
+    transform: rotateZ(-45deg) translateY(180%) translateX(-20%);
+  }
+  span:last-child {
+    transform-origin: center;
+    transform: rotateZ(45deg) translateY(-180%) translateX(-20%);
+  }
+}
+
+.mobile-menu-opened {
+  transform: translateY(0%) !important;
+  opacity: 1 !important;
+}

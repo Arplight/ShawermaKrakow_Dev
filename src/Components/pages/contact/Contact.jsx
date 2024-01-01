@@ -3,7 +3,7 @@ import ContactInfo from "./components/contact_info/ContactInfo";
 import Map from "./components/map/Map";
 
 const Contact = () => {
-  return <div className="contact"></div>;
+  return <div className="contact">Contact</div>;
 };
 
 export default Contact;

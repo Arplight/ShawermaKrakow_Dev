@@ -10,8 +10,7 @@
 // Layout
 @use "../Components/layout/blocker/Blocker";
 @use "../Components/layout/footer/Footer";
-@use "../Components/layout/top_button/TopButton";
-
+@use "../Components/layout/navbar/Navbar";
 // Components
 @use "../Components/pages/home/components/Slider/Slider";
 @use "../Components/pages/products/components/filter_board/FilterBoard";
@@ -23,6 +22,6 @@
 @use "../Components/common/buttons/Buttons";
 @use "../Components/common/sections/products_section/pagination/Pagination";
 @use "../Components/common/forms/Inputs";
-
+@use "../Components/layout/navbar/Components/Burger/BurgerIcon";
 // Responsive design
 @use "./Responsive";

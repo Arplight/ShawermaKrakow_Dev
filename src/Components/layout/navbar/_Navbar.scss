@@ -1,0 +1,89 @@
+@use "../../../Styles/Variables" as *;
+@use "../../../Styles/Mixins" as *;
+nav {
+  background-color: $secondaryColor;
+  z-index: 10;
+  top: 0px;
+  position: sticky;
+  .container:first-child {
+    border-bottom: 1px solid $primaryLight;
+    transition: $transitionDuration;
+  }
+  li {
+    cursor: pointer;
+  }
+  .nav-icon {
+    transition: $transitionDuration;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  .menu-large {
+    li {
+      &:first-child {
+        padding-left: 5px;
+      }
+      padding: 5px 10px;
+      position: relative;
+      overflow: hidden;
+      @include underline();
+    }
+  }
+  .cart-badge {
+    width: 18px;
+    height: 18px;
+    display: block;
+    border-radius: 18px;
+    border: $borderPrimary;
+    font-size: 14px;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    line-height: 14px;
+    text-align: center;
+  }
+  .mobile-menu {
+    position: absolute;
+    inset: auto 0% -266px 0%;
+    overflow: hidden;
+    height: max-content;
+    padding-bottom: 20px;
+    ul {
+      background-color: rgb(255, 255, 255);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      width: 100%;
+      transition: $transitionDuration;
+      box-shadow: $bigShadow;
+      padding: $cardPadding;
+      transform: translateY(-120%);
+      opacity: 0;
+      li {
+        width: max-content;
+      }
+    }
+  }
+}
+
+.sticky-nav {
+  background-color: $primaryColor;
+  max-width: 100%;
+  box-shadow: $bigShadow;
+  padding-block: 22px;
+  .menu-large {
+    & li::after {
+      background-color: rgba(255, 255, 255, 0.788) !important;
+    }
+  }
+  li {
+    color: rgba(255, 255, 255, 0.788) !important;
+  }
+  .burger {
+    span {
+      background-color: rgba(255, 255, 255, 0.788);
+    }
+  }
+  .cart-badge {
+    border: 1px solid rgba(255, 255, 255, 0.788);
+  }
+}

@@ -1,5 +1,11 @@
+import { IoIosArrowUp } from "react-icons/io";
+
 const TopButton = () => {
-  return <div className="top-button"></div>;
+  return (
+    <button className="top-button">
+      <IoIosArrowUp />
+    </button>
+  );
 };
 
 export default TopButton;

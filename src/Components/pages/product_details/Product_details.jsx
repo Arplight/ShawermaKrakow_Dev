@@ -4,7 +4,7 @@ import ProductTabs from "./components/product_tabs/ProductTabs";
 import RelatedProducts from "./components/related_products/RelatedProducts";
 
 const Product_details = () => {
-  return <div className="product-details"></div>;
+  return <div className="product-details">Details</div>;
 };
 
 export default Product_details;

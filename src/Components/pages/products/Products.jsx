@@ -2,7 +2,7 @@ import ProductsSection from "../../common/sections/products_section/ProductsSect
 import FilterBoard from "./components/filter_board/FilterBoard";
 import FilterBoardMobile from "./components/filter_board/FilterBoardMobile";
 const Products = () => {
-  return <div className="products"></div>;
+  return <div className="products">Products</div>;
 };
 
 export default Products;

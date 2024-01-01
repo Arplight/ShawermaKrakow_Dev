@@ -21,7 +21,7 @@ $largePragraph: 0.3rem;
 $smallPragraph: 0.25rem;
 
 // Transition
-$transitionDuration: 0.3s linear;
+$transitionDuration: 0.3s ease-in-out;
 
 // Template borders
 $borderPrimary: 1px solid $primaryColor;
@@ -32,3 +32,6 @@ $cardPadding: 20px;
 
 // Border radious
 $templateBorderRadious: 3px;
+
+//Shadow
+$bigShadow: 0px 10px 8px 2px rgba(0, 0, 0, 0.137);

@@ -1,0 +1,17 @@
+@use "../../../../../Styles/Variables" as *;
+.burger {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  overflow: hidden;
+  span {
+    width: 100%;
+    height: 3px;
+    background-color: $primaryColor;
+    border-radius: 10px;
+    transition: $transitionDuration;
+  }
+}
