@@ -64,26 +64,3 @@ nav {
     }
   }
 }
-
-.sticky-nav {
-  background-color: $primaryColor;
-  max-width: 100%;
-  box-shadow: $bigShadow;
-  padding-block: 22px;
-  .menu-large {
-    & li::after {
-      background-color: rgba(255, 255, 255, 0.788) !important;
-    }
-  }
-  li {
-    color: rgba(255, 255, 255, 0.788) !important;
-  }
-  .burger {
-    span {
-      background-color: rgba(255, 255, 255, 0.788);
-    }
-  }
-  .cart-badge {
-    border: 1px solid rgba(255, 255, 255, 0.788);
-  }
-}

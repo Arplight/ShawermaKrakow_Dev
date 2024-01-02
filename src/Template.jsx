@@ -55,6 +55,9 @@ const Template = () => {
         </button>
       </div>
       {/* top button */}
+      <button className="top-button">
+        <IoIosArrowUp />
+      </button>
       {/* close button */}
       <button className="close-button">
         <IoClose />

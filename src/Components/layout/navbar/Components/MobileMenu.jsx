@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+import { navLinks } from "../../../../Data/navbar/navbar";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+
 const MobileMenu = ({ isOpened, menuSetter }) => {
   const [menuVisible, setMenuVisible] = useState(false);
-
+  const location = useLocation().pathname;
   useEffect(() => {
     if (isOpened) {
       setMenuVisible(true);
@@ -26,36 +29,19 @@ const MobileMenu = ({ isOpened, menuSetter }) => {
           isOpened ? "mobile-menu-opened" : ""
         }`}
       >
-        <li
-          className="large-paragrapgh font-primary"
-          onClick={() => menuCollapse()}
-        >
-          <Link to="/">Home</Link>
-        </li>
-        <li
-          className="large-paragrapgh font-primary"
-          onClick={() => menuCollapse()}
-        >
-          <Link to="/Products">Products</Link>
-        </li>
-        <li
-          className="large-paragrapgh font-primary"
-          onClick={() => menuCollapse()}
-        >
-          <Link to="/About-Us">About Us</Link>
-        </li>
-        <li
-          className="large-paragrapgh font-primary"
-          onClick={() => menuCollapse()}
-        >
-          <Link to="/Service">Service</Link>
-        </li>
-        <li
-          className="large-paragrapgh font-primary"
-          onClick={() => menuCollapse()}
-        >
-          <Link to="/Contact">Contact</Link>
-        </li>
+        {navLinks.map((link, index) => (
+          <li
+            key={index}
+            className={
+              "large-paragrapgh font-primary flex items-center gap-[5px]"
+            }
+            onClick={() => menuCollapse()}
+          >
+            {link.route === location && <MdKeyboardDoubleArrowRight />}
+
+            <Link to={link.route}>{link.label}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -2,45 +2,36 @@ import { SlMagnifier } from "react-icons/sl";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import MobileMenu from "./Components/MobileMenu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BurgerIcon from "./Components/Burger/BurgerIcon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { navLinks } from "../../../Data/navbar/navbar";
+import useScroll from "../../hooks/useScroll";
 
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
-  const [isPassed, setIsPassed] = useState(false);
-  function scrollHandler() {
-    if (window.scrollY >= 100) {
-      setIsPassed(true);
-    } else {
-      setIsPassed(false);
-    }
-  }
-  window.addEventListener("scroll", scrollHandler);
+  const [isTarget] = useScroll(99);
+  const location = useLocation().pathname;
+
   return (
     <nav>
       <div
         className={`container flex items-center m-auto py-2  z-20 ${
-          isPassed ? "sticky-nav" : ""
+          isTarget ? "sticky-nav" : ""
         } `}
       >
         {/* Pages */}
         <ul className="hidden xl:flex gap-[15px] menu-large">
-          <li className="large-paragrapgh font-primary">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="large-paragrapgh font-primary">
-            <Link to="/Products">Products</Link>
-          </li>
-          <li className="large-paragrapgh font-primary">
-            <Link to="/About-Us">About Us</Link>
-          </li>
-          <li className="large-paragrapgh font-primary">
-            <Link to="/Service">Service</Link>
-          </li>
-          <li className="large-paragrapgh font-primary">
-            <Link to="/Contact">Contact</Link>
-          </li>
+          {navLinks.map((link, index) => (
+            <li
+              className={`large-paragrapgh font-primary  ${
+                link.route === location ? "nav-active" : ""
+              }`}
+              key={index}
+            >
+              <Link to={link.route}>{link.label}</Link>
+            </li>
+          ))}
         </ul>
 
         {/* Burger */}

@@ -1,3 +1,6 @@
+@use "./Variables" as *;
+@use "./Mixins" as *;
+// Navbar events
 .burger-opened {
   span:nth-child(2) {
     transform: translateX(-100%);
@@ -15,5 +18,41 @@
 
 .mobile-menu-opened {
   transform: translateY(0%) !important;
+  opacity: 1 !important;
+}
+
+.sticky-nav {
+  background-color: $primaryColor;
+  max-width: 100%;
+  box-shadow: $bigShadow;
+  padding-block: 22px;
+  .menu-large {
+    & li::after {
+      background-color: rgba(255, 255, 255, 0.788) !important;
+    }
+    & li::before {
+      background-color: rgba(255, 255, 255, 0.788) !important;
+    }
+  }
+  li {
+    color: rgba(255, 255, 255, 0.788) !important;
+  }
+  .burger {
+    span {
+      background-color: rgba(255, 255, 255, 0.788);
+    }
+  }
+  .cart-badge {
+    border: 1px solid rgba(255, 255, 255, 0.788);
+  }
+}
+
+.nav-active {
+  @include underlineActive();
+}
+
+// Top Button event
+.show-btn {
+  visibility: visible !important;
   opacity: 1 !important;
 }

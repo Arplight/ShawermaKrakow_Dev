@@ -1,0 +1,22 @@
+@use "../../../Styles/Variables" as *;
+.subscription-form {
+  display: flex;
+  input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
+footer {
+  svg {
+    fill: $paragraphSecondary;
+    font-size: 0.32rem;
+  }
+  a,
+  svg {
+    transition: $transitionDuration;
+  }
+  & :is(a, svg):hover {
+    color: $secondaryColor;
+    fill: $secondaryColor;
+  }
+}
