@@ -23,9 +23,7 @@
 
 .sticky-nav {
   background-color: $primaryColor;
-  max-width: 100%;
   box-shadow: $bigShadow;
-  padding-block: 22px;
   .menu-large {
     & li::after {
       background-color: rgba(255, 255, 255, 0.788) !important;
@@ -34,7 +32,7 @@
       background-color: rgba(255, 255, 255, 0.788) !important;
     }
   }
-  li {
+  .nav-large li {
     color: rgba(255, 255, 255, 0.788) !important;
   }
   .burger {
@@ -46,7 +44,6 @@
     border: 1px solid rgba(255, 255, 255, 0.788);
   }
 }
-
 .nav-active {
   @include underlineActive();
 }
@@ -55,4 +52,10 @@
 .show-btn {
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+// Disabled button
+.button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

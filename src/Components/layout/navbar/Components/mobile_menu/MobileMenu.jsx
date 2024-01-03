@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import { navLinks } from "../../../../Data/navbar/navbar";
+import { navLinks } from "../../../../../Data/navbar/navbar";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const MobileMenu = ({ isOpened, menuSetter }) => {

@@ -30,7 +30,7 @@ import "./Styles/Main.scss";
 function App() {
   return (
     <div className="wrapper">
-      <Blocker />
+      {/* <Blocker /> */}
       <Header />
       <Navbar />
       <Routes>

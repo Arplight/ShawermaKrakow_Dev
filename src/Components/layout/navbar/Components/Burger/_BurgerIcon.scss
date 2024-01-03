@@ -1,7 +1,7 @@
 @use "../../../../../Styles/Variables" as *;
 .burger {
   width: 20px;
-  height: 20px;
+  gap: 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

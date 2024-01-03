@@ -157,3 +157,35 @@
     }
   }
 }
+
+// Template menus
+@mixin Menu($menuType) {
+  background-color: rgba(255, 255, 255, 0.671);
+  backdrop-filter: blur(5px);
+  transition: $transitionDuration;
+  box-shadow: $bigShadow;
+  opacity: 0;
+  @if ($menuType == "navMenu") {
+    width: 100%;
+    padding: $cardPadding;
+    transform: translateY(-120%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    li {
+      width: max-content;
+    }
+  } @else if($menuType == "lang-menu") {
+    position: absolute;
+    z-index: 10;
+    inset: auto auto -98px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: max-content;
+    border-radius: 5px;
+    img {
+      height: 14px;
+    }
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,9 @@
+@use "../../../Styles/Variables" as *;
+.blocker {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.527);
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  transition: $transitionDuration;
+}

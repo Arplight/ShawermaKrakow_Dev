@@ -64,5 +64,37 @@ h4 {
 button {
   font-size: $buttonFont;
   transition: $transitionDuration;
-  padding: 8px 18px;
+  padding: 8px clamp(8px, 1vw, 18px);
+}
+// Error Message
+.error-message {
+  color: $errorColor;
+  font-size: 0.21rem;
+  position: absolute;
+  inset: auto auto -20px 0px;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: whitesmoke;
+}
+::-webkit-scrollbar-thumb {
+  background: $primaryColor;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #12342fe0;
+}
+*::-moz-scrollbar-thumb {
+  background-color: $primaryColor;
+}
+
+*::-moz-scrollbar-track {
+  background-color: whitesmoke;
+}
+
+*::-moz-scrollbar-thumb:hover {
+  background: #12342fe0;
 }

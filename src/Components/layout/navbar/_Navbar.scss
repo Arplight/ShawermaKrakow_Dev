@@ -5,6 +5,7 @@ nav {
   z-index: 10;
   top: 0px;
   position: sticky;
+  transition: $transitionDuration;
   .container:first-child {
     border-bottom: 1px solid $primaryLight;
     transition: $transitionDuration;
@@ -49,18 +50,17 @@ nav {
     height: max-content;
     padding-bottom: 20px;
     ul {
-      background-color: rgb(255, 255, 255);
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-      width: 100%;
-      transition: $transitionDuration;
-      box-shadow: $bigShadow;
-      padding: $cardPadding;
-      transform: translateY(-120%);
-      opacity: 0;
-      li {
-        width: max-content;
-      }
+      @include Menu("navMenu");
+    }
+  }
+
+  .lang-menu {
+    @include Menu("lang-menu");
+  }
+  .lang:hover {
+    .lang-menu {
+      visibility: visible;
+      opacity: 1;
     }
   }
 }

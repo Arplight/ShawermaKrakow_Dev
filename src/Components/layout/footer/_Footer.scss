@@ -1,12 +1,13 @@
 @use "../../../Styles/Variables" as *;
-.subscription-form {
-  display: flex;
-  input {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-}
+
 footer {
+  .subscription-form {
+    display: flex;
+    input {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+  }
   svg {
     fill: $paragraphSecondary;
     font-size: 0.32rem;
@@ -18,5 +19,16 @@ footer {
   & :is(a, svg):hover {
     color: $secondaryColor;
     fill: $secondaryColor;
+  }
+  .pack-food {
+    position: absolute;
+    height: 200px;
+    inset: auto 0px -150px auto;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 }
