@@ -59,3 +59,12 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+// Blocker
+.show-blocker {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.block-scroll {
+  overflow: hidden !important;
+}

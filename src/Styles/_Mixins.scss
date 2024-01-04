@@ -51,7 +51,6 @@
       width: 100%;
     }
   } @else if($type == "hollow") {
-    background-color: $secondaryColor;
     display: flex;
     justify-content: center;
     align-items: center;

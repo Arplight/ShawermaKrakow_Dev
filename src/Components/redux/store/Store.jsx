@@ -1,3 +1,8 @@
-const Store = () => {};
+import { configureStore } from "@reduxjs/toolkit";
+import BlockerSlice from "../slices/BlockerSlice";
 
-export default Store;
+export const Store = configureStore({
+  reducer: {
+    blocker: BlockerSlice,
+  },
+});

@@ -32,9 +32,7 @@ const MobileMenu = ({ isOpened, menuSetter }) => {
         {navLinks.map((link, index) => (
           <li
             key={index}
-            className={
-              "large-paragrapgh font-primary flex items-center gap-[5px]"
-            }
+            className={"text-[0.3rem] font-primary flex items-center gap-[5px]"}
             onClick={() => menuCollapse()}
           >
             {link.route === location && <MdKeyboardDoubleArrowRight />}

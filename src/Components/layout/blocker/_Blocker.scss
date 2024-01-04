@@ -1,9 +1,14 @@
 @use "../../../Styles/Variables" as *;
 .blocker {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.527);
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.603);
   width: 100vw;
   height: 100vh;
   z-index: 100;
   transition: $transitionDuration;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
