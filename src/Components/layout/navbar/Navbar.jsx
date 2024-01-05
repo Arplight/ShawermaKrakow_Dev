@@ -38,7 +38,7 @@ const Navbar = () => {
     <nav className={`${isTarget ? "sticky-nav" : ""} `}>
       <div
         className={`container flex items-center m-auto py-2  z-20 ${
-          delayPassed ? "py-[22px]" : ""
+          delayPassed ? "py-[23px]" : ""
         }`}
       >
         {/* Pages */}
