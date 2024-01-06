@@ -3,18 +3,20 @@ import { InfoData } from "../../../Data/reasons/Reasons";
 import InfoCard from "../../common/cards/info_card/InfoCard";
 import HeroHeadings from "../../common/hero_headings/HeroHeadings";
 import MainSection from "../../common/sections/main_section/MainSection";
-import { fetchData } from "../../redux/slices/apiSlice";
+import { fetchProducts } from "../../redux/slices/productsApiSlice";
 import Slider from "./components/Slider/Slider";
-import { useDispatch, useSelector } from "react-redux";
-const Home = () => {
-  // fetch the required api data once for each page separately, then subcomponents can read data using useSelector hook from redux, then use a custom hook for fetching logic
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
-  const data = useSelector((state) => state.api.data);
+import { useDispatch } from "react-redux";
+import { fetchImages } from "../../redux/slices/imagesApiSlice";
 
-  console.log("passed");
+const Home = () => {
+  const dispatchProducts = useDispatch();
+  const dispatchImages = useDispatch();
+
+  useEffect(() => {
+    dispatchProducts(fetchProducts());
+    dispatchImages(fetchImages());
+  }, [dispatchImages, dispatchProducts]);
+
   return (
     <div className="home">
       {/* Slider */}

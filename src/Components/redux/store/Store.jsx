@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import BlockerSlice from "../slices/BlockerSlice";
-import apiSlice from "../slices/apiSlice";
+import Api_1 from "../slices/productsApiSlice";
+import Api_2 from "../slices/imagesApiSlice";
 
 export const Store = configureStore({
   reducer: {
-    api: apiSlice,
+    productsApi: Api_1,
+    imagesApi: Api_2,
     blocker: BlockerSlice,
   },
 });

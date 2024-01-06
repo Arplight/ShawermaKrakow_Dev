@@ -1,9 +1,21 @@
 import { IoIosArrowUp } from "react-icons/io";
-import useScroll from "../../hooks/useScroll";
+import { useEffect, useState } from "react";
 
 const TopButton = () => {
-  const [isTarget] = useScroll(500);
+  const [isTarget, setIsTarget] = useState(false);
 
+  function scrollHandler() {
+    if (window.scrollY >= 500) {
+      setIsTarget(true);
+    } else {
+      setIsTarget(false);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHandler);
+    return () => removeEventListener("scroll", scrollHandler);
+  }, []);
   function elevator() {
     window.scrollTo({
       top: 0,

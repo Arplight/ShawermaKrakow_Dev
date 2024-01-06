@@ -1,44 +1,30 @@
 import MobileMenu from "./Components/mobile_menu/MobileMenu";
 import { Link, useLocation } from "react-router-dom";
 import BurgerIcon from "./Components/Burger/BurgerIcon";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { navLinks } from "../../../Data/navbar/navbar";
-import useScroll from "../../hooks/useScroll";
 import LangMenu from "./Components/lang_menu/LangMenu";
-
 // state
 import { useDispatch } from "react-redux";
 import { blockerSetter } from "../../redux/slices/BlockerSlice";
-
 // icons
 import { SlMagnifier } from "react-icons/sl";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { IoLanguage } from "react-icons/io5";
+import useDistance from "../../hooks/useDistance";
 
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
-  const [isTarget] = useScroll(99);
   const location = useLocation().pathname;
-  const [delayPassed, setDelayPassed] = useState(false);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isTarget) {
-      const navTimer = setTimeout(() => {
-        setDelayPassed(true);
-      }, 500);
-      return () => clearTimeout(navTimer);
-    } else {
-      setDelayPassed(false);
-    }
-  }, [isTarget]);
-
+  const navRef = useRef(null);
+  const { isDistance } = useDistance(navRef);
   return (
-    <nav className={`${isTarget ? "sticky-nav" : ""} `}>
+    <nav className={`${isDistance ? "sticky-nav" : ""} `} ref={navRef}>
       <div
         className={`container flex items-center m-auto py-2  z-20 ${
-          delayPassed ? "py-[23px]" : ""
+          isDistance ? "py-[22px]" : ""
         }`}
       >
         {/* Pages */}

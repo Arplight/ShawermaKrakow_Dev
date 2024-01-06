@@ -2,35 +2,37 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { IoIosArrowForward } from "react-icons/io";
-import useFetch from "../../../../hooks/useFetch";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
+// Data
+import useProducts from "../../../../hooks/useProducts";
+import useImages from "../../../../hooks/useImages";
+// Icons
+import { IoIosArrowForward } from "react-icons/io";
 
 const Slider = () => {
-  const imagesData = useFetch("https://shawermakrakow.com/api/images");
-  const productsData = useFetch("https://shawermakrakow.com/api/products");
-  const [sliderBg, setSliderBg] = useState(null);
+  const images = useImages();
+  const products = useProducts();
   const [topProducts, setTopProducts] = useState(null);
-
   useEffect(() => {
-    if (productsData && imagesData) {
-      setTopProducts(productsData[0].products.filter((n) => n.top_product));
-      setSliderBg(imagesData[0].images[0].url);
+    if (products) {
+      setTopProducts(products.filter((n) => n.top_product));
     }
-  }, [imagesData, productsData]);
+  }, [products]);
   return (
     <>
-      {sliderBg && topProducts && (
+      {images && topProducts && (
         <div
           className="slider py-2"
           style={{
-            backgroundImage: `url(${sliderBg})`,
+            backgroundImage: `url(${images[0].url})`,
           }}
         >
           <Swiper
             spaceBetween={0}
             centeredSlides={true}
+            speed={900}
+            loop={true}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
@@ -44,7 +46,7 @@ const Slider = () => {
           >
             {topProducts.map((product) => (
               <SwiperSlide key={product.id}>
-                <div className="slider-container container m-auto flex flex-col md:flex-row gap-10 relative">
+                <div className="slider-container container m-auto flex flex-col md:flex-row gap-10 relative items-center h-[70vh]">
                   <span className="w-full h-full md:w-1/2  flex items-center justify-center slider-image">
                     <img src={product.image} alt={product.name} />
                   </span>
