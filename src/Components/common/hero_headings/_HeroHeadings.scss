@@ -1,10 +1,7 @@
 @use "../../../Styles/Variables" as *;
 .hero-headings {
   display: flex;
-  align-items: center;
   flex-direction: column;
-  margin-bottom: 40px;
-  text-align: center;
   .hero-top {
     display: flex;
     align-items: center;

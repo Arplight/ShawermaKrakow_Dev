@@ -23,7 +23,7 @@ const Slider = () => {
     <>
       {images && topProducts && (
         <div
-          className="slider py-2"
+          className="slider py-2 background-section"
           style={{
             backgroundImage: `url(${images[0].url})`,
           }}
@@ -46,7 +46,7 @@ const Slider = () => {
           >
             {topProducts.map((product) => (
               <SwiperSlide key={product.id}>
-                <div className="slider-container container m-auto flex flex-col md:flex-row gap-10 relative items-center h-[70vh]">
+                <div className="slider-container container m-auto flex flex-col md:flex-row gap-10 relative items-center h-[70vh] md:h-[60vh] 2xl:h-[70vh]">
                   <span className="w-full h-full md:w-1/2  flex items-center justify-center slider-image">
                     <img src={product.image} alt={product.name} />
                   </span>

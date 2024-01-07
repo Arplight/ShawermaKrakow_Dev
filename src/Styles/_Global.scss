@@ -44,6 +44,7 @@ h1 {
 }
 h2 {
   font-size: $sectionHeading;
+  line-height: clamp(40px, 4vw, 50px);
 }
 h3 {
   font-size: $subHeadings;
@@ -97,4 +98,9 @@ button {
 
 *::-moz-scrollbar-thumb:hover {
   background: #12342fe0;
+}
+// Sections
+.background-section {
+  background-size: contain;
+  background-color: rgba(255, 228, 196, 0.199);
 }
