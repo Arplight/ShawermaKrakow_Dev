@@ -7,7 +7,7 @@
   gap: 20px;
   flex-direction: column;
   padding: $cardPadding;
-  width: 300px;
+  max-width: 400px;
   .card-top {
     padding-inline: 20px;
     .card-buttons {

@@ -1,0 +1,30 @@
+@use "../../../../../Styles/Variables" as *;
+
+.insta-img {
+  position: relative;
+  overflow: hidden;
+  .overlay {
+    inset: 0px 0px 0px 0px;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.322);
+    position: absolute;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    transition: $transitionDuration;
+    opacity: 0;
+  }
+  img {
+    transition: $transitionDuration;
+  }
+  &:hover {
+    .overlay {
+      opacity: 1;
+    }
+    img {
+      scale: 1.1;
+    }
+  }
+}

@@ -43,7 +43,7 @@ const Home = () => {
       <Clients />
 
       {/* Instagram */}
-      {/* <Instagram /> */}
+      <Instagram />
     </div>
   );
 };

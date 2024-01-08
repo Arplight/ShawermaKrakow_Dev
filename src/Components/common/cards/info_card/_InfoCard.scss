@@ -4,9 +4,9 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
-  width: 300px;
   gap: 15px;
   padding: $cardPadding;
+  max-width: 300px;
   img {
     width: 100%;
     height: 100%;
