@@ -6,17 +6,23 @@ const MainSection = ({ children, withBackground, withStyle }) => {
 
   return (
     <>
-      {images && (
-        <section
-          className={`py-6 ${withBackground ? "background-section" : ""}  `}
-          style={
-            withBackground
-              ? {
-                  backgroundImage: `url(${images[0].url})`,
-                }
-              : {}
-          }
-        >
+      {withBackground ? (
+        images && (
+          <section
+            className={`py-6 ${withBackground ? "background-section" : ""}`}
+            style={
+              withBackground
+                ? {
+                    backgroundImage: `url(${images[0].url})`,
+                  }
+                : {}
+            }
+          >
+            <div className={`container m-auto ${withStyle}`}>{children}</div>
+          </section>
+        )
+      ) : (
+        <section className="py-6">
           <div className={`container m-auto ${withStyle}`}>{children}</div>
         </section>
       )}

@@ -1,17 +1,20 @@
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const ProductCard = ({
   cardTitle,
   cardCategory,
   cardPrice,
   cardImage,
-  cardLink,
+  cardId,
 }) => {
   return (
     <div className="product-card">
       <div className="card-top">
-        <img src={cardImage} alt={cardTitle} />
+        <Link to={`Product_details/${cardId}`}>
+          <img src={cardImage} alt={cardTitle} />
+        </Link>
         <div className="card-buttons">
           <IoMdHeartEmpty />
           {/* <IoMdHeart /> */}
@@ -35,5 +38,5 @@ ProductCard.propTypes = {
   cardCategory: PropTypes.string,
   cardPrice: PropTypes.number,
   cardImage: PropTypes.string,
-  cardLink: PropTypes.string,
+  cardId: PropTypes.number,
 };

@@ -1,0 +1,23 @@
+@use "../../../../../Styles//Variables" as *;
+
+.contact-card {
+  border: $borderLight;
+  transition: $transitionDuration;
+  .card-icon {
+    background-color: $primaryLight;
+    transition: $transitionDuration;
+  }
+  svg {
+    fill: $primaryColor;
+    transition: $transitionDuration;
+  }
+  &:hover {
+    border: $borderPrimary;
+    .card-icon {
+      background-color: $primaryDark;
+      svg {
+        fill: $secondaryColor;
+      }
+    }
+  }
+}

@@ -4,31 +4,14 @@ const InputField = ({
   inputType,
   fieldId,
   fieldName,
+  fieldMaxLength,
   fieldPlaceHolder,
   fieldLabel,
   fieldOptions,
 }) => {
   let inputElement;
   if (fieldType === "input") {
-    if (inputType === "email" || inputType === "text") {
-      inputElement = (
-        <fieldset className="flex flex-col relative">
-          <Field
-            type={inputType}
-            name={fieldName}
-            id={fieldId}
-            placeholder={fieldPlaceHolder}
-            maxLength="40"
-          />
-          <ErrorMessage
-            name={fieldName}
-            id={fieldId}
-            component="div"
-            className="error-message"
-          />
-        </fieldset>
-      );
-    } else if (inputType === "range") {
+    if (inputType === "range") {
       inputElement = (
         <label
           htmlFor={fieldId}
@@ -38,16 +21,42 @@ const InputField = ({
           <input type="range" name={fieldName} id={fieldId} className="p-0" />
         </label>
       );
+    } else {
+      inputElement = (
+        <fieldset className="flex flex-col relative">
+          <Field
+            type={inputType}
+            name={fieldName}
+            id={fieldId}
+            placeholder={fieldPlaceHolder}
+            maxLength={fieldMaxLength}
+          />
+          <ErrorMessage
+            name={fieldName}
+            id={fieldId}
+            component="div"
+            className="error-message"
+          />
+        </fieldset>
+      );
     }
   } else if (fieldType === "textArea") {
     inputElement = (
-      <Field
-        as="textarea"
-        name={fieldName}
-        id={fieldId}
-        placeholder={fieldPlaceHolder}
-        maxLength="1000"
-      ></Field>
+      <fieldset className="relative">
+        <Field
+          as="textarea"
+          name={fieldName}
+          id={fieldId}
+          placeholder={fieldPlaceHolder}
+          maxLength={fieldMaxLength}
+        />
+        <ErrorMessage
+          name={fieldName}
+          id={fieldId}
+          component="div"
+          className="error-message"
+        />
+      </fieldset>
     );
   } else if (fieldType === "select") {
     inputElement = (

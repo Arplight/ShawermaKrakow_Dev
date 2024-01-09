@@ -42,7 +42,7 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="Cart" element={<Cart />} />
           <Route path="Products" element={<Products />} />
-          <Route path="Product_details" element={<Product_details />} />
+          <Route path="Product_details/:id" element={<Product_details />} />
           <Route path="Wishlist" element={<Wishlist />} />
           <Route path="Checkout" element={<Checkout />} />
         </Route>
