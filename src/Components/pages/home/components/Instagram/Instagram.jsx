@@ -13,9 +13,9 @@ const Instagram = () => {
         (n) => n.label === "instagram"
       ).reverse();
 
-      if (window.innerWidth > 768 && window.innerWidth < 1024) {
+      if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
         setFilteredImages(instagramImages.slice(0, 6));
-      } else if (window.innerWidth < 768) {
+      } else if (window.innerWidth <= 768) {
         setFilteredImages(instagramImages.slice(0, 4));
       } else {
         setFilteredImages(instagramImages);

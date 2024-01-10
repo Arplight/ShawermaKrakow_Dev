@@ -6,7 +6,6 @@ const Main = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
     });
   }, [pathState]);
   return (

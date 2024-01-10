@@ -2,6 +2,7 @@ import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import MainSection from "../../../../common/sections/main_section/MainSection";
 import { IoIosArrowForward } from "react-icons/io";
 import useImages from "../../../../hooks/useImages";
+import { Link } from "react-router-dom";
 
 const Mission = () => {
   const Images = useImages();
@@ -22,9 +23,12 @@ const Mission = () => {
           and taste mastery defines every dish, ensuring an unforgettable dining
           experience that&apos;s both purposeful and flavorful.
         </p>
-        <button className="font-primary arrow-button pl-0">
-          Our story <IoIosArrowForward className="text-[20px] button-arrow" />
-        </button>
+        <Link
+          to={"/About-Us"}
+          className="link-btn font-primary arrow-button pl-[0px]"
+        >
+          Our story <IoIosArrowForward className="text-[20px] button-arrow " />
+        </Link>
       </span>
       <span className="w-full md:w-1/2 flex">
         {Images && (

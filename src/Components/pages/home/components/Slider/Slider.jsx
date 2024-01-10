@@ -9,6 +9,8 @@ import useProducts from "../../../../hooks/useProducts";
 import useImages from "../../../../hooks/useImages";
 // Icons
 import { IoIosArrowForward } from "react-icons/io";
+// React Router
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   const images = useImages();
@@ -59,10 +61,13 @@ const Slider = () => {
                       <p className="large-paragrapgh font-primary text-justify w-full md:w-4/5">
                         {product.description}
                       </p>
-                      <button className="font-primary hollow-button">
+                      <Link
+                        to={`Product_details/${product.id}`}
+                        className="link-btn font-primary hollow-button"
+                      >
                         Buy now
                         <IoIosArrowForward className="text-[20px] button-arrow" />
-                      </button>
+                      </Link>
                     </div>
                   </span>
                 </div>

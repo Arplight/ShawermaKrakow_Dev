@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 export const fetchProducts = createAsyncThunk(
   "productsApi/fetchData",
   async () => {
@@ -30,5 +31,6 @@ const productsApiSlice = createSlice({
       });
   },
 });
+
 export default productsApiSlice.reducer;
 export const apiActions = productsApiSlice.actions;

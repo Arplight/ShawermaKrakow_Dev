@@ -1,5 +1,7 @@
 import { IoIosArrowForward } from "react-icons/io";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
 const InfoCard = ({ infoIcon, infoTitle, infoDescription }) => {
   return (
     <div className="info-card">
@@ -8,10 +10,10 @@ const InfoCard = ({ infoIcon, infoTitle, infoDescription }) => {
       </div>
       <h3 className="font-primary">{infoTitle}</h3>
       <p className="small-paragrapgh font-primary">{infoDescription}</p>
-      <button className="font-primary arrow-button">
+      <Link to={"/Products"} className="link-btn font-primary arrow-button">
         Start Shop
         <IoIosArrowForward className="text-[20px] button-arrow" />
-      </button>
+      </Link>
     </div>
   );
 };

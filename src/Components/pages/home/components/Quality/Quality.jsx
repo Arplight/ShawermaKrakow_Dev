@@ -4,6 +4,7 @@ import MainSection from "../../../../common/sections/main_section/MainSection";
 import useImages from "../../../../hooks/useImages";
 import { IoIosArrowForward } from "react-icons/io";
 import { qualityData } from "../../../../../Data/quality/Quality";
+import { Link } from "react-router-dom";
 const Quality = () => {
   const Images = useImages();
   return (
@@ -35,10 +36,10 @@ const Quality = () => {
             </li>
           ))}
         </ul>
-        <button className="main-button font-secondary">
+        <Link to={"/Service"} className="link-btn main-button font-secondary">
           Learn more
           <IoIosArrowForward className="text-[20px] button-arrow" />
-        </button>
+        </Link>
       </span>
     </MainSection>
   );

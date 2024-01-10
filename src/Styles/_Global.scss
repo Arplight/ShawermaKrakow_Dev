@@ -61,11 +61,13 @@ h4 {
   font-size: $smallPragraph;
 }
 // Buttons
-button {
+button,
+.link-btn {
   font-size: $buttonFont;
   transition: $transitionDuration;
   padding: 8px clamp(8px, 1vw, 18px);
   width: max-content;
+  cursor: pointer;
 }
 // Error Message
 .error-message {

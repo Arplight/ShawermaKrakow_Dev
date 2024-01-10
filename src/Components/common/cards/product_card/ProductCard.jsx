@@ -12,7 +12,7 @@ const ProductCard = ({
   return (
     <div className="product-card">
       <div className="card-top">
-        <Link to={`Product_details/${cardId}`}>
+        <Link to={`/Product_details/${cardId}`}>
           <img src={cardImage} alt={cardTitle} />
         </Link>
         <div className="card-buttons">
