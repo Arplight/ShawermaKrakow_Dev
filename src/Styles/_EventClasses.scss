@@ -68,3 +68,12 @@
 .block-scroll {
   overflow: hidden !important;
 }
+
+// Mobile board events
+.board-opened {
+  transform: translateX(0px) !important;
+}
+
+.show-menu {
+  transform: translateY(0%) !important;
+}

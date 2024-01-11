@@ -7,7 +7,7 @@ const Products = () => {
   const HomeProducts = useProducts();
 
   return (
-    <ProductsSection isPaginated={false}>
+    <ProductsSection isPaginated={false} isSingle={true}>
       <HeroHeadings
         topHeading={"Shop Trending Products"}
         bottomHeading={"Discover Our Departments"}

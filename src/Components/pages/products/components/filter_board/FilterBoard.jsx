@@ -2,17 +2,19 @@ import { filterBoardData } from "../../../../../Data/filter_board/Filter_board";
 
 const FilterBoard = () => {
   return (
-    <aside className="filter-board w-1/5 flex flex-col px-2 py-6 gap-2">
+    <aside className="filter-board w-1/5 hidden md:flex flex-col py-6 gap-2 ">
       <button className="full-button font-secondary ">Clear Filters</button>
       <div>
-        <h3 className="font-primary mb-1">Sort By</h3>
+        <h3 className="font-primary pb-0.5 mb-1 border-b-[1px] border-b-[#12342f2c] ">
+          Sort By
+        </h3>
 
         <ul className="flex flex-col gap-0.5">
           {filterBoardData[0].sortMenu.map((item, index) => (
             <li key={index}>
               <label
                 htmlFor={item}
-                className="small-paragrapgh font-primary flex items-center gap-[8px]"
+                className="small-paragrapgh font-primary flex items-center gap-[8px] "
               >
                 <input type="radio" name="sort" id={item} />
                 {item}
@@ -22,7 +24,9 @@ const FilterBoard = () => {
         </ul>
       </div>
       <div>
-        <h3 className="font-primary mb-1">Filter By</h3>
+        <h3 className="font-primary pb-0.5 mb-1 border-b-[1px] border-b-[#12342f2c]">
+          Filter By
+        </h3>
 
         <div className="flex flex-col gap-1">
           <span>

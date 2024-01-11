@@ -14,13 +14,22 @@ const Products = () => {
     dispatchProducts(fetchProducts());
   }, [dispatchProducts]);
   const products = useProducts();
-  console.log(products);
   return (
     <div className="products">
+      {/* BreadCrumbs */}
       <Breadcrumb />
-      <div className="flex container m-auto ">
+
+      {/* Main container */}
+      <div className="flex container m-auto gap-4">
+        {/* FilterBoard */}
         <FilterBoard />
-        <ProductsSection isPaginated={true} withStyle={"w-full lg:w-4/5"}>
+
+        {/* Products */}
+        <ProductsSection
+          isPaginated={true}
+          withStyle={"w-full lg:w-4/5"}
+          isSingle={false}
+        >
           <ul className="w-full grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-3">
             {products &&
               products.map((product) => (
@@ -37,6 +46,8 @@ const Products = () => {
           </ul>
         </ProductsSection>
       </div>
+      {/* Mobile filter board */}
+      <FilterBoardMobile />
     </div>
   );
 };

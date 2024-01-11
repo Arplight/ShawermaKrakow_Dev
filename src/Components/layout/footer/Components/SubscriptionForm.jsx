@@ -26,7 +26,7 @@ const SubscriptionForm = () => {
             type="submit"
             disabled={!isValid || !dirty}
           >
-            Sign Up
+            Subscribe
           </button>
         </Form>
       )}
