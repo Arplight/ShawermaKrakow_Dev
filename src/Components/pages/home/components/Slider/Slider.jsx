@@ -55,14 +55,17 @@ const Slider = () => {
                   <span className="slider-info w-full h-full md:w-1/2 flex items-center justify-center z-[10]">
                     <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
                       <h3 className="font-primary italic font-thin">
-                        Save up to ${product.price_before_discount}
+                        Save up to $
+                        {product.price_before_discount
+                          .toFixed(2)
+                          .toLocaleString()}
                       </h3>
                       <h1 className="font-primary">{product.name}</h1>
                       <p className="large-paragrapgh font-primary text-justify w-full md:w-4/5">
                         {product.description}
                       </p>
                       <Link
-                        to={`Product_details/${product.id}`}
+                        to={`Details/${product.name.replaceAll(" ", "-")}`}
                         className="link-btn font-primary hollow-button"
                       >
                         Buy now

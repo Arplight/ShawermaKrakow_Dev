@@ -21,9 +21,6 @@ import Checkout from "./Components/pages/checkout/Checkout";
 //React router
 import { Route, Routes } from "react-router-dom";
 
-// Template
-import Template from "./Template";
-
 // Main style sheet
 import "./Styles/Main.scss";
 
@@ -39,18 +36,16 @@ function App() {
           <Route path="About-Us" element={<About />} />
           <Route path="Service" element={<Service />} />
           <Route path="Contact" element={<Contact />} />
-          <Route path="*" element={<Error />} />
           <Route path="Cart" element={<Cart />} />
           <Route path="Products" element={<Products />} />
-          <Route path="Product_details/:id" element={<Product_details />} />
+          <Route path="Details/:pathName" element={<Product_details />} />
           <Route path="Wishlist" element={<Wishlist />} />
           <Route path="Checkout" element={<Checkout />} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
       <Footer />
       <TopButton />
-      {/* Template */}
-      {/* <Template /> */}
     </>
   );
 }

@@ -8,9 +8,10 @@ const CurrentProductSlice = createSlice({
       const products = action.payload;
       if (products.productsData) {
         let currentProduct = products.productsData.filter(
-          (product) => product.id === products.targetId
+          (product) =>
+            product.name.replaceAll(" ", "-") === products.targetPathName
         );
-        state.data = currentProduct;
+        state.data = currentProduct[0];
       }
     },
   },

@@ -106,3 +106,8 @@ button,
   background-size: contain;
   background-color: rgba(255, 228, 196, 0.199);
 }
+
+// Swiper
+.swiper-pagination-bullet {
+  background-color: $primaryColor;
+}

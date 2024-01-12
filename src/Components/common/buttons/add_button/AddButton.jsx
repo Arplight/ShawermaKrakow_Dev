@@ -1,5 +1,5 @@
 const AddButton = () => {
-  return <button className="add-btn"></button>;
+  return <button className="main-button font-secondary">Add to cart</button>;
 };
 
 export default AddButton;

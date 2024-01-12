@@ -9,9 +9,7 @@
     }
   }
   .swiper-pagination {
-    z-index: -1;
-  }
-  .swiper-pagination-bullet {
-    background-color: $primaryColor;
+    width: max-content !important;
+    inset: auto calc(50% - 28px) 0px auto;
   }
 }

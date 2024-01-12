@@ -23,7 +23,6 @@ const Products = () => {
                 cardTitle={product.name}
                 cardImage={product.image}
                 cardPrice={product.price_before_discount}
-                cardId={product.id}
               />
             </li>
           ))}
