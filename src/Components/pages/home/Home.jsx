@@ -2,11 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 // Slices
-import { fetchImages } from "../../redux/slices/imagesApiSlice";
-import {
-  fetchProducts,
-  // selectProductsData,
-} from "../../redux/slices/productsApiSlice";
+import { fetchImages, fetchProducts } from "../../redux/store/ApiStore";
 
 // Components
 import Slider from "./components/Slider/Slider";
@@ -16,6 +12,7 @@ import Quality from "./components/Quality/Quality";
 import Mission from "./components/Mission/Mission";
 import Clients from "./components/Clients/Clients";
 import Instagram from "./components/Instagram/Instagram";
+
 const Home = () => {
   const dispatchProducts = useDispatch();
   const dispatchImages = useDispatch();

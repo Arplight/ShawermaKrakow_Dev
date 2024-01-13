@@ -1,10 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-export const fetchImages = createAsyncThunk("imagesApi/fetchData", async () => {
-  const response = await axios.get("https://shawermakrakow.com/api/images");
-  return response.data;
-});
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchImages } from "../store/ApiStore";
 
 const imagesApiSlice = createSlice({
   name: "imagesApi",

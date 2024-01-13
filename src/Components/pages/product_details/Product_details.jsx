@@ -1,27 +1,19 @@
 import { useDispatch } from "react-redux";
-import useProducts from "../../hooks/useProducts";
 import ProductSummary from "./components/product_summary/ProductSummary";
 import RelatedProducts from "./components/related_products/RelatedProducts";
-import { fetchProducts } from "../../redux/slices/productsApiSlice";
 import { useEffect } from "react";
-import { setCurrentProduct } from "../../redux/slices/CurrentProductSlice";
 import { useParams } from "react-router-dom";
 import Breadcrumb from "../../common/sections/breadcrumb/Breadcrumb";
+import { fetchProducts } from "../../redux/store/ApiStore";
+import { setTargetPathName } from "../../redux/slices/CurrentProductSlice";
 
 const Product_details = () => {
-  const dispatchProducts = useDispatch();
   const dispatchCurrent = useDispatch();
-  const products = useProducts();
   const { pathName } = useParams();
   useEffect(() => {
-    dispatchProducts(fetchProducts());
-  }, []);
-
-  useEffect(() => {
-    dispatchCurrent(
-      setCurrentProduct({ productsData: products, targetPathName: pathName })
-    );
-  }, [products, pathName]);
+    dispatchCurrent(fetchProducts());
+    dispatchCurrent(setTargetPathName(pathName));
+  }, [pathName]);
 
   return (
     <div className="product-details">

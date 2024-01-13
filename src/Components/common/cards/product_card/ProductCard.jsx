@@ -2,7 +2,17 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-const ProductCard = ({ cardTitle, cardCategory, cardPrice, cardImage }) => {
+import { addItem } from "../../../redux/slices/CartSlice";
+import { useDispatch } from "react-redux";
+
+const ProductCard = ({
+  cardTitle,
+  cardCategory,
+  cardPrice,
+  cardImage,
+  cardId,
+}) => {
+  const dispatchAddItem = useDispatch();
   return (
     <div className="product-card m-auto">
       <div className="card-top">
@@ -12,7 +22,7 @@ const ProductCard = ({ cardTitle, cardCategory, cardPrice, cardImage }) => {
         <div className="card-buttons">
           <IoMdHeartEmpty />
           {/* <IoMdHeart /> */}
-          <PiShoppingCart />
+          <PiShoppingCart onClick={() => dispatchAddItem(addItem(cardId))} />
           {/* <PiShoppingCartFill /> */}
         </div>
       </div>
@@ -34,4 +44,5 @@ ProductCard.propTypes = {
   cardCategory: PropTypes.string,
   cardPrice: PropTypes.number,
   cardImage: PropTypes.string,
+  cardId: PropTypes.number,
 };

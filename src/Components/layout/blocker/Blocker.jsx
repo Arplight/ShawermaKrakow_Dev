@@ -25,7 +25,9 @@ const Blocker = () => {
     <div
       onClick={() => dispatch(blockerSetter(null))}
       className={`blocker ${blockerState !== null ? "show-blocker" : ""}`}
-    ></div>
+    >
+      {blockerState === "cart" ? <CartMenu /> : ""}
+    </div>
   );
 };
 

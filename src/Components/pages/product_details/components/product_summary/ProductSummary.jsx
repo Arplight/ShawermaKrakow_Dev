@@ -5,7 +5,6 @@ import MainSection from "../../../../common/sections/main_section/MainSection";
 
 const ProductSummary = () => {
   const currentProduct = useSelector((state) => state.currentProduct.data);
-
   return (
     <>
       <MainSection

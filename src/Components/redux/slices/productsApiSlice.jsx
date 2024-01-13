@@ -1,13 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-export const fetchProducts = createAsyncThunk(
-  "productsApi/fetchData",
-  async () => {
-    const response = await axios.get("https://shawermakrakow.com/api/products");
-    return response.data;
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchProducts } from "../store/ApiStore";
 
 const productsApiSlice = createSlice({
   name: "productsApi",

@@ -1,0 +1,28 @@
+@use "../../../../Styles/Variables" as *;
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  padding: 10px;
+  margin-top: 30px;
+  margin-inline: auto;
+  width: max-content;
+  font-size: 20px;
+}
+.pagination_prev,
+.pagination_next {
+  background-color: $primaryColor;
+  color: $secondaryColor;
+  padding: 10px;
+}
+.pagination_link_disabled {
+  cursor: not-allowed;
+}
+.page {
+  padding: 10px;
+}
+.pagination_active {
+  background-color: $primaryColor;
+  color: $secondaryColor;
+}
