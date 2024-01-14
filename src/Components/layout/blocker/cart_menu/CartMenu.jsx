@@ -4,13 +4,22 @@ import OrderList from "../../../common/cart/order_list/OrderList";
 import OrderSummary from "./order_summary/OrderSummary";
 import { useEffect } from "react";
 import { fetchProducts } from "../../../redux/store/ApiStore";
+import { Link } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
 
 const CartMenu = () => {
-  const dispatchProducts = useDispatch();
+  const dispatchCart = useDispatch();
   useEffect(() => {
-    dispatchProducts(fetchProducts());
-  }, [dispatchProducts]);
-  return <div className="cart-menu"> Cart</div>;
+    dispatchCart(fetchProducts());
+  }, [dispatchCart]);
+  return (
+    <div className="cart-menu">
+      <Link to="/Cart" className="link-btn main-button font-secondary">
+        View cart
+        <IoIosArrowForward className="text-[20px] button-arrow" />
+      </Link>
+    </div>
+  );
 };
 
 export default CartMenu;

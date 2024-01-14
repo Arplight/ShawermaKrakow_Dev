@@ -1,7 +1,7 @@
 import CartItem from "./CartItem/CartItem";
 
-const OrderList = () => {
-  return <div className="order-list"></div>;
+const OrderList = ({ children, withStyle }) => {
+  return <div className={`${withStyle}`}>{children}</div>;
 };
 
 export default OrderList;

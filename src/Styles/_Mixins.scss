@@ -105,7 +105,7 @@
     border: $borderPrimary;
     .plus,
     .minus {
-      font-size: 0.2rem;
+      font-size: clamp(0.15rem, 2vw, 0.2rem);
       background-color: $primaryColor;
       color: $secondaryColor;
       padding: 8px;
@@ -140,6 +140,8 @@
     padding: 3px;
     font-size: 18px;
     color: $primaryColor;
+    position: absolute;
+    inset: 0px auto auto 0px;
   } @else if($type == "top") {
     position: fixed;
     right: 10px;

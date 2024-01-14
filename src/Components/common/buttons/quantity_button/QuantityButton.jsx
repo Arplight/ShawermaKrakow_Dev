@@ -1,20 +1,38 @@
 import { useState } from "react";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { updateItem } from "../../../redux/slices/CartSlice";
 
-const QuantityButton = ({ quantity }) => {
+const QuantityButton = ({ itemQuantity, itemId }) => {
   const [currentQuantity, setCurrentQuantity] = useState(1);
+  const dispatchUpdateItem = useDispatch();
+
+  const handleDecrement = () => {
+    if (currentQuantity > 1) {
+      setCurrentQuantity(currentQuantity - 1);
+      dispatchUpdateItem(
+        updateItem({ id: itemId, quantity: currentQuantity - 1 })
+      );
+    }
+  };
+
+  const handleIncrement = () => {
+    if (currentQuantity < itemQuantity) {
+      setCurrentQuantity(currentQuantity + 1);
+      dispatchUpdateItem(
+        updateItem({ id: itemId, quantity: currentQuantity + 1 })
+      );
+    }
+  };
+
   return (
     <div className="quantity-button">
       <button
         className={`minus border-r-[1px] border-[#12342f] ${
           currentQuantity === 1 ? "button-disabled" : ""
         }`}
-        onClick={() => {
-          if (currentQuantity > 1) {
-            setCurrentQuantity(currentQuantity - 1);
-          }
-        }}
+        onClick={handleDecrement}
         disabled={currentQuantity === 1}
       >
         <TiMinus />
@@ -22,14 +40,9 @@ const QuantityButton = ({ quantity }) => {
       <span>{currentQuantity}</span>
       <button
         className={`plus border-l-[1px] border-[#12342f] ${
-          currentQuantity === quantity ? "button-disabled" : ""
+          currentQuantity === itemQuantity ? "button-disabled" : ""
         }`}
-        onClick={() => {
-          7;
-          if (currentQuantity < quantity) {
-            setCurrentQuantity(currentQuantity + 1);
-          }
-        }}
+        onClick={handleIncrement}
       >
         <TiPlus />
       </button>
@@ -40,5 +53,6 @@ const QuantityButton = ({ quantity }) => {
 export default QuantityButton;
 
 QuantityButton.propTypes = {
-  quantity: PropTypes.number,
+  itemQuantity: PropTypes.number,
+  itemId: PropTypes.number,
 };

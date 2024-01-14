@@ -72,7 +72,10 @@ const ProductSummary = () => {
                     Quantity:
                   </p>
                   <span>
-                    <QuantityButton quantity={currentProduct.quantity} />
+                    <QuantityButton
+                      itemQuantity={currentProduct.quantity}
+                      itemId={currentProduct.id}
+                    />
                   </span>
                 </li>
               </ul>
