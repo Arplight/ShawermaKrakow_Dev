@@ -2,8 +2,9 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { addItem } from "../../../redux/slices/CartSlice";
+import { addCartItem, removeCartItem } from "../../../redux/slices/CartSlice";
 import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 const ProductCard = ({
   cardTitle,
@@ -12,7 +13,18 @@ const ProductCard = ({
   cardImage,
   cardId,
 }) => {
-  const dispatchAddItem = useDispatch();
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  // const [isAddedToFavourite, setIsAddedToFavourite] = useState(false);
+  const dispatchAddCartItem = useDispatch();
+  const dispatchRemoveCartItem = useDispatch();
+  useEffect(() => {
+    if (isAddedToCart) {
+      dispatchAddCartItem(addCartItem({ itemId: cardId, itemQuantity: 1 }));
+    } else {
+      dispatchRemoveCartItem(removeCartItem(cardId));
+    }
+  }, [isAddedToCart, cardId, dispatchAddCartItem, dispatchRemoveCartItem]);
+
   return (
     <div className="product-card m-auto">
       <div className="card-top">
@@ -20,10 +32,14 @@ const ProductCard = ({
           <img src={cardImage} alt={cardTitle} />
         </Link>
         <div className="card-buttons">
-          <IoMdHeartEmpty />
-          {/* <IoMdHeart /> */}
-          <PiShoppingCart onClick={() => dispatchAddItem(addItem(cardId))} />
-          {/* <PiShoppingCartFill /> */}
+          <span>
+            <IoMdHeartEmpty />
+            {/* <IoMdHeart /> */}
+          </span>
+
+          <span onClick={() => setIsAddedToCart(!isAddedToCart)}>
+            {isAddedToCart ? <PiShoppingCartFill /> : <PiShoppingCart />}
+          </span>
         </div>
       </div>
       <div className="card-bottom">

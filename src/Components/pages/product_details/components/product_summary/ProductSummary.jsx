@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
-import AddButton from "../../../../common/buttons/add_button/AddButton";
+import { useDispatch, useSelector } from "react-redux";
 import QuantityButton from "../../../../common/buttons/quantity_button/QuantityButton";
 import MainSection from "../../../../common/sections/main_section/MainSection";
+import { addCartItem } from "../../../../redux/slices/CartSlice";
+import { useState } from "react";
+import useIsAdded from "../../../../hooks/useIsAdded";
 
 const ProductSummary = () => {
+  const [summaryQuantity, setSummaryQuantity] = useState(1);
   const currentProduct = useSelector((state) => state.currentProduct.data);
+  const dispatchAddCartItem = useDispatch();
+  const { isAdded } = useIsAdded(currentProduct && currentProduct.id);
   return (
     <>
       <MainSection
@@ -25,7 +30,6 @@ const ProductSummary = () => {
             </span>
             <span className="w-full md:w-1/2 flex flex-col gap-2">
               <h2 className="font-primary">{currentProduct.name}</h2>
-
               <p className="small-paragrapgh font-primary text-justify ">
                 {currentProduct.description}
               </p>
@@ -73,13 +77,29 @@ const ProductSummary = () => {
                   </p>
                   <span>
                     <QuantityButton
-                      itemQuantity={currentProduct.quantity}
+                      itemStockQuantity={currentProduct.quantity}
                       itemId={currentProduct.id}
+                      itemSummaryQuantity={setSummaryQuantity}
                     />
                   </span>
                 </li>
               </ul>
-              <AddButton />
+              <button
+                className={`main-button font-secondary ${
+                  isAdded && "button-disabled"
+                }`}
+                onClick={() =>
+                  dispatchAddCartItem(
+                    addCartItem({
+                      itemId: currentProduct.id,
+                      itemQuantity: summaryQuantity,
+                    })
+                  )
+                }
+                disabled={isAdded}
+              >
+                Add to cart
+              </button>
             </span>
           </>
         )}

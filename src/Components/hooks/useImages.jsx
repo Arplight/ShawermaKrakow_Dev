@@ -4,9 +4,7 @@ const useImages = () => {
   const [images, setImages] = useState(null);
   const response = useSelector((state) => state.imagesApi.data);
   useEffect(() => {
-    if (response) {
-      setImages(response[0].images);
-    }
+    setImages(response ? response[0].images : null);
   }, [response]);
   return images;
 };

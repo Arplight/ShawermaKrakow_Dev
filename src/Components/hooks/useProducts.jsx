@@ -3,12 +3,10 @@ import { useSelector } from "react-redux";
 
 const useProducts = () => {
   const [products, setProducts] = useState(null);
-  const data = useSelector((state) => state.productsApi.data);
+  const response = useSelector((state) => state.productsApi.data);
   useEffect(() => {
-    if (data) {
-      setProducts(data[0].products);
-    }
-  }, [data]);
+    setProducts(response ? response[0].products : null);
+  }, [response]);
   return products;
 };
 

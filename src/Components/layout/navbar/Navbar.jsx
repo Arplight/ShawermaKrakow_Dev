@@ -5,14 +5,14 @@ import { useRef, useState } from "react";
 import { navLinks } from "../../../Data/navbar/navbar";
 import LangMenu from "./Components/lang_menu/LangMenu";
 // state
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import useDistance from "../../hooks/useDistance";
 import { blockerSetter } from "../../redux/slices/BlockerSlice";
 // icons
 import { SlMagnifier } from "react-icons/sl";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { IoLanguage } from "react-icons/io5";
-import useDistance from "../../hooks/useDistance";
 
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -20,6 +20,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navRef = useRef(null);
   const { isDistance } = useDistance(navRef);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   return (
     <nav className={`${isDistance ? "sticky-nav" : ""} `} ref={navRef}>
       <div
@@ -67,7 +68,7 @@ const Navbar = () => {
           >
             <TbShoppingBagPlus className="nav-icon" />
             <div className="cart-badge">
-              <span>0</span>
+              <span>{cartItems.length}</span>
             </div>
           </li>
         </ul>

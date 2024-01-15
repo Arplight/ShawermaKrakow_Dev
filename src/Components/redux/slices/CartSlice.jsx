@@ -13,41 +13,44 @@ const CartSlice = createSlice({
   },
   reducers: {
     // CRUD
-    addItem(state, action) {
-      const currentItemId = action.payload;
+    addCartItem(state, action) {
+      const currentItemInfo = action.payload;
       if (state.data) {
         const itemExists = state.cartItems.some(
-          (item) => item.itemId === currentItemId
+          (item) => item.itemId === currentItemInfo.itemId
         );
         if (!itemExists) {
           const currentItem = state.data.find(
-            (item) => item.id === currentItemId
+            (item) => item.id === currentItemInfo.itemId
           );
           const currentItemSummary = {
-            itemId: currentItemId,
+            itemId: currentItemInfo.itemId,
             itemStockQuantity: currentItem.quantity,
-            itemOrderQuantity: 1,
+            itemOrderQuantity: currentItemInfo.itemQuantity,
             itemWeight: currentItem.weight,
             itemTitle: currentItem.name,
             itemPrice: currentItem.price_before_discount,
-            itemTotalPrice: currentItem.price_before_discount,
+            itemTotalPrice:
+              currentItem.price_before_discount * currentItemInfo.itemQuantity,
             itemImage: currentItem.image,
           };
           state.cartItems = produce(state.cartItems, (draft) => {
             draft.push(currentItemSummary);
           }).flat(1);
         }
+        console.log(state.cartItems);
       }
     },
-    removeItem(state, action) {
+    removeCartItem(state, action) {
       const currentItemId = action.payload;
       if (state.data) {
         state.cartItems = state.cartItems.filter(
           (item) => item.itemId !== currentItemId
         );
       }
+      console.log(state.cartItems);
     },
-    updateItem(state, action) {
+    updateCartItem(state, action) {
       const currentItemSummary = action.payload;
 
       if (state.data) {
@@ -61,6 +64,7 @@ const CartSlice = createSlice({
             currentItemSummary.quantity * draft[currentIndex].itemPrice;
         });
       }
+      console.log(state.cartItems);
     },
     // Calculations
     cartTotal(state) {
@@ -90,5 +94,6 @@ const CartSlice = createSlice({
 });
 
 export default CartSlice.reducer;
-export const { addItem, removeItem, updateItem, cartTotal } = CartSlice.actions;
+export const { addCartItem, removeCartItem, updateCartItem, cartTotal } =
+  CartSlice.actions;
 export const currentActions = CartSlice.actions;

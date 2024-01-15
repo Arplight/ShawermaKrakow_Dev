@@ -1,28 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { updateItem } from "../../../redux/slices/CartSlice";
+import { updateCartItem } from "../../../redux/slices/CartSlice";
+import useIsAdded from "../../../hooks/useIsAdded";
 
-const QuantityButton = ({ itemQuantity, itemId }) => {
-  const [currentQuantity, setCurrentQuantity] = useState(1);
+const QuantityButton = ({ itemStockQuantity, itemId, itemSummaryQuantity }) => {
+  const { isAdded, itemQuantity } = useIsAdded(itemId);
+  const [currentQuantity, setCurrentQuantity] = useState(
+    itemQuantity ? itemQuantity : 1
+  );
   const dispatchUpdateItem = useDispatch();
+  useEffect(() => {
+    if (itemSummaryQuantity && !isAdded) {
+      itemSummaryQuantity(currentQuantity);
+    }
+  }, [currentQuantity, itemSummaryQuantity, isAdded]);
 
   const handleDecrement = () => {
     if (currentQuantity > 1) {
       setCurrentQuantity(currentQuantity - 1);
-      dispatchUpdateItem(
-        updateItem({ id: itemId, quantity: currentQuantity - 1 })
-      );
+      if (isAdded) {
+        dispatchUpdateItem(
+          updateCartItem({ id: itemId, quantity: currentQuantity - 1 })
+        );
+      }
     }
   };
 
   const handleIncrement = () => {
-    if (currentQuantity < itemQuantity) {
+    if (currentQuantity < itemStockQuantity) {
       setCurrentQuantity(currentQuantity + 1);
-      dispatchUpdateItem(
-        updateItem({ id: itemId, quantity: currentQuantity + 1 })
-      );
+      if (isAdded) {
+        dispatchUpdateItem(
+          updateCartItem({ id: itemId, quantity: currentQuantity + 1 })
+        );
+      }
     }
   };
 
@@ -40,7 +53,7 @@ const QuantityButton = ({ itemQuantity, itemId }) => {
       <span>{currentQuantity}</span>
       <button
         className={`plus border-l-[1px] border-[#12342f] ${
-          currentQuantity === itemQuantity ? "button-disabled" : ""
+          currentQuantity === itemStockQuantity ? "button-disabled" : ""
         }`}
         onClick={handleIncrement}
       >
@@ -50,9 +63,10 @@ const QuantityButton = ({ itemQuantity, itemId }) => {
   );
 };
 
-export default QuantityButton;
-
 QuantityButton.propTypes = {
-  itemQuantity: PropTypes.number,
+  itemStockQuantity: PropTypes.number,
   itemId: PropTypes.number,
+  itemSummaryQuantity: PropTypes.func,
 };
+
+export default QuantityButton;

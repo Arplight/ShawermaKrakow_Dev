@@ -2,7 +2,8 @@ import QuantityButton from "../../../buttons/quantity_button/QuantityButton";
 import PropTypes from "prop-types";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../../../../redux/slices/CartSlice";
+import { removeCartItem } from "../../../../redux/slices/CartSlice";
+import { Link } from "react-router-dom";
 
 const CartItem = ({
   itemImage,
@@ -13,22 +14,24 @@ const CartItem = ({
   itemWeight,
   itemId,
 }) => {
-  const dispatchRemoveItem = useDispatch();
+  const dispatchRemoveCartItem = useDispatch();
   return (
     <div className="flex gap-1 items-center relative">
       {/* Remove Button */}
       <button
         className="remove-button"
-        onClick={() => dispatchRemoveItem(removeItem(itemId))}
+        onClick={() => dispatchRemoveCartItem(removeCartItem(itemId))}
       >
         <IoTrashBinOutline />
       </button>
       <span className="h-[200px] w-2/5 overflow-hidden ">
-        <img
-          src={itemImage}
-          alt={itemTitle}
-          className="w-full h-full object-contain  object-center "
-        />
+        <Link to={`/Details/${itemTitle.replaceAll(" ", "-")}`}>
+          <img
+            src={itemImage}
+            alt={itemTitle}
+            className="w-full h-full object-contain  object-center "
+          />
+        </Link>
       </span>
       <span className="flex flex-col gap-0.5 w-3/5">
         <h3 className="font-primary">{itemTitle}</h3>
@@ -38,7 +41,7 @@ const CartItem = ({
         <b className="small-paragrapgh font-primary">
           ${itemPrice.toFixed(2).toLocaleString()}
         </b>
-        <QuantityButton itemQuantity={itemStockQuantity} itemId={itemId} />
+        <QuantityButton itemStockQuantity={itemStockQuantity} itemId={itemId} />
         <b className="small-paragrapgh font-primary">
           Total: ${itemTotalPrice.toFixed(2).toLocaleString()}
         </b>
