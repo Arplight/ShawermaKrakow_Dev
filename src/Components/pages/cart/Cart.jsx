@@ -17,7 +17,7 @@ const Cart = () => {
   useEffect(() => {
     dispatchCart(fetchProducts());
     dispatchTotal(cartTotal());
-  }, [dispatchCart, dispatchTotal, cartItems]);
+  }, [dispatchCart, dispatchTotal]);
 
   return (
     <div className="cart">

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { addCartItem, removeCartItem } from "../../../redux/slices/CartSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import LazyLoad from "react-lazy-load";
 
 const ProductCard = ({
   cardTitle,
@@ -29,7 +30,9 @@ const ProductCard = ({
     <div className="product-card m-auto">
       <div className="card-top">
         <Link to={`/Details/${cardTitle.replaceAll(" ", "-")}`}>
-          <img src={cardImage} alt={cardTitle} />
+          <LazyLoad offset={100}>
+            <img src={cardImage} alt={cardTitle} />
+          </LazyLoad>
         </Link>
         <div className="card-buttons">
           <span>

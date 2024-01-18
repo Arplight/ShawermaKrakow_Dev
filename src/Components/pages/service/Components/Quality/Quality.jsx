@@ -1,3 +1,4 @@
+import LazyLoad from "react-lazy-load";
 import { qualityData } from "../../../../../Data/quality/Quality";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import QualityBadge from "../../../../common/quality_badge/QualityBadge";
@@ -34,7 +35,11 @@ const Quality = () => {
         </ul>
       </span>
       <span className="w-full md:w-1/2">
-        {Images && <img src={Images[2].url} alt="quality" />}
+        {Images && (
+          <LazyLoad offset={100}>
+            <img src={Images[2].url} alt="quality" />
+          </LazyLoad>
+        )}
       </span>
     </MainSection>
   );

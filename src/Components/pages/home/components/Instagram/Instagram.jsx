@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import useImages from "../../../../hooks/useImages";
 import { FaInstagram } from "react-icons/fa6";
+import LazyLoad from "react-lazy-load";
 
 const Instagram = () => {
   const Images = useImages();
@@ -51,11 +52,13 @@ const Instagram = () => {
               key={picture.id}
               className="w-[300px] h-[100px] sm:h-[150px] md:h-[200px] insta-img"
             >
-              <img
-                src={picture.url}
-                alt={`instagram ${index}`}
-                className="h-full w-full object-cover"
-              />
+              <LazyLoad offset={100} className="h-full w-full">
+                <img
+                  src={picture.url}
+                  alt={`instagram ${index}`}
+                  className="h-full w-full object-cover"
+                />
+              </LazyLoad>
 
               <a
                 href="https://www.instagram.com/Shawermaklubhaus_krk/"

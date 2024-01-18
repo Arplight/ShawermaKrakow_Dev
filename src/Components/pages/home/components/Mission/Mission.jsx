@@ -3,6 +3,7 @@ import MainSection from "../../../../common/sections/main_section/MainSection";
 import { IoIosArrowForward } from "react-icons/io";
 import useImages from "../../../../hooks/useImages";
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
 
 const Mission = () => {
   const Images = useImages();
@@ -33,12 +34,16 @@ const Mission = () => {
       <span className="w-full md:w-1/2 flex">
         {Images && (
           <div className="relative ml-auto  h-max w-3/5 md:w-auto">
-            <img src={Images[5].url} alt="Mission" className="ml-auto " />
-            <img
-              src={Images[4].url}
-              alt="Mission-2"
-              className="absolute top-2  right-[55%] h-4/5 "
-            />
+            <LazyLoad offset={100}>
+              <img src={Images[5].url} alt="Mission" className="ml-auto " />
+            </LazyLoad>
+            <LazyLoad offset={100}>
+              <img
+                src={Images[4].url}
+                alt="Mission-2"
+                className="absolute top-2  right-[55%] h-4/5 "
+              />
+            </LazyLoad>
           </div>
         )}
       </span>

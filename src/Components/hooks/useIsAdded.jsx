@@ -8,7 +8,7 @@ const useIsAdded = (itemId = "") => {
     cartItems.some((item) => item.itemId === itemId)
   );
   const [itemQuantity, setItemQuantity] = useState(
-    isAdded ? foundItem.itemOrderQuantity : 1
+    foundItem ? foundItem.itemOrderQuantity : 1
   );
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const useIsAdded = (itemId = "") => {
       setIsAdded(!!foundItem);
       foundItem && setItemQuantity(foundItem.itemOrderQuantity);
     }
-  }, [cartItems, itemId]);
+  }, [cartItems, itemId, foundItem]);
 
   return { isAdded, itemQuantity };
 };

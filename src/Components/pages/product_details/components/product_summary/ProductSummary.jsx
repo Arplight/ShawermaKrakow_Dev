@@ -28,7 +28,10 @@ const ProductSummary = () => {
                 />
               }
             </span>
-            <span className="w-full md:w-1/2 flex flex-col gap-2">
+            <span
+              className="w-full md:w-1/2 flex flex-col gap-2"
+              key={currentProduct.id}
+            >
               <h2 className="font-primary">{currentProduct.name}</h2>
               <p className="small-paragrapgh font-primary text-justify ">
                 {currentProduct.description}

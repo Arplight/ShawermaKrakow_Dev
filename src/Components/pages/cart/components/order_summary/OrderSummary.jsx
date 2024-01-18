@@ -1,20 +1,15 @@
 import { useSelector } from "react-redux";
 import { IoIosArrowForward } from "react-icons/io";
-
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const OrderSummary = ({ withStyle }) => {
-  const [subTotal, setSubTotal] = useState(0);
-  const response = useSelector((state) => state.cart.cartTotal);
-  useEffect(() => {
-    if (response) {
-      setSubTotal(response);
-    }
-  }, [response]);
+  const subTotal = useSelector((state) => state.cart.cartTotalCost);
+  const totalItems = useSelector((state) => state.cart.cartTotalItems);
   return (
     <div className={`${withStyle} flex flex-col gap-1 p-0 lg:p-2`}>
-      <h3 className="font-primary">Order Summary</h3>
+      <h3 className="font-primary">
+        Order Summary {`( x${totalItems} Item )`}
+      </h3>
 
       <b className="large-paragrapgh font-primary">
         Subtotal: $

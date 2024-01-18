@@ -5,6 +5,8 @@ import useImages from "../../../../hooks/useImages";
 import { IoIosArrowForward } from "react-icons/io";
 import { qualityData } from "../../../../../Data/quality/Quality";
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
+
 const Quality = () => {
   const Images = useImages();
   return (
@@ -13,7 +15,11 @@ const Quality = () => {
       withStyle={"flex flex-col md:flex-row gap-x-10 gap-y-5 flex-col-reverse"}
     >
       <span className="w-full md:w-1/2">
-        {Images && <img src={Images[3].url} alt="quality" />}
+        {Images && (
+          <LazyLoad offset={100}>
+            <img src={Images[3].url} alt="quality" />
+          </LazyLoad>
+        )}
       </span>
       <span className="w-full md:w-1/2 flex flex-col gap-3">
         <HeroHeadings

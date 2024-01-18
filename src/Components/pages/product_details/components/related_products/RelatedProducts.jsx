@@ -60,6 +60,7 @@ const RelatedProducts = () => {
                   cardImage={product.image}
                   cardPrice={product.price_before_discount}
                   cardTitle={product.name}
+                  cardId={product.id}
                 />
               </SwiperSlide>
             ))}

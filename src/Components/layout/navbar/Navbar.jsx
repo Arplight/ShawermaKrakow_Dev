@@ -1,7 +1,7 @@
 import MobileMenu from "./Components/mobile_menu/MobileMenu";
 import { Link, useLocation } from "react-router-dom";
 import BurgerIcon from "./Components/Burger/BurgerIcon";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navLinks } from "../../../Data/navbar/navbar";
 import LangMenu from "./Components/lang_menu/LangMenu";
 // state
@@ -13,14 +13,21 @@ import { SlMagnifier } from "react-icons/sl";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { IoLanguage } from "react-icons/io5";
+import { cartTotal } from "../../redux/slices/CartSlice";
 
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
   const location = useLocation().pathname;
-  const dispatch = useDispatch();
   const navRef = useRef(null);
   const { isDistance } = useDistance(navRef);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartTotalItems = useSelector((state) => state.cart.cartTotalItems);
+  const dispatchBlocker = useDispatch();
+  const dispatchTotalItems = useDispatch();
+  useEffect(() => {
+    dispatchTotalItems(cartTotal());
+  }, [cartItems, dispatchTotalItems, cartTotalItems]);
+
   return (
     <nav className={`${isDistance ? "sticky-nav" : ""} `} ref={navRef}>
       <div
@@ -49,7 +56,7 @@ const Navbar = () => {
         <ul className="flex  ml-auto gap-[15px] md:gap-[25px] nav-large">
           <li
             className="large-paragrapgh font-primary "
-            onClick={() => dispatch(blockerSetter("search"))}
+            onClick={() => dispatchBlocker(blockerSetter("search"))}
           >
             <SlMagnifier className="nav-icon" />
           </li>
@@ -64,11 +71,11 @@ const Navbar = () => {
           </li>
           <li
             className="large-paragrapgh font-primary relative"
-            onClick={() => dispatch(blockerSetter("cart"))}
+            onClick={() => dispatchBlocker(blockerSetter("cart"))}
           >
             <TbShoppingBagPlus className="nav-icon" />
             <div className="cart-badge">
-              <span>{cartItems.length}</span>
+              <span>{cartTotalItems}</span>
             </div>
           </li>
         </ul>

@@ -16,7 +16,7 @@ const Service = () => {
   const dispatchImages = useDispatch();
   useEffect(() => {
     dispatchImages(fetchImages());
-  }, []);
+  }, [dispatchImages]);
   return (
     <div className="service">
       {/* BreadCrumbs */}

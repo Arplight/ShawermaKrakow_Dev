@@ -15,7 +15,7 @@ const About = () => {
   const dispatchImages = useDispatch();
   useEffect(() => {
     dispatchImages(fetchImages());
-  }, []);
+  }, [dispatchImages]);
 
   return (
     <div className="about">

@@ -4,7 +4,7 @@ import { IoTrashBinOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { removeCartItem } from "../../../../redux/slices/CartSlice";
 import { Link } from "react-router-dom";
-
+import LazyLoad from "react-lazy-load";
 const CartItem = ({
   itemImage,
   itemTitle,
@@ -26,11 +26,13 @@ const CartItem = ({
       </button>
       <span className="h-[200px] w-2/5 overflow-hidden ">
         <Link to={`/Details/${itemTitle.replaceAll(" ", "-")}`}>
-          <img
-            src={itemImage}
-            alt={itemTitle}
-            className="w-full h-full object-contain  object-center "
-          />
+          <LazyLoad offset={100} className="w-full h-full ">
+            <img
+              src={itemImage}
+              alt={itemTitle}
+              className="w-full h-full object-contain  object-center "
+            />
+          </LazyLoad>
         </Link>
       </span>
       <span className="flex flex-col gap-0.5 w-3/5">

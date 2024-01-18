@@ -1,9 +1,13 @@
 import PropTypes from "prop-types";
+import LazyLoad from "react-lazy-load";
+
 const TeamCard = ({ cardImage, cardTitle, cardDescription }) => {
   return (
     <div className="team-card">
       <div className="member-image">
-        <img src={cardImage} alt="team-member" />
+        <LazyLoad offset={100}>
+          <img src={cardImage} alt="team-member" />
+        </LazyLoad>
       </div>
       <div className="member-info">
         <div className="member-name">

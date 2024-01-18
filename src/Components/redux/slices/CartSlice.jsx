@@ -6,7 +6,8 @@ const CartSlice = createSlice({
   name: "cartSlice",
   initialState: {
     cartItems: [],
-    cartTotal: null,
+    cartTotalCost: null,
+    cartTotalItems: null,
     data: null,
     loading: false,
     error: null,
@@ -69,11 +70,16 @@ const CartSlice = createSlice({
     // Calculations
     cartTotal(state) {
       if (state.data) {
-        const totalPrice = state.cartItems.reduce(
+        const totalCost = state.cartItems.reduce(
           (a, c) => a + c.itemTotalPrice,
           0
         );
-        state.cartTotal = state.cartItems.length > 0 ? totalPrice : 0;
+        const totalItems = state.cartItems.reduce(
+          (a, c) => a + c.itemOrderQuantity,
+          0
+        );
+        state.cartTotalCost = state.cartItems.length > 0 ? totalCost : 0;
+        state.cartTotalItems = state.cartItems.length > 0 ? totalItems : 0;
       }
     },
   },
