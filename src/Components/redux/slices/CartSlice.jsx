@@ -39,7 +39,6 @@ const CartSlice = createSlice({
             draft.push(currentItemSummary);
           }).flat(1);
         }
-        console.log(state.cartItems);
       }
     },
     removeCartItem(state, action) {
@@ -49,7 +48,6 @@ const CartSlice = createSlice({
           (item) => item.itemId !== currentItemId
         );
       }
-      console.log(state.cartItems);
     },
     updateCartItem(state, action) {
       const currentItemSummary = action.payload;
@@ -65,7 +63,6 @@ const CartSlice = createSlice({
             currentItemSummary.quantity * draft[currentIndex].itemPrice;
         });
       }
-      console.log(state.cartItems);
     },
     // Calculations
     cartTotal(state) {

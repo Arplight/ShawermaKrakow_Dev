@@ -52,7 +52,7 @@ const Instagram = () => {
               key={picture.id}
               className="w-[300px] h-[100px] sm:h-[150px] md:h-[200px] insta-img"
             >
-              <LazyLoad offset={100} className="h-full w-full">
+              <LazyLoad offset={200} className="h-full w-full">
                 <img
                   src={picture.url}
                   alt={`instagram ${index}`}

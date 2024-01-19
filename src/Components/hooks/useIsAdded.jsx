@@ -4,21 +4,18 @@ import { useSelector } from "react-redux";
 const useIsAdded = (itemId = "") => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const foundItem = cartItems.find((item) => item.itemId === itemId);
-  const [isAdded, setIsAdded] = useState(
-    cartItems.some((item) => item.itemId === itemId)
-  );
-  const [itemQuantity, setItemQuantity] = useState(
-    foundItem ? foundItem.itemOrderQuantity : 1
+
+  const [isAdded, setIsAdded] = useState(!!foundItem);
+  const [itemGlobalQuantity, setItemGlobalQuantity] = useState(
+    foundItem?.itemOrderQuantity || null
   );
 
   useEffect(() => {
-    if (cartItems) {
-      setIsAdded(!!foundItem);
-      foundItem && setItemQuantity(foundItem.itemOrderQuantity);
-    }
+    setIsAdded(cartItems.some((item) => item.itemId === itemId));
+    setItemGlobalQuantity(foundItem ? foundItem.itemOrderQuantity : null);
   }, [cartItems, itemId, foundItem]);
 
-  return { isAdded, itemQuantity };
+  return { isAdded, itemGlobalQuantity };
 };
 
 export default useIsAdded;

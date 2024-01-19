@@ -16,7 +16,7 @@ const Quality = () => {
     >
       <span className="w-full md:w-1/2">
         {Images && (
-          <LazyLoad offset={100}>
+          <LazyLoad offset={200}>
             <img src={Images[3].url} alt="quality" />
           </LazyLoad>
         )}

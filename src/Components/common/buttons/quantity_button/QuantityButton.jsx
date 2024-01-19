@@ -6,56 +6,62 @@ import { updateCartItem } from "../../../redux/slices/CartSlice";
 import useIsAdded from "../../../hooks/useIsAdded";
 
 const QuantityButton = ({ itemStockQuantity, itemId, itemSummaryQuantity }) => {
-  const { isAdded, itemQuantity } = useIsAdded(itemId);
-  const [currentQuantity, setCurrentQuantity] = useState(
-    itemQuantity ? itemQuantity : 1
-  );
+  const { isAdded, itemGlobalQuantity } = useIsAdded(itemId);
+  const [localQuantity, setLocalQuantity] = useState(itemGlobalQuantity || 1);
   const dispatchUpdateItem = useDispatch();
+  const currentQuantity = isAdded ? itemGlobalQuantity : localQuantity;
+
   useEffect(() => {
     if (itemSummaryQuantity && !isAdded) {
-      itemSummaryQuantity(currentQuantity);
+      itemSummaryQuantity(localQuantity);
     }
-  }, [currentQuantity, itemSummaryQuantity, isAdded]);
+  }, [localQuantity, itemSummaryQuantity, isAdded]);
+
+  const updateQuantity = (newQuantity) => {
+    setLocalQuantity(newQuantity);
+    if (isAdded) {
+      dispatchUpdateItem(
+        updateCartItem({
+          id: itemId,
+          quantity: newQuantity,
+        })
+      );
+    }
+  };
 
   const handleDecrement = () => {
     if (currentQuantity > 1) {
-      setCurrentQuantity(currentQuantity - 1);
-      if (isAdded) {
-        dispatchUpdateItem(
-          updateCartItem({ id: itemId, quantity: currentQuantity - 1 })
-        );
-      }
+      updateQuantity(currentQuantity - 1);
     }
   };
 
   const handleIncrement = () => {
     if (currentQuantity < itemStockQuantity) {
-      setCurrentQuantity(currentQuantity + 1);
-      if (isAdded) {
-        dispatchUpdateItem(
-          updateCartItem({ id: itemId, quantity: currentQuantity + 1 })
-        );
-      }
+      updateQuantity(currentQuantity + 1);
     }
   };
+
+  const isMinQuantity = currentQuantity === 1;
+  const isMaxQuantity = currentQuantity === itemStockQuantity;
 
   return (
     <div className="quantity-button">
       <button
         className={`minus border-r-[1px] border-[#12342f] ${
-          currentQuantity === 1 ? "button-disabled" : ""
+          isMinQuantity ? "button-disabled" : ""
         }`}
         onClick={handleDecrement}
-        disabled={currentQuantity === 1}
+        disabled={isMinQuantity}
       >
         <TiMinus />
       </button>
       <span>{currentQuantity}</span>
       <button
         className={`plus border-l-[1px] border-[#12342f] ${
-          currentQuantity === itemStockQuantity ? "button-disabled" : ""
+          isMaxQuantity ? "button-disabled" : ""
         }`}
         onClick={handleIncrement}
+        disabled={isMaxQuantity}
       >
         <TiPlus />
       </button>

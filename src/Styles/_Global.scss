@@ -111,3 +111,7 @@ button,
 .swiper-pagination-bullet {
   background-color: $primaryColor;
 }
+// Logo
+.logo {
+  filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.315));
+}

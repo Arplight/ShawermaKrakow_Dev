@@ -30,7 +30,7 @@ const ProductCard = ({
     <div className="product-card m-auto">
       <div className="card-top">
         <Link to={`/Details/${cardTitle.replaceAll(" ", "-")}`}>
-          <LazyLoad offset={100}>
+          <LazyLoad offset={200}>
             <img src={cardImage} alt={cardTitle} />
           </LazyLoad>
         </Link>

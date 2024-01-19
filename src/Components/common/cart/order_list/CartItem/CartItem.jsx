@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { removeCartItem } from "../../../../redux/slices/CartSlice";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
+import { blockerSetter } from "../../../../redux/slices/BlockerSlice";
+
 const CartItem = ({
   itemImage,
   itemTitle,
@@ -15,6 +17,7 @@ const CartItem = ({
   itemId,
 }) => {
   const dispatchRemoveCartItem = useDispatch();
+  const dispatchBlocker = useDispatch();
   return (
     <div className="flex gap-1 items-center relative">
       {/* Remove Button */}
@@ -25,7 +28,10 @@ const CartItem = ({
         <IoTrashBinOutline />
       </button>
       <span className="h-[200px] w-2/5 overflow-hidden ">
-        <Link to={`/Details/${itemTitle.replaceAll(" ", "-")}`}>
+        <Link
+          to={`/Details/${itemTitle.replaceAll(" ", "-")}`}
+          onClick={() => dispatchBlocker(blockerSetter(null))}
+        >
           <LazyLoad offset={100} className="w-full h-full ">
             <img
               src={itemImage}

@@ -5,7 +5,7 @@ const TeamCard = ({ cardImage, cardTitle, cardDescription }) => {
   return (
     <div className="team-card">
       <div className="member-image">
-        <LazyLoad offset={100}>
+        <LazyLoad offset={200}>
           <img src={cardImage} alt="team-member" />
         </LazyLoad>
       </div>

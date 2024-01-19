@@ -34,10 +34,10 @@ const Mission = () => {
       <span className="w-full md:w-1/2 flex">
         {Images && (
           <div className="relative ml-auto  h-max w-3/5 md:w-auto">
-            <LazyLoad offset={100}>
+            <LazyLoad offset={200}>
               <img src={Images[5].url} alt="Mission" className="ml-auto " />
             </LazyLoad>
-            <LazyLoad offset={100}>
+            <LazyLoad offset={200}>
               <img
                 src={Images[4].url}
                 alt="Mission-2"

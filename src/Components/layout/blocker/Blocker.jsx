@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import CartMenu from "./cart_menu/CartMenu";
-import OrderSummary from "./cart_menu/order_summary/OrderSummary";
-import ProductEnquiry from "./product_enquiry/ProductEnquiry";
 import Search from "./search/Search";
-import Video from "./video/Video";
 
 // State
 import { useSelector } from "react-redux";
@@ -26,7 +23,13 @@ const Blocker = () => {
       onClick={() => dispatch(blockerSetter(null))}
       className={`blocker ${blockerState !== null ? "show-blocker" : ""}`}
     >
-      {blockerState === "cart" ? <CartMenu /> : ""}
+      {blockerState === "cart" ? (
+        <CartMenu />
+      ) : blockerState === "search" ? (
+        <Search />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
