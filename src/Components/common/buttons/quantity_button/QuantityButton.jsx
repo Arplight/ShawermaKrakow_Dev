@@ -3,23 +3,23 @@ import { TiPlus, TiMinus } from "react-icons/ti";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { updateCartItem } from "../../../redux/slices/CartSlice";
-import useIsAdded from "../../../hooks/useIsAdded";
+import useCart from "../../../hooks/useCart";
 
 const QuantityButton = ({ itemStockQuantity, itemId, itemSummaryQuantity }) => {
-  const { isAdded, itemGlobalQuantity } = useIsAdded(itemId);
+  const { isFoundedInCart, itemGlobalQuantity } = useCart(itemId);
   const [localQuantity, setLocalQuantity] = useState(itemGlobalQuantity || 1);
   const dispatchUpdateItem = useDispatch();
-  const currentQuantity = isAdded ? itemGlobalQuantity : localQuantity;
+  const currentQuantity = isFoundedInCart ? itemGlobalQuantity : localQuantity;
 
   useEffect(() => {
-    if (itemSummaryQuantity && !isAdded) {
+    if (itemSummaryQuantity && !isFoundedInCart) {
       itemSummaryQuantity(localQuantity);
     }
-  }, [localQuantity, itemSummaryQuantity, isAdded]);
+  }, [localQuantity, itemSummaryQuantity, isFoundedInCart]);
 
   const updateQuantity = (newQuantity) => {
     setLocalQuantity(newQuantity);
-    if (isAdded) {
+    if (isFoundedInCart) {
       dispatchUpdateItem(
         updateCartItem({
           id: itemId,

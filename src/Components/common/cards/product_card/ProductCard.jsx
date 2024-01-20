@@ -1,11 +1,21 @@
+// Icons
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
+// Components
 import PropTypes from "prop-types";
+import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
+// Reducers
 import { addCartItem, removeCartItem } from "../../../redux/slices/CartSlice";
+import {
+  addWishListItem,
+  removeWishListItem,
+} from "../../../redux/slices/WishlistSlice";
+// Hooks
+import useCart from "../../../hooks/useCart";
+import useWishList from "../../../hooks/useWishList";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import LazyLoad from "react-lazy-load";
 
 const ProductCard = ({
   cardTitle,
@@ -14,18 +24,43 @@ const ProductCard = ({
   cardImage,
   cardId,
 }) => {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
-  // const [isAddedToFavourite, setIsAddedToFavourite] = useState(false);
+  // state
+  const { isFoundedInCart } = useCart(cardId);
+  const { isFoundedInWishList } = useWishList(cardId);
+  const [isAddedToCart, setIsAddedToCart] = useState(isFoundedInCart);
+  const [isAddedToWishList, setIsAddedToWishList] =
+    useState(isFoundedInWishList);
+
+  // Dispatching
   const dispatchAddCartItem = useDispatch();
   const dispatchRemoveCartItem = useDispatch();
-  useEffect(() => {
-    if (isAddedToCart) {
-      dispatchAddCartItem(addCartItem({ itemId: cardId, itemQuantity: 1 }));
-    } else {
-      dispatchRemoveCartItem(removeCartItem(cardId));
-    }
-  }, [isAddedToCart, cardId, dispatchAddCartItem, dispatchRemoveCartItem]);
+  const dispatchAddWishListItem = useDispatch();
+  const dispatchRemoveWishListItem = useDispatch();
 
+  // Cart Handlers
+  function addToCart() {
+    dispatchAddCartItem(addCartItem({ itemId: cardId, itemQuantity: 1 }));
+    setIsAddedToCart(true);
+  }
+  function removeFromCart() {
+    dispatchRemoveCartItem(removeCartItem(cardId));
+    setIsAddedToCart(false);
+  }
+
+  // WishList Handlers
+  function addToWishList() {
+    dispatchAddWishListItem(addWishListItem(cardId));
+    setIsAddedToWishList(true);
+  }
+  function removeFromWishList() {
+    dispatchRemoveWishListItem(removeWishListItem(cardId));
+    setIsAddedToWishList(false);
+  }
+
+  // cartStateUpdater
+  useEffect(() => {
+    setIsAddedToCart(isFoundedInCart);
+  }, [isFoundedInCart]);
   return (
     <div className="product-card m-auto">
       <div className="card-top">
@@ -36,12 +71,19 @@ const ProductCard = ({
         </Link>
         <div className="card-buttons">
           <span>
-            <IoMdHeartEmpty />
-            {/* <IoMdHeart /> */}
+            {isAddedToWishList ? (
+              <IoMdHeart onClick={removeFromWishList} />
+            ) : (
+              <IoMdHeartEmpty onClick={addToWishList} />
+            )}
           </span>
 
-          <span onClick={() => setIsAddedToCart(!isAddedToCart)}>
-            {isAddedToCart ? <PiShoppingCartFill /> : <PiShoppingCart />}
+          <span>
+            {isAddedToCart ? (
+              <PiShoppingCartFill onClick={removeFromCart} />
+            ) : (
+              <PiShoppingCart onClick={addToCart} />
+            )}
           </span>
         </div>
       </div>

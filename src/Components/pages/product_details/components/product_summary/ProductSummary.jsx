@@ -3,13 +3,13 @@ import QuantityButton from "../../../../common/buttons/quantity_button/QuantityB
 import MainSection from "../../../../common/sections/main_section/MainSection";
 import { addCartItem } from "../../../../redux/slices/CartSlice";
 import { useState } from "react";
-import useIsAdded from "../../../../hooks/useIsAdded";
+import useCart from "../../../../hooks/useCart";
 
 const ProductSummary = () => {
   const [summaryQuantity, setSummaryQuantity] = useState(1);
   const currentProduct = useSelector((state) => state.currentProduct.data);
   const dispatchAddCartItem = useDispatch();
-  const { isAdded } = useIsAdded(currentProduct && currentProduct.id);
+  const { isFoundedInCart } = useCart(currentProduct && currentProduct.id);
   return (
     <>
       <MainSection
@@ -89,7 +89,7 @@ const ProductSummary = () => {
               </ul>
               <button
                 className={`main-button font-secondary ${
-                  isAdded && "button-disabled"
+                  isFoundedInCart && "button-disabled"
                 }`}
                 onClick={() =>
                   dispatchAddCartItem(
@@ -99,7 +99,7 @@ const ProductSummary = () => {
                     })
                   )
                 }
-                disabled={isAdded}
+                disabled={isFoundedInCart}
               >
                 Add to cart
               </button>

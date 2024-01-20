@@ -5,9 +5,15 @@ import { produce } from "immer";
 const CartSlice = createSlice({
   name: "cartSlice",
   initialState: {
-    cartItems: [],
-    cartTotalCost: null,
-    cartTotalItems: null,
+    cartItems: localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [],
+    cartTotalCost: localStorage.getItem("cartTotalCost")
+      ? JSON.parse(localStorage.getItem("cartTotalCost"))
+      : null,
+    cartTotalItems: localStorage.getItem("cartTotalItems")
+      ? JSON.parse(localStorage.getItem("cartTotalItems"))
+      : null,
     data: null,
     loading: false,
     error: null,
@@ -40,6 +46,10 @@ const CartSlice = createSlice({
           }).flat(1);
         }
       }
+
+      // Local storage for testing only
+
+      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     removeCartItem(state, action) {
       const currentItemId = action.payload;
@@ -48,6 +58,10 @@ const CartSlice = createSlice({
           (item) => item.itemId !== currentItemId
         );
       }
+
+      // Local storage for testing only
+
+      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     updateCartItem(state, action) {
       const currentItemSummary = action.payload;
@@ -63,6 +77,10 @@ const CartSlice = createSlice({
             currentItemSummary.quantity * draft[currentIndex].itemPrice;
         });
       }
+
+      // Local storage for testing only
+
+      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     // Calculations
     cartTotal(state) {
@@ -78,6 +96,16 @@ const CartSlice = createSlice({
         state.cartTotalCost = state.cartItems.length > 0 ? totalCost : 0;
         state.cartTotalItems = state.cartItems.length > 0 ? totalItems : 0;
       }
+
+      // Local storage for testing only
+      localStorage.setItem(
+        "cartTotalCost",
+        JSON.stringify(state.cartTotalCost)
+      );
+      localStorage.setItem(
+        "cartTotalItems",
+        JSON.stringify(state.cartTotalItems)
+      );
     },
   },
   extraReducers: (builder) => {

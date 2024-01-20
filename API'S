@@ -1,2 +1,17 @@
 Products: https://shawermakrakow.com/api/products
 Images: https://shawermakrakow.com/api/images
+
+<!-- for displaying cart items (GET METHOD) -->
+https://shawermakrakow.com/api/cart/list  
+
+<!-- for adding to cart session (POST METHOD) -->
+https://shawermakrakow.com/api/cart/add
+
+<!-- for updating cart based on quantity take => [id,quantity] (POST METHOD) -->
+https://shawermakrakow.com/api/cart/update
+
+
+<!-- for removing an item from the cart take => [id] (POST METHOD) -->
+https://shawermakrakow.com/api/cart/remove
+
+
