@@ -14,4 +14,6 @@ https://shawermakrakow.com/api/cart/update
 <!-- for removing an item from the cart take => [id] (POST METHOD) -->
 https://shawermakrakow.com/api/cart/remove
 
-
+ 
+<!-- Subscription Emails (GET METHOD) -->
+https://shawermakrakow.com/api/subscription/index

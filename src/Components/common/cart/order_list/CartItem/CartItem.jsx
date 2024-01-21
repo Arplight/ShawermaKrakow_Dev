@@ -22,7 +22,7 @@ const CartItem = ({
     <div className="flex gap-1 items-center relative">
       {/* Remove Button */}
       <button
-        className="remove-button"
+        className="remove-button absolute left-0 top-0"
         onClick={() => dispatchRemoveCartItem(removeCartItem(itemId))}
       >
         <IoTrashBinOutline />

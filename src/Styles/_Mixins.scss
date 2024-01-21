@@ -92,7 +92,7 @@
   } @else if($type == "dark") {
     background-color: $bgDark;
     color: $secondaryColor;
-    font-size: $smallPragraph;
+    font-size: clamp(0.23rem, 1.5vw, 0.25rem);
     &:hover {
       background-color: $secondaryColor;
       color: $primaryColor;
@@ -140,8 +140,6 @@
     padding: 3px;
     font-size: 18px;
     color: $primaryColor;
-    position: absolute;
-    inset: 0px auto auto 0px;
   } @else if($type == "top") {
     position: fixed;
     right: 10px;

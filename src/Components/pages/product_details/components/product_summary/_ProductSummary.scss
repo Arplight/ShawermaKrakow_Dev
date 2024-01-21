@@ -1,0 +1,9 @@
+@use "../../../../../Styles/Variables" as *;
+.summary-title {
+  svg {
+    font-size: 30px;
+    fill: $primaryColor;
+    transition: $transitionDuration;
+    cursor: pointer;
+  }
+}

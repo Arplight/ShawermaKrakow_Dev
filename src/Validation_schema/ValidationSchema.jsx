@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const FooterSchema = Yup.object().shape({
-  subscription_mail: Yup.string().email("Invalid email format").trim(),
+  subscription_email: Yup.string().email("Invalid email format").trim(),
 });
 
 export const contactSchema = Yup.object().shape({

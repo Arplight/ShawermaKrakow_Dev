@@ -29,7 +29,7 @@ const Search = () => {
   return (
     <section className="w-full flex flex-col items-center relative ">
       <div
-        className="search w-4/5 lg:w-1/2 flex items-center h-[40px]"
+        className="search w-4/5 lg:w-1/2 flex items-center h-[40px] shadow-lg shadow-gray-800"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -48,14 +48,10 @@ const Search = () => {
       </div>
       {searchResults && searchResults.length > 0 && (
         <div
-          className="absolute  w-4/5 lg:w-1/2 top-[calc(100%+3px)]"
+          className="absolute  w-4/5 lg:w-1/2 top-[calc(100%+3px)] shadow-lg shadow-gray-800 "
           onClick={(e) => e.stopPropagation()}
         >
-          <ul
-            className="bg-[#ffffff] flex flex-col gap-0.5 h-max w-full p-1 rounded-b-[5px] max-h-[300px] overflow-y-scroll
-
-"
-          >
+          <ul className="bg-[#ffffff] flex flex-col gap-0.5 h-max w-full p-1 rounded-b-[5px] max-h-[300px] overflow-y-scroll">
             {searchResults.map((result) => (
               <li
                 key={result.id}

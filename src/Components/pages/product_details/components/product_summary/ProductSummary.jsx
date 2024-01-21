@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import QuantityButton from "../../../../common/buttons/quantity_button/QuantityButton";
 import MainSection from "../../../../common/sections/main_section/MainSection";
-import { addCartItem } from "../../../../redux/slices/CartSlice";
 import { useState } from "react";
-import useCart from "../../../../hooks/useCart";
+import AddButton from "../../../../common/buttons/add_button/AddButton";
+import AddWishList from "../../../../common/buttons/add_wishlist/AddWishList";
 
 const ProductSummary = () => {
   const [summaryQuantity, setSummaryQuantity] = useState(1);
   const currentProduct = useSelector((state) => state.currentProduct.data);
-  const dispatchAddCartItem = useDispatch();
-  const { isFoundedInCart } = useCart(currentProduct && currentProduct.id);
+
   return (
     <>
       <MainSection
@@ -32,7 +31,10 @@ const ProductSummary = () => {
               className="w-full md:w-1/2 flex flex-col gap-2"
               key={currentProduct.id}
             >
-              <h2 className="font-primary">{currentProduct.name}</h2>
+              <div className="flex w-max gap-1 items-center summary-title">
+                <h2 className="font-primary">{currentProduct.name}</h2>
+                <AddWishList currentId={currentProduct.id} />
+              </div>
               <p className="small-paragrapgh font-primary text-justify ">
                 {currentProduct.description}
               </p>
@@ -87,22 +89,11 @@ const ProductSummary = () => {
                   </span>
                 </li>
               </ul>
-              <button
-                className={`main-button font-secondary ${
-                  isFoundedInCart && "button-disabled"
-                }`}
-                onClick={() =>
-                  dispatchAddCartItem(
-                    addCartItem({
-                      itemId: currentProduct.id,
-                      itemQuantity: summaryQuantity,
-                    })
-                  )
-                }
-                disabled={isFoundedInCart}
-              >
-                Add to cart
-              </button>
+
+              <AddButton
+                summaryQuantity={summaryQuantity}
+                productId={currentProduct.id}
+              />
             </span>
           </>
         )}
