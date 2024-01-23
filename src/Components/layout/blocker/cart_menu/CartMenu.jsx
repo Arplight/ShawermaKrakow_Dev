@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchProducts } from "../../../redux/store/ApiStore";
+import { fetchProducts, fetchCart } from "../../../redux/store/ApiStore";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
@@ -15,12 +15,16 @@ const CartMenu = () => {
   const dispatchCart = useDispatch();
   const dispatchTotal = useDispatch();
   const dispatchBlocker = useDispatch();
+  const dispatchCartList = useDispatch();
+
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalItems = useSelector((state) => state.cart.cartTotalItems);
+  console.log(cartItems);
   useEffect(() => {
-    dispatchCart(fetchProducts());
+    // dispatchCart(fetchProducts());
     dispatchTotal(cartTotal());
-  }, [dispatchCart, dispatchTotal]);
+    dispatchCartList(fetchCart());
+  }, [dispatchCart, dispatchTotal, dispatchCartList]);
 
   function blockerHandler() {
     dispatchBlocker(blockerSetter(null));

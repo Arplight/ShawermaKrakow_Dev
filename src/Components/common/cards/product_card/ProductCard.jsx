@@ -21,7 +21,12 @@ const ProductCard = ({
         </Link>
         <div className="card-buttons">
           <AddWishList currentId={cardId} />
-          <AddCart currentId={cardId} />
+          <AddCart
+            currentId={cardId}
+            currentImage={cardImage}
+            currentTitle={cardTitle}
+            currentPrice={cardPrice}
+          />
         </div>
       </div>
       <div className="card-bottom">

@@ -1,19 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProducts } from "../store/ApiStore";
-import { produce } from "immer";
+import { fetchCart } from "../store/ApiStore";
+import { produce, current } from "immer";
 
 const CartSlice = createSlice({
   name: "cartSlice",
   initialState: {
-    cartItems: localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [],
-    cartTotalCost: localStorage.getItem("cartTotalCost")
-      ? JSON.parse(localStorage.getItem("cartTotalCost"))
-      : null,
-    cartTotalItems: localStorage.getItem("cartTotalItems")
-      ? JSON.parse(localStorage.getItem("cartTotalItems"))
-      : null,
+    cartItems: [],
+    cartTotalCost: null,
+    cartTotalItems: null,
     data: null,
     loading: false,
     error: null,
@@ -30,26 +24,26 @@ const CartSlice = createSlice({
           const currentItem = state.data.find(
             (item) => item.id === currentItemInfo.itemId
           );
+          console.log(currentItem);
+          console.log(current(state.data));
+
           const currentItemSummary = {
             itemId: currentItemInfo.itemId,
-            itemStockQuantity: currentItem.quantity,
             itemOrderQuantity: currentItemInfo.itemQuantity,
-            itemWeight: currentItem.weight,
-            itemTitle: currentItem.name,
-            itemPrice: currentItem.price_before_discount,
+            itemStockQuantity: currentItem && currentItem.quantity,
+            itemWeight: currentItem && currentItem.weight,
+            itemTitle: currentItem && currentItem.name,
+            itemPrice: currentItem && currentItem.price_before_discount,
             itemTotalPrice:
+              currentItem &&
               currentItem.price_before_discount * currentItemInfo.itemQuantity,
-            itemImage: currentItem.image,
+            itemImage: currentItem && currentItem.image,
           };
           state.cartItems = produce(state.cartItems, (draft) => {
             draft.push(currentItemSummary);
           }).flat(1);
         }
       }
-
-      // Local storage for testing only
-
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     removeCartItem(state, action) {
       const currentItemId = action.payload;
@@ -58,10 +52,6 @@ const CartSlice = createSlice({
           (item) => item.itemId !== currentItemId
         );
       }
-
-      // Local storage for testing only
-
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     updateCartItem(state, action) {
       const currentItemSummary = action.payload;
@@ -77,10 +67,6 @@ const CartSlice = createSlice({
             currentItemSummary.quantity * draft[currentIndex].itemPrice;
         });
       }
-
-      // Local storage for testing only
-
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     // Calculations
     cartTotal(state) {
@@ -96,28 +82,19 @@ const CartSlice = createSlice({
         state.cartTotalCost = state.cartItems.length > 0 ? totalCost : 0;
         state.cartTotalItems = state.cartItems.length > 0 ? totalItems : 0;
       }
-
-      // Local storage for testing only
-      localStorage.setItem(
-        "cartTotalCost",
-        JSON.stringify(state.cartTotalCost)
-      );
-      localStorage.setItem(
-        "cartTotalItems",
-        JSON.stringify(state.cartTotalItems)
-      );
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
+      .addCase(fetchCart.pending, (state) => {
         (state.loading = true), (state.error = null);
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
-        const data = action.payload[0].products;
+      .addCase(fetchCart.fulfilled, (state, action) => {
+        const data = action.payload;
+        // const data = action.payload[0].products;
         state.data = data;
       })
-      .addCase(fetchProducts.rejected, (state) => {
+      .addCase(fetchCart.rejected, (state) => {
         state.error = "Failed to fetch products";
         state.loading = false;
       });

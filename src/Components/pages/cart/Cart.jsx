@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "../../common/cart/empty_cart/EmptyCart";
 import OrderList from "../../common/cart/order_list/OrderList";
 import OrderSummary from "./components/order_summary/OrderSummary";
-import { fetchProducts } from "../../redux/store/ApiStore";
+import { fetchCart, fetchProducts } from "../../redux/store/ApiStore";
 import { useEffect } from "react";
 import Breadcrumb from "../../common/sections/breadcrumb/Breadcrumb";
 import CartItem from "../../common/cart/order_list/CartItem/CartItem";
@@ -12,12 +12,14 @@ import { cartTotal } from "../../redux/slices/CartSlice";
 const Cart = () => {
   const dispatchCart = useDispatch();
   const dispatchTotal = useDispatch();
+  const dispatchCartList = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   useEffect(() => {
-    dispatchCart(fetchProducts());
+    // dispatchCart(fetchProducts());
+    dispatchCartList(fetchCart());
     dispatchTotal(cartTotal());
-  }, [dispatchCart, dispatchTotal]);
+  }, [dispatchCart, dispatchTotal, dispatchCartList]);
 
   return (
     <div className="cart">
