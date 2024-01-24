@@ -35,6 +35,7 @@ const WishListMobile = () => {
             withStyle={"m-auto"}
             productId={item.itemId}
             summaryQuantity={null}
+            currentProductName={item.itemTitle}
           />
           <button
             className="remove-button"

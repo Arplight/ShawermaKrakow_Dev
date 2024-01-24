@@ -33,6 +33,9 @@ const ContactForm = () => {
                 "https://shawermakrakow.com/api/sendemail",
                 values
               );
+              alert(
+                `Thank you ${values.contact_name} for your submission! We'll be in touch soon.`
+              );
               resetForm();
             } catch (error) {
               console.error(error, "error");

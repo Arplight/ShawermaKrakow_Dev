@@ -7,7 +7,7 @@ export const FooterSchema = Yup.object().shape({
 export const contactSchema = Yup.object().shape({
   contact_name: Yup.string()
     .trim()
-    .matches(/^[a-zA-Z][\w]*$/gi, "Invalid name format.")
+    .matches(/^[a-zA-Z][\w\s]*$/gi, "Invalid name format.")
     .min(3, "Name should be at least 3 characters.")
     .max(20, "Name should not exceed 20 characters."),
   contact_email: Yup.string()
@@ -16,7 +16,7 @@ export const contactSchema = Yup.object().shape({
     .trim(),
   contact_subject: Yup.string()
     .trim()
-    .matches(/^[a-zA-Z][\w]|[\s]*$/gi, "Invalid subject format.")
+    .matches(/^[a-zA-Z][\w\s]*$/gi, "Invalid subject format.")
     .min(3, "Subject should be at least 3 characters.")
     .max(100, "Subject should not exceed 100 characters.")
     .required("Subject is required."),

@@ -49,6 +49,7 @@ const WishListTable = () => {
                 summaryQuantity={null}
                 productId={item.itemId}
                 withStyle={"m-auto"}
+                currentProductName={item.itemTitle}
               />
             </td>
             <td className="flex items-center justify-center">

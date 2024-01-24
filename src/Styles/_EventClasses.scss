@@ -78,3 +78,9 @@
 .show-menu {
   transform: translateY(0%) !important;
 }
+
+// Spinner
+.is-loaded {
+  opacity: 0;
+  visibility: hidden;
+}

@@ -151,7 +151,7 @@
     border: $borderPrimary;
     visibility: hidden;
     opacity: 0;
-    z-index: 10;
+    z-index: 5;
     &:hover {
       background-color: $secondaryColor;
       color: $primaryColor;

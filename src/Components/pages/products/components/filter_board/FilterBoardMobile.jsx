@@ -12,7 +12,7 @@ const FilterBoardMobile = () => {
   return (
     <div className="flex md:hidden">
       {/* Mobile board */}
-      <div className={`mobile-board  ${boardIsOpened ? "board-opened" : ""}`}>
+      <div className={`mobile-board ${boardIsOpened ? "board-opened" : ""}`}>
         <span className="container m-auto ">
           <button onClick={() => setCurrentMenu("sort")}>
             <BiSort />

@@ -7,6 +7,8 @@ import {
   fetchProducts,
   fetchCart,
 } from "../../redux/store/ApiStore";
+// Reducer
+import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 
 // Components
 import Slider from "./components/Slider/Slider";
@@ -21,33 +23,39 @@ const Home = () => {
   const dispatchProducts = useDispatch();
   const dispatchImages = useDispatch();
   const dispatchCart = useDispatch();
+  const dispatchSpinner = useDispatch();
+  const response = useSelector((state) => state.cart.cartItems);
+  const products = useSelector((state) => state.productsApi.data);
+  const images = useSelector((state) => state.imagesApi.data);
   useEffect(() => {
     dispatchProducts(fetchProducts());
     dispatchImages(fetchImages());
     dispatchCart(fetchCart());
   }, [dispatchImages, dispatchProducts, dispatchCart]);
-  const response = useSelector((state) => state.cart.cartItems);
+  // PreLoading Spinner
+  useEffect(() => {
+    if (products && images) {
+      dispatchSpinner(loadingHandler(false));
+    } else {
+      dispatchSpinner(loadingHandler(true));
+    }
+  }, [dispatchSpinner, products, images]);
+
   console.log("response", response);
   return (
     <div className="home">
       {/* Slider */}
       <Slider />
-
       {/* Reasons */}
       <Reasons />
-
       {/* Products */}
       <Products />
-
       {/* Quality  */}
       <Quality />
-
       {/* Mission  */}
       <Mission />
-
       {/* Clients */}
       <Clients />
-
       {/* Instagram */}
       <Instagram />
     </div>

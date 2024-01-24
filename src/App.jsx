@@ -17,19 +17,39 @@ import Products from "./Components/pages/products/Products";
 import Product_details from "./Components/pages/product_details/Product_details";
 import Wishlist from "./Components/pages/wishlist/Wishlist";
 import Checkout from "./Components/pages/checkout/Checkout";
+// Components
+import { Slide, ToastContainer } from "react-toastify";
 
 //React router
 import { Route, Routes } from "react-router-dom";
 
-// Main style sheet
+// style sheets
 import "./Styles/Main.scss";
+import "react-toastify/dist/ReactToastify.css";
+import Spinner from "./Components/common/Spinner/Spinner";
 
 function App() {
   return (
-    <>
+    <div>
+      <Spinner />
+
       <Blocker />
       <Header />
       <Navbar />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Slide}
+      />
+
       <Routes>
         <Route path="/" element={<Main />}>
           <Route path="" element={<Home />} />
@@ -44,9 +64,10 @@ function App() {
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
+
       <Footer />
       <TopButton />
-    </>
+    </div>
   );
 }
 

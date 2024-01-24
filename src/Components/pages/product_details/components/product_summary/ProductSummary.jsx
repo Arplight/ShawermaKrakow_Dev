@@ -93,6 +93,7 @@ const ProductSummary = () => {
               <AddButton
                 summaryQuantity={summaryQuantity}
                 productId={currentProduct.id}
+                currentProductName={currentProduct.name}
               />
             </span>
           </>

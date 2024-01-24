@@ -9,7 +9,7 @@ const Main = () => {
     });
   }, [pathState]);
   return (
-    <main>
+    <main className="z-[2]">
       <Outlet />
     </main>
   );

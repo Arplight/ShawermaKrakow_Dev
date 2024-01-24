@@ -6,7 +6,7 @@ import { addCartItem, removeCartItem } from "../../../redux/slices/CartSlice";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchCart, postCart } from "../../../redux/store/ApiStore";
-
+import { toast } from "react-toastify";
 const AddCart = ({ currentId, currentImage, currentTitle, currentPrice }) => {
   const currentItemData = {
     id: currentId,
@@ -18,6 +18,12 @@ const AddCart = ({ currentId, currentImage, currentTitle, currentPrice }) => {
     price_before_discount: currentPrice,
     quantity: 1,
     image: currentImage,
+  };
+  const ToastAdd = () => {
+    toast.success(`Added ${currentTitle} to cart`);
+  };
+  const ToastRemove = () => {
+    toast.success("Cart updated successfully");
   };
   // state
   const { isFoundedInCart } = useCart(currentId);
@@ -31,17 +37,18 @@ const AddCart = ({ currentId, currentImage, currentTitle, currentPrice }) => {
   async function addToCart() {
     try {
       await postCart(currentItemData);
+      dispatchAddCartItem(addCartItem({ itemId: currentId, itemQuantity: 1 }));
+      dispatchCart(fetchCart());
+      ToastAdd();
+      setIsAddedToCart(true);
     } catch (error) {
       console.error(error);
-    } finally {
-      dispatchAddCartItem(addCartItem({ itemId: currentId, itemQuantity: 1 }));
-      setIsAddedToCart(true);
-      dispatchCart(fetchCart());
     }
   }
   function removeFromCart() {
     dispatchRemoveCartItem(removeCartItem(currentId));
     setIsAddedToCart(false);
+    ToastRemove();
   }
 
   // cartStateUpdater
