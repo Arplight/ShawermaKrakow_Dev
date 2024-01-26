@@ -1,7 +1,17 @@
 import { TbError404 } from "react-icons/tb";
 import MainSection from "../../common/sections/main_section/MainSection";
 import { Link } from "react-router-dom";
+// Hooks
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+// Reducers
+import { loadingHandler } from "../../redux/slices/SpinnerSlice";
+
 const Error = () => {
+  const dispatchSpinner = useDispatch();
+  useEffect(() => {
+    dispatchSpinner(loadingHandler(false));
+  }, [dispatchSpinner]);
   return (
     <div>
       <MainSection

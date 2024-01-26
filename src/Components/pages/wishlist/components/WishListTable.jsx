@@ -4,8 +4,11 @@ import { removeWishListItem } from "../../../redux/slices/WishlistSlice";
 import AddButton from "../../../common/buttons/add_button/AddButton";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
+import { FadeLoader } from "react-spinners";
+import { useState } from "react";
 
 const WishListTable = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const wishListItems = useSelector((state) => state.wishList.products);
   const dispatchRemoveWishListItem = useDispatch();
 
@@ -25,16 +28,27 @@ const WishListTable = () => {
       <tbody>
         {wishListItems.map((item) => (
           <tr key={item.itemId}>
-            <td>
+            <td className="relative">
               <Link to={`/Details/${item.itemTitle.replaceAll(" ", "-")}`}>
                 <LazyLoad offset={200} className="h-[100px]">
                   <img
                     src={item.itemImage}
                     alt={item.itemTitle}
                     className="w-full h-full object-contain"
+                    onLoad={() => setIsLoaded(true)}
                   />
                 </LazyLoad>
               </Link>
+              {!isLoaded && (
+                <FadeLoader
+                  color="#12342f"
+                  cssOverride={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "48%",
+                  }}
+                />
+              )}
             </td>
             <td className="text-center flex items-center justify-center">
               <b className="large-paragrapgh font-primary ">{item.itemTitle}</b>

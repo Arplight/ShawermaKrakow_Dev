@@ -9,7 +9,7 @@ const Spinner = () => {
     <div
       className={`${
         !loadingState && "is-loaded"
-      } w-[100vw] h-[100vh] bg-[#ffffff] flex flex-col justify-center items-center gap-1 z-[10000] fixed duration-1000 opacity-100`}
+      } w-[100vw] h-[100vh] bg-[#ffffff] flex flex-col justify-center items-center gap-1 z-[10000] fixed duration-700 opacity-100`}
     >
       <img
         src={Logo}

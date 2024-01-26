@@ -27,7 +27,10 @@ export const fetchCart = createAsyncThunk("cartApi/fetchData", async () => {
 // Cart Post
 export const postCart = async (currentItemData) => {
   try {
-    await axios.post(`${apiBaseUrl}/cart/add`, currentItemData);
+    await axios.post(`${apiBaseUrl}/cart/add`, currentItemData, {
+      withCredentials: true,
+      // withXSRFToken: true,
+    });
   } catch (error) {
     console.error(error);
   }

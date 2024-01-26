@@ -1,6 +1,7 @@
 @use "../../../../../Styles/Variables" as *;
 .team-card {
   max-width: 400px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +10,9 @@
   padding: $cardPadding;
   .member-image {
     overflow: hidden;
+    width: 100%;
+    height: max-content;
+    min-height: 300px;
   }
   &:hover {
     img {

@@ -56,10 +56,16 @@ function App() {
           <Route path="About-Us" element={<About />} />
           <Route path="Service" element={<Service />} />
           <Route path="Contact" element={<Contact />} />
+          {
+            "spinner not finished yet                                            "
+          }
           <Route path="Cart" element={<Cart />} />
           <Route path="Products" element={<Products />} />
           <Route path="Details/:pathName" element={<Product_details />} />
           <Route path="Wishlist" element={<Wishlist />} />
+          {
+            "spinner not finished yet                                            "
+          }
           <Route path="Checkout" element={<Checkout />} />
           <Route path="*" element={<Error />} />
         </Route>

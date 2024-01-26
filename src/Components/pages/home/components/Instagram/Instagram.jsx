@@ -3,11 +3,13 @@ import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import useImages from "../../../../hooks/useImages";
 import { FaInstagram } from "react-icons/fa6";
 import LazyLoad from "react-lazy-load";
+import { FadeLoader } from "react-spinners";
 
 const Instagram = () => {
   const Images = useImages();
   const [filteredImages, setFilteredImages] = useState([]);
-
+  // loadingState
+  const [isLoaded, setIsLoaded] = useState(false);
   function instagramFilter() {
     if (Images) {
       const instagramImages = Images.filter(
@@ -50,16 +52,26 @@ const Instagram = () => {
           filteredImages.map((picture, index) => (
             <li
               key={picture.id}
-              className="w-[300px] h-[100px] sm:h-[150px] md:h-[200px] insta-img"
+              className="w-[300px] h-[100px] sm:h-[150px] md:h-[200px] insta-img "
             >
               <LazyLoad offset={200} className="h-full w-full">
                 <img
                   src={picture.url}
                   alt={`instagram ${index}`}
                   className="h-full w-full object-cover"
+                  onLoad={() => setIsLoaded(true)}
                 />
               </LazyLoad>
-
+              {!isLoaded && (
+                <FadeLoader
+                  color="#12342f"
+                  cssOverride={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "48%",
+                  }}
+                />
+              )}
               <a
                 href="https://www.instagram.com/Shawermaklubhaus_krk/"
                 target="_blank"

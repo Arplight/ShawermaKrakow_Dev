@@ -8,6 +8,7 @@ import FilterBoard from "./components/filter_board/FilterBoard";
 import FilterBoardMobile from "./components/filter_board/FilterBoardMobile";
 import useProducts from "../../hooks/useProducts";
 import { fetchProducts } from "../../redux/store/ApiStore";
+import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 
 const Products = () => {
   const dispatchProducts = useDispatch();
@@ -18,16 +19,20 @@ const Products = () => {
   const offset = currentPage * perPage;
   const products = useProducts();
 
+  const dispatchSpinner = useDispatch();
   useEffect(() => {
     dispatchProducts(fetchProducts());
   }, [dispatchProducts]);
 
   useEffect(() => {
     if (products) {
+      dispatchSpinner(loadingHandler(false));
       setCurrentPageData(products.slice(offset, offset + perPage));
       setPageCount(Math.ceil(products.length / perPage));
+    } else {
+      dispatchSpinner(loadingHandler(true));
     }
-  }, [products, offset, perPage]);
+  }, [products, offset, perPage, dispatchProducts, dispatchSpinner]);
 
   function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);

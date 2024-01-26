@@ -11,18 +11,33 @@ import useImages from "../../../../hooks/useImages";
 import { IoIosArrowForward } from "react-icons/io";
 // React Router
 import { Link } from "react-router-dom";
+// Loader
+import { BeatLoader } from "react-spinners";
 
 const Slider = () => {
   const images = useImages();
   const products = useProducts();
   const [topProducts, setTopProducts] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     if (products) {
       setTopProducts(products.filter((n) => n.top_product));
     }
   }, [products]);
   return (
-    <>
+    <div className="min-h-[50vh] relative">
+      {!isLoaded && (
+        <BeatLoader
+          color="#12342f"
+          cssOverride={{
+            position: "absolute",
+            top: "40%",
+            right: "calc(50% - 30px)",
+            zIndex: "100",
+          }}
+        />
+      )}
       {images && topProducts && (
         <div
           className="slider py-2 background-section"
@@ -50,7 +65,11 @@ const Slider = () => {
               <SwiperSlide key={product.id}>
                 <div className="slider-container container m-auto flex flex-col md:flex-row gap-10 relative items-center h-[70vh] md:h-[60vh] 2xl:h-[70vh]">
                   <span className="w-full h-full md:w-1/2  flex items-center justify-center slider-image">
-                    <img src={product.image} alt={product.name} />
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      onLoad={() => setIsLoaded(true)}
+                    />
                   </span>
                   <span className="slider-info w-full h-full md:w-1/2 flex items-center justify-center z-[10]">
                     <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
@@ -79,7 +98,7 @@ const Slider = () => {
           </Swiper>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

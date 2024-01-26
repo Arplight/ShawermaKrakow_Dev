@@ -16,16 +16,20 @@ const CartSlice = createSlice({
     // CRUD
     addCartItem(state, action) {
       const currentItemInfo = action.payload;
+      const currentData = state.data.cartItems;
       if (state.data) {
-        const itemExists = state.cartItems.some(
+        console.log("passed");
+        console.log(current(currentData));
+
+        const itemExists = currentData.some(
           (item) => item.itemId === currentItemInfo.itemId
         );
         if (!itemExists) {
-          const currentItem = state.data.find(
+          const currentItem = currentData.find(
             (item) => item.id === currentItemInfo.itemId
           );
           console.log(currentItem);
-          console.log(current(state.data));
+          console.log(current(currentData));
 
           const currentItemSummary = {
             itemId: currentItemInfo.itemId,

@@ -1,5 +1,5 @@
 // Hooks
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 // Components
@@ -9,14 +9,25 @@ import Quality from "./Components/Quality/Quality";
 import Reasons from "./Components/Reasons/Reasons";
 // Api fetching
 import { fetchImages } from "../../redux/store/ApiStore";
+// Reducers
+import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 
 const Service = () => {
   // Data Fetching
-
   const dispatchImages = useDispatch();
+  const dispatchSpinner = useDispatch();
+  // Data state
+  const imagesState = useSelector((state) => state.imagesApi.data);
   useEffect(() => {
     dispatchImages(fetchImages());
   }, [dispatchImages]);
+  useEffect(() => {
+    if (imagesState) {
+      dispatchSpinner(loadingHandler(false));
+    } else {
+      dispatchSpinner(loadingHandler(true));
+    }
+  }, [imagesState, dispatchSpinner]);
   return (
     <div className="service">
       {/* BreadCrumbs */}
