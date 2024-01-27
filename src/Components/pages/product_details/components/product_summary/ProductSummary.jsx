@@ -4,13 +4,28 @@ import MainSection from "../../../../common/sections/main_section/MainSection";
 import { useState } from "react";
 import AddButton from "../../../../common/buttons/add_button/AddButton";
 import AddWishList from "../../../../common/buttons/add_wishlist/AddWishList";
+// Loader
+import { BeatLoader } from "react-spinners";
 
 const ProductSummary = () => {
   const [summaryQuantity, setSummaryQuantity] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const currentProduct = useSelector((state) => state.currentProduct.data);
 
   return (
-    <>
+    <div className="min-h-[50vh] relative">
+      {!isLoaded && (
+        <BeatLoader
+          color="#12342f"
+          cssOverride={{
+            position: "absolute",
+            top: "40%",
+            right: "calc(50% - 30px)",
+            zIndex: "100",
+          }}
+        />
+      )}
       <MainSection
         withBackground={false}
         withStyle={"flex flex-col md:flex-row gap-x-10 gap-y-5 "}
@@ -24,6 +39,7 @@ const ProductSummary = () => {
                   src={currentProduct.image}
                   alt={currentProduct.name}
                   className="object-contain"
+                  onLoad={() => setIsLoaded(true)}
                 />
               }
             </span>
@@ -99,7 +115,7 @@ const ProductSummary = () => {
           </>
         )}
       </MainSection>
-    </>
+    </div>
   );
 };
 

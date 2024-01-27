@@ -50,8 +50,15 @@ const WishListTable = () => {
                 />
               )}
             </td>
-            <td className="text-center flex items-center justify-center">
-              <b className="large-paragrapgh font-primary ">{item.itemTitle}</b>
+            <td>
+              <Link
+                to={`/Details/${item.itemTitle.replaceAll(" ", "-")}`}
+                className="text-center flex items-center justify-center"
+              >
+                <b className="large-paragrapgh font-primary ">
+                  {item.itemTitle}
+                </b>
+              </Link>
             </td>
             <td className="text-center ">
               <p className="large-paragrapgh font-primary">

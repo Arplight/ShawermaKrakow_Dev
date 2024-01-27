@@ -41,7 +41,13 @@ const WishListMobile = () => {
               />
             )}
           </div>
-          <b className="large-paragrapgh font-primary ">{item.itemTitle}</b>
+          <Link
+            to={`/Details/${item.itemTitle.replaceAll(" ", "-")}`}
+            className="leading-[normal]"
+          >
+            <b className="large-paragrapgh font-primary">{item.itemTitle}</b>
+          </Link>
+
           <p className="large-paragrapgh font-primary ">
             {item.itemPrice.toFixed(2).toLocaleString()}
           </p>
