@@ -1,81 +1,10 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { filterBoardData } from "../../../../../Data/filter_board/Filter_board";
-import { produce } from "immer";
+import useBoard from "../../../../hooks/useBoard";
 
 const FilterBoard = () => {
-  // State Object Initial State
-  const stateObjectInitial = {
-    sortBy: null,
-    currentCategories: [],
-    priceRange: 50,
-    isCleared: true,
-  };
-  // State Object
-  const [stateObject, setStateObject] = useState(stateObjectInitial);
-  // Sort Setter
-  function sortSetter(e) {
-    const currentSort = e.target.getAttribute("data-sort");
-    setStateObject(
-      produce((draft) => {
-        draft.sortBy = currentSort;
-      })
-    );
-  }
-  // Category Setter
-  function categorySetter(e) {
-    const currentCategory = e.target.getAttribute("data-category");
-    if (e.target.checked) {
-      setStateObject(
-        produce((draft) => {
-          draft.currentCategories.push(currentCategory);
-        })
-      );
-    } else {
-      setStateObject(
-        produce((draft) => {
-          draft.currentCategories = draft.currentCategories.filter(
-            (category) => category !== currentCategory
-          );
-        })
-      );
-    }
-  }
-  // Price Setter
-  function priceSetter(e) {
-    const currentPrice = Number(e.target.value);
-    setStateObject(
-      produce((draft) => {
-        draft.priceRange = currentPrice;
-      })
-    );
-  }
-  // Reset Setter
-  function resetSetter() {
-    setStateObject(stateObjectInitial);
-  }
-  // isCleared Setter
-  useEffect(() => {
-    const clearedSort = stateObject.sortBy === null;
-    const clearedFilters =
-      stateObject.priceRange === 50 &&
-      stateObject.currentCategories.length === 0;
-    if (clearedFilters && clearedSort) {
-      setStateObject(
-        produce((draft) => {
-          draft.isCleared = true;
-        })
-      );
-    } else {
-      setStateObject(
-        produce((draft) => {
-          draft.isCleared = false;
-        })
-      );
-    }
-  }, [stateObject]);
-  // CALLING
-  useEffect(() => {}, []);
-  console.log(stateObject);
+  const { sortSetter, categorySetter, priceSetter, resetSetter } = useBoard();
+  const stateObject = useSelector((state) => state.Board.stateObject);
   return (
     <aside className="filter-board w-1/5 hidden md:flex flex-col py-6 gap-2">
       <button
@@ -149,7 +78,9 @@ const FilterBoard = () => {
               htmlFor="range"
               className="small-paragrapgh font-primary flex items-start flex-col w-full"
             >
-              <h4 className="font-primary mb-0.5">Price:</h4>
+              <h4 className="font-primary mb-0.5">
+                Price: ${stateObject.priceRange.toFixed(2).toLocaleString()}
+              </h4>
               <input
                 type="range"
                 name="range"

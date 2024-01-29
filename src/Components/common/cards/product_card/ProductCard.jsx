@@ -42,12 +42,7 @@ const ProductCard = ({
         )}
         <div className="card-buttons">
           <AddWishList currentId={cardId} />
-          <AddCart
-            currentId={cardId}
-            currentImage={cardImage}
-            currentTitle={cardTitle}
-            currentPrice={cardPrice}
-          />
+          <AddCart currentId={cardId} currentTitle={cardTitle} />
         </div>
       </div>
       <div className="card-bottom">

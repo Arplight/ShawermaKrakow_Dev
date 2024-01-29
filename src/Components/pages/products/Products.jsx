@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import ProductCard from "../../common/cards/product_card/ProductCard";
@@ -6,7 +6,6 @@ import Breadcrumb from "../../common/sections/breadcrumb/Breadcrumb";
 import ProductsSection from "../../common/sections/products_section/ProductsSection";
 import FilterBoard from "./components/filter_board/FilterBoard";
 import FilterBoardMobile from "./components/filter_board/FilterBoardMobile";
-import useProducts from "../../hooks/useProducts";
 import { fetchProducts } from "../../redux/store/ApiStore";
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 
@@ -17,8 +16,7 @@ const Products = () => {
   const [pageCount, setPageCount] = useState(0);
   const perPage = 6;
   const offset = currentPage * perPage;
-  const products = useProducts();
-
+  const products = useSelector((state) => state.Board.currentProducts);
   const dispatchSpinner = useDispatch();
   useEffect(() => {
     dispatchProducts(fetchProducts());

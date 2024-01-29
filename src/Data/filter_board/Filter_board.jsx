@@ -11,7 +11,7 @@ export const filterBoardData = [
       "fish",
       "pork",
       "tuna",
-      "salamon",
+      "salmon",
     ],
   },
 ];

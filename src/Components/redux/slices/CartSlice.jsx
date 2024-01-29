@@ -34,15 +34,17 @@ const CartSlice = createSlice({
           const currentItemSummary = {
             itemId: currentItemInfo.itemId,
             itemOrderQuantity: currentItemInfo.itemQuantity,
+            // quantity to be edited
             itemStockQuantity: currentItem && currentItem.quantity,
-            itemWeight: currentItem && currentItem.weight,
+            //Weight to be edited
+            itemWeight: currentItem && 33,
             itemTitle: currentItem && currentItem.name,
-            itemPrice: currentItem && currentItem.price_before_discount,
+            itemPrice: currentItem && currentItem.price,
             itemTotalPrice:
-              currentItem &&
-              currentItem.price_before_discount * currentItemInfo.itemQuantity,
-            itemImage: currentItem && currentItem.image,
+              currentItem && currentItem.price * currentItemInfo.itemQuantity,
+            itemImage: currentItem && currentItem.attributes.image,
           };
+
           state.cartItems = produce(state.cartItems, (draft) => {
             draft.push(currentItemSummary);
           }).flat(1);
@@ -95,8 +97,9 @@ const CartSlice = createSlice({
       })
       .addCase(fetchCart.fulfilled, (state, action) => {
         const data = action.payload;
-        // const data = action.payload[0].products;
         state.data = data;
+
+        console.log(state.cartItems);
       })
       .addCase(fetchCart.rejected, (state) => {
         state.error = "Failed to fetch products";

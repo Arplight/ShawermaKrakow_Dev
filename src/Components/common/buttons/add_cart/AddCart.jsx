@@ -7,13 +7,11 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchCart, postCart } from "../../../redux/store/ApiStore";
 import { toast } from "react-toastify";
-const AddCart = ({ currentId, currentImage, currentTitle, currentPrice }) => {
-  // const currentItemData = {
-  //   id: currentId,
-  //   quantity: 1,
-  // };
-  const currentItemData = `id=${currentId}&quantity=${1}`;
-
+const AddCart = ({ currentId, currentTitle }) => {
+  const currentItemData = {
+    id: currentId,
+    quantity: 1,
+  };
   const ToastAdd = () => {
     toast.success(`Added ${currentTitle} to cart`);
   };
@@ -31,8 +29,8 @@ const AddCart = ({ currentId, currentImage, currentTitle, currentPrice }) => {
   // Cart Handlers
   async function addToCart() {
     try {
-      await postCart(currentItemData);
       dispatchCart(fetchCart());
+      await postCart(currentItemData);
       dispatchAddCartItem(addCartItem({ itemId: currentId, itemQuantity: 1 }));
       ToastAdd();
       setIsAddedToCart(true);
@@ -64,7 +62,6 @@ const AddCart = ({ currentId, currentImage, currentTitle, currentPrice }) => {
 export default AddCart;
 AddCart.propTypes = {
   currentId: PropTypes.number.isRequired,
-  currentImage: PropTypes.string,
   currentTitle: PropTypes.string,
   currentPrice: PropTypes.number,
 };

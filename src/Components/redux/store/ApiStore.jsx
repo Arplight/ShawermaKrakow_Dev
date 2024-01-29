@@ -20,7 +20,10 @@ export const fetchImages = createAsyncThunk("imagesApi/fetchData", async () => {
 
 // Cart GET
 export const fetchCart = createAsyncThunk("cartApi/fetchData", async () => {
-  const response = await axios.get(`${apiBaseUrl}/cart/list`);
+  const response = await axios.get(`${apiBaseUrl}/cart/list`, {
+    withCredentials: true,
+    withXSRFToken: true,
+  });
   return response.data;
 });
 
@@ -29,7 +32,7 @@ export const postCart = async (currentItemData) => {
   try {
     await axios.post(`${apiBaseUrl}/cart/add`, currentItemData, {
       withCredentials: true,
-      // withXSRFToken: true,
+      withXSRFToken: true,
     });
   } catch (error) {
     console.error(error);

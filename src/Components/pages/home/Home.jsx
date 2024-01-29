@@ -2,11 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Slices
-import {
-  fetchImages,
-  fetchProducts,
-  fetchCart,
-} from "../../redux/store/ApiStore";
+import { fetchImages, fetchProducts } from "../../redux/store/ApiStore";
 // Reducer
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 
@@ -24,13 +20,11 @@ const Home = () => {
   const dispatchImages = useDispatch();
   const dispatchCart = useDispatch();
   const dispatchSpinner = useDispatch();
-  const response = useSelector((state) => state.cart.cartItems);
   const products = useSelector((state) => state.productsApi.data);
   const images = useSelector((state) => state.imagesApi.data);
   useEffect(() => {
     dispatchProducts(fetchProducts());
     dispatchImages(fetchImages());
-    dispatchCart(fetchCart());
   }, [dispatchImages, dispatchProducts, dispatchCart]);
   // PreLoading Spinner
   useEffect(() => {
@@ -40,8 +34,6 @@ const Home = () => {
       dispatchSpinner(loadingHandler(true));
     }
   }, [dispatchSpinner, products, images]);
-
-  console.log("response", response);
   return (
     <div className="home">
       {/* Slider */}

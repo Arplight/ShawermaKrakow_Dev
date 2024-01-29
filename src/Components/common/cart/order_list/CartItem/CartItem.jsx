@@ -29,7 +29,7 @@ const CartItem = ({
       </button>
       <span className="h-[200px] w-2/5 overflow-hidden ">
         <Link
-          to={`/Details/${itemTitle.replaceAll(" ", "-")}`}
+          to={`/Details/${itemTitle && itemTitle.replaceAll(" ", "-")}`}
           onClick={() => dispatchBlocker(blockerSetter(null))}
         >
           <LazyLoad offset={100} className="w-full h-full ">
@@ -44,14 +44,14 @@ const CartItem = ({
       <span className="flex flex-col gap-0.5 w-3/5">
         <h3 className="font-primary">{itemTitle}</h3>
         <p className="small-paragrapgh font-primary">
-          {itemWeight.toFixed(2).toLocaleString()} g
+          {itemWeight && itemWeight.toFixed(2).toLocaleString()} g
         </p>
         <b className="small-paragrapgh font-primary">
-          ${itemPrice.toFixed(2).toLocaleString()}
+          ${itemPrice && itemPrice.toFixed(2).toLocaleString()}
         </b>
         <QuantityButton itemStockQuantity={itemStockQuantity} itemId={itemId} />
         <b className="small-paragrapgh font-primary">
-          Total: ${itemTotalPrice.toFixed(2).toLocaleString()}
+          Total: ${itemTotalPrice && itemTotalPrice.toFixed(2).toLocaleString()}
         </b>
       </span>
     </div>

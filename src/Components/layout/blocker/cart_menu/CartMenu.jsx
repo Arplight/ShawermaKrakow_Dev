@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchProducts, fetchCart } from "../../../redux/store/ApiStore";
+import { fetchCart } from "../../../redux/store/ApiStore";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
@@ -19,9 +19,7 @@ const CartMenu = () => {
 
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalItems = useSelector((state) => state.cart.cartTotalItems);
-  console.log(cartItems);
   useEffect(() => {
-    // dispatchCart(fetchProducts());
     dispatchTotal(cartTotal());
     dispatchCartList(fetchCart());
   }, [dispatchCart, dispatchTotal, dispatchCartList]);
@@ -42,29 +40,30 @@ const CartMenu = () => {
         <IoClose />
       </button>
       <span></span>
-      {cartItems.length > 0 ? (
+      {cartItems && cartItems.length > 0 ? (
         <>
           <h3 className="font-primary">
             Your cart {`( x${totalItems} Item )`}
           </h3>
           <OrderList withStyle={"w-full max-h-[50%] overflow-y-scroll"}>
             <ul className="h-full p-0 md:py-1 flex flex-col gap-1">
-              {cartItems.map((item) => (
-                <li
-                  key={item.itemId}
-                  className="w-full border-[1px] border-[#12342f2c]  h-max p-1"
-                >
-                  <CartItem
-                    itemImage={item.itemImage}
-                    itemTitle={item.itemTitle}
-                    itemPrice={item.itemPrice}
-                    itemTotalPrice={item.itemTotalPrice}
-                    itemWeight={item.itemWeight}
-                    itemId={item.itemId}
-                    itemStockQuantity={item.itemStockQuantity}
-                  />
-                </li>
-              ))}
+              {cartItems &&
+                cartItems.map((item) => (
+                  <li
+                    key={item.itemId}
+                    className="w-full border-[1px] border-[#12342f2c]  h-max p-1"
+                  >
+                    <CartItem
+                      itemImage={item.itemImage}
+                      itemTitle={item.itemTitle}
+                      itemPrice={item.itemPrice}
+                      itemTotalPrice={item.itemTotalPrice}
+                      itemWeight={item.itemWeight}
+                      itemId={item.itemId}
+                      itemStockQuantity={item.itemStockQuantity}
+                    />
+                  </li>
+                ))}
             </ul>
           </OrderList>
           <OrderSummary />
