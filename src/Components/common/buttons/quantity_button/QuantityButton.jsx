@@ -2,55 +2,55 @@ import { useEffect, useState } from "react";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { updateCartItem } from "../../../redux/slices/CartSlice";
 import useCart from "../../../hooks/useCart";
-
+import { cartUpdate, fetchCart } from "../../../redux/store/ApiStore";
 const QuantityButton = ({ itemStockQuantity, itemId, itemSummaryQuantity }) => {
   const { isFoundedInCart, itemGlobalQuantity } = useCart(itemId);
   const [localQuantity, setLocalQuantity] = useState(itemGlobalQuantity || 1);
-  const dispatchUpdateItem = useDispatch();
-  const currentQuantity = isFoundedInCart ? itemGlobalQuantity : localQuantity;
-
+  const [currentQuantity, setCurrentQuantity] = useState(
+    isFoundedInCart ? itemGlobalQuantity : localQuantity
+  );
+  const dispatchCart = useDispatch();
   useEffect(() => {
     if (itemSummaryQuantity && !isFoundedInCart) {
-      itemSummaryQuantity(localQuantity);
+      itemSummaryQuantity(currentQuantity);
+      console.log(currentQuantity);
     }
-  }, [localQuantity, itemSummaryQuantity, isFoundedInCart]);
-
-  const updateQuantity = (newQuantity) => {
-    setLocalQuantity(newQuantity);
-    if (isFoundedInCart) {
-      dispatchUpdateItem(
-        updateCartItem({
-          id: itemId,
-          quantity: newQuantity,
-        })
-      );
-    }
-  };
-
-  const handleDecrement = () => {
-    if (currentQuantity > 1) {
-      updateQuantity(currentQuantity - 1);
+  }, [currentQuantity, itemSummaryQuantity, isFoundedInCart]);
+  const updateCart = async (newQuantity) => {
+    const currentItemData = {
+      id: itemId,
+      quantity: newQuantity,
+    };
+    try {
+      await cartUpdate(currentItemData);
+      setLocalQuantity(newQuantity);
+      dispatchCart(fetchCart());
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const handleIncrement = () => {
-    if (currentQuantity < itemStockQuantity) {
-      updateQuantity(currentQuantity + 1);
+  const handleQuantityChange = (newQuantity) => {
+    if (newQuantity >= 1 && newQuantity <= itemStockQuantity) {
+      setCurrentQuantity(newQuantity);
+      isFoundedInCart && updateCart(newQuantity);
     }
   };
+  // SYNCING STATE
+  useEffect(() => {
+    itemGlobalQuantity && setCurrentQuantity(itemGlobalQuantity);
+  }, [itemGlobalQuantity]);
 
   const isMinQuantity = currentQuantity === 1;
   const isMaxQuantity = currentQuantity === itemStockQuantity;
-
   return (
     <div className="quantity-button">
       <button
         className={`minus border-r-[1px] border-[#12342f] ${
           isMinQuantity ? "button-disabled" : ""
         }`}
-        onClick={handleDecrement}
+        onClick={() => handleQuantityChange(currentQuantity - 1)}
         disabled={isMinQuantity}
       >
         <TiMinus />
@@ -60,7 +60,7 @@ const QuantityButton = ({ itemStockQuantity, itemId, itemSummaryQuantity }) => {
         className={`plus border-l-[1px] border-[#12342f] ${
           isMaxQuantity ? "button-disabled" : ""
         }`}
-        onClick={handleIncrement}
+        onClick={() => handleQuantityChange(currentQuantity + 1)}
         disabled={isMaxQuantity}
       >
         <TiPlus />

@@ -12,7 +12,6 @@ import EmptyCart from "../../../common/cart/empty_cart/EmptyCart";
 import { blockerSetter } from "../../../redux/slices/BlockerSlice";
 
 const CartMenu = () => {
-  const dispatchCart = useDispatch();
   const dispatchTotal = useDispatch();
   const dispatchBlocker = useDispatch();
   const dispatchCartList = useDispatch();
@@ -22,7 +21,7 @@ const CartMenu = () => {
   useEffect(() => {
     dispatchTotal(cartTotal());
     dispatchCartList(fetchCart());
-  }, [dispatchCart, dispatchTotal, dispatchCartList]);
+  }, [dispatchTotal, dispatchCartList]);
 
   function blockerHandler() {
     dispatchBlocker(blockerSetter(null));
@@ -40,30 +39,29 @@ const CartMenu = () => {
         <IoClose />
       </button>
       <span></span>
-      {cartItems && cartItems.length > 0 ? (
+      {cartItems.length > 0 ? (
         <>
           <h3 className="font-primary">
             Your cart {`( x${totalItems} Item )`}
           </h3>
           <OrderList withStyle={"w-full max-h-[50%] overflow-y-scroll"}>
             <ul className="h-full p-0 md:py-1 flex flex-col gap-1">
-              {cartItems &&
-                cartItems.map((item) => (
-                  <li
-                    key={item.itemId}
-                    className="w-full border-[1px] border-[#12342f2c]  h-max p-1"
-                  >
-                    <CartItem
-                      itemImage={item.itemImage}
-                      itemTitle={item.itemTitle}
-                      itemPrice={item.itemPrice}
-                      itemTotalPrice={item.itemTotalPrice}
-                      itemWeight={item.itemWeight}
-                      itemId={item.itemId}
-                      itemStockQuantity={item.itemStockQuantity}
-                    />
-                  </li>
-                ))}
+              {cartItems.map((item) => (
+                <li
+                  key={item.id}
+                  className="w-full border-[1px] border-[#12342f2c]  h-max p-1"
+                >
+                  <CartItem
+                    itemImage={item.image}
+                    itemTitle={item.name}
+                    itemPrice={item.price}
+                    itemTotalPrice={item.subtotal}
+                    itemWeight={item.weight}
+                    itemId={item.id}
+                    itemStockQuantity={item.stockQuantity}
+                  />
+                </li>
+              ))}
             </ul>
           </OrderList>
           <OrderSummary />

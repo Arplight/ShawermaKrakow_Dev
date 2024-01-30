@@ -2,16 +2,13 @@
 import { PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import useCart from "../../../hooks/useCart";
-import { addCartItem, removeCartItem } from "../../../redux/slices/CartSlice";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchCart, postCart } from "../../../redux/store/ApiStore";
+import { fetchCart, cartAdd, cartRemove } from "../../../redux/store/ApiStore";
 import { toast } from "react-toastify";
+
 const AddCart = ({ currentId, currentTitle }) => {
-  const currentItemData = {
-    id: currentId,
-    quantity: 1,
-  };
+  // Toastifier
   const ToastAdd = () => {
     toast.success(`Added ${currentTitle} to cart`);
   };
@@ -23,28 +20,35 @@ const AddCart = ({ currentId, currentTitle }) => {
   const [isAddedToCart, setIsAddedToCart] = useState(isFoundedInCart);
 
   // Dispatching
-  const dispatchAddCartItem = useDispatch();
-  const dispatchRemoveCartItem = useDispatch();
   const dispatchCart = useDispatch();
+
   // Cart Handlers
   async function addToCart() {
+    const currentItemData = {
+      id: currentId,
+      quantity: 1,
+    };
     try {
+      await cartAdd(currentItemData);
       dispatchCart(fetchCart());
-      await postCart(currentItemData);
-      dispatchAddCartItem(addCartItem({ itemId: currentId, itemQuantity: 1 }));
-      ToastAdd();
       setIsAddedToCart(true);
+      ToastAdd();
     } catch (error) {
       console.error(error);
     }
   }
-  function removeFromCart() {
-    dispatchRemoveCartItem(removeCartItem(currentId));
-    setIsAddedToCart(false);
-    ToastRemove();
+  async function removeFromCart() {
+    try {
+      await cartRemove(currentId);
+      dispatchCart(fetchCart());
+      setIsAddedToCart(false);
+      ToastRemove();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  // cartStateUpdater
+  // CART STATE SYNCING
   useEffect(() => {
     setIsAddedToCart(isFoundedInCart);
   }, [isFoundedInCart]);

@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { addCartItem } from "../../../redux/slices/CartSlice";
 import PropTypes from "prop-types";
 import useCart from "../../../hooks/useCart";
 import { toast } from "react-toastify";
+import { cartAdd, fetchCart } from "../../../redux/store/ApiStore";
 
 const AddButton = ({
   summaryQuantity,
@@ -10,27 +10,31 @@ const AddButton = ({
   withStyle,
   currentProductName,
 }) => {
-  const dispatchAddCartItem = useDispatch();
   const { isFoundedInCart } = useCart(productId);
   const ToastAdd = () => {
     toast.success(`Added ${currentProductName} to cart`);
   };
-
-  function addingHandler() {
-    dispatchAddCartItem(
-      addCartItem({
-        itemId: productId,
-        itemQuantity: summaryQuantity ? summaryQuantity : 1,
-      })
-    );
-    ToastAdd();
+  // Dispatching
+  const dispatchCart = useDispatch();
+  async function addToCart() {
+    const currentItemData = {
+      id: productId,
+      quantity: summaryQuantity,
+    };
+    try {
+      await cartAdd(currentItemData);
+      dispatchCart(fetchCart());
+      ToastAdd();
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <button
       className={`main-button font-secondary ${withStyle} ${
         isFoundedInCart && "button-disabled"
       }`}
-      onClick={addingHandler}
+      onClick={addToCart}
       disabled={isFoundedInCart}
     >
       Add to cart

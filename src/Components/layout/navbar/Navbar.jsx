@@ -11,10 +11,10 @@ import { blockerSetter } from "../../redux/slices/BlockerSlice";
 // icons
 import { SlMagnifier } from "react-icons/sl";
 import { TbShoppingBagPlus } from "react-icons/tb";
-import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { IoMdHeartEmpty } from "react-icons/io";
 import { IoLanguage } from "react-icons/io5";
 import { cartTotal } from "../../redux/slices/CartSlice";
-
+import { fetchCart } from "../../redux/store/ApiStore";
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
   const location = useLocation().pathname;
@@ -23,10 +23,15 @@ const Navbar = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const cartTotalItems = useSelector((state) => state.cart.cartTotalItems);
   const dispatchBlocker = useDispatch();
+  const dispatchCart = useDispatch();
   const dispatchTotalItems = useDispatch();
+  // CALLING THE CART
+  useEffect(() => {
+    dispatchCart(fetchCart());
+  }, [dispatchCart]);
   useEffect(() => {
     dispatchTotalItems(cartTotal());
-  }, [cartItems, dispatchTotalItems, cartTotalItems]);
+  }, [cartItems, dispatchTotalItems]);
 
   return (
     <nav className={`${isDistance ? "sticky-nav" : ""} `} ref={navRef}>
