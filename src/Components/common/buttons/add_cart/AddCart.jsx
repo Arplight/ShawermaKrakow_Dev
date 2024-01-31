@@ -6,8 +6,10 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchCart, cartAdd, cartRemove } from "../../../redux/store/ApiStore";
 import { toast } from "react-toastify";
+import { PuffLoader } from "react-spinners";
 
 const AddCart = ({ currentId, currentTitle }) => {
+  const [isPending, setIsPending] = useState(false);
   // Toastifier
   const ToastAdd = () => {
     toast.success(`Added ${currentTitle} to cart`);
@@ -33,6 +35,7 @@ const AddCart = ({ currentId, currentTitle }) => {
       dispatchCart(fetchCart());
       setIsAddedToCart(true);
       ToastAdd();
+      setIsPending(false);
     } catch (error) {
       console.error(error);
     }
@@ -43,27 +46,40 @@ const AddCart = ({ currentId, currentTitle }) => {
       dispatchCart(fetchCart());
       setIsAddedToCart(false);
       ToastRemove();
+      setIsPending(false);
     } catch (error) {
       console.error(error);
     }
   }
+  function addingHandler() {
+    if (isAddedToCart) {
+      removeFromCart();
+    } else {
+      addToCart();
+    }
+    setIsPending(true);
+  }
 
-  // CART STATE SYNCING
+  // CART STATE SYNCING  (STATE UPDATER)
   useEffect(() => {
     setIsAddedToCart(isFoundedInCart);
   }, [isFoundedInCart]);
+
   return (
     <span>
-      {isAddedToCart ? (
-        <PiShoppingCartFill onClick={removeFromCart} />
+      {isPending ? (
+        <PuffLoader color="#12342f" size={20} />
+      ) : isAddedToCart ? (
+        <PiShoppingCartFill onClick={addingHandler} />
       ) : (
-        <PiShoppingCart onClick={addToCart} />
+        <PiShoppingCart onClick={addingHandler} />
       )}
     </span>
   );
 };
 
 export default AddCart;
+
 AddCart.propTypes = {
   currentId: PropTypes.number.isRequired,
   currentTitle: PropTypes.string,

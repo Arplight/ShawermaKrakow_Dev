@@ -1,24 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  stateObjectSetter,
   categoryHandler,
   sortHandler,
-  stateObjectSetter,
+  priceHandler,
+  resetHandler,
 } from "../redux/slices/ProductsBoardSlice";
 import { produce } from "immer";
 import { useEffect } from "react";
 
 const useBoard = () => {
   const stateObject = useSelector((state) => state.Board.stateObject);
+  // Dispatching
   const dispatchStateObject = useDispatch();
   const dispatchSort = useDispatch();
   const dispatchCategory = useDispatch();
+  const dispatchReset = useDispatch();
+  const dispatchPrice = useDispatch();
   // Sort Setter
   function sortSetter(e) {
     const currentSort = e.target.getAttribute("data-sort");
     const nextState = produce(stateObject, (draft) => {
       draft.sortBy = currentSort;
     });
-    dispatchSort(sortHandler());
 
     dispatchStateObject(stateObjectSetter(nextState));
   }
@@ -38,7 +42,6 @@ const useBoard = () => {
       });
       dispatchStateObject(stateObjectSetter(nextState));
     }
-    dispatchCategory(categoryHandler());
   }
   // Price Setter
   function priceSetter(e) {
@@ -46,7 +49,6 @@ const useBoard = () => {
     const nextState = produce(stateObject, (draft) => {
       draft.priceRange = currentPrice;
     });
-
     dispatchStateObject(stateObjectSetter(nextState));
   }
   // Reset Setter
@@ -70,17 +72,21 @@ const useBoard = () => {
         draft.isCleared = true;
       });
       dispatchStateObject(stateObjectSetter(nextState));
+      dispatchReset(resetHandler());
     } else {
       const nextState = produce(stateObject, (draft) => {
         draft.isCleared = false;
       });
       dispatchStateObject(stateObjectSetter(nextState));
     }
-  }, [stateObject]);
-  // Calling
-  //   useEffect(() => {
+  }, [stateObject, dispatchStateObject, dispatchReset]);
 
-  //   }, [stateObject]);
+  // CALLING HANDLERS
+  useEffect(() => {
+    dispatchCategory(categoryHandler());
+    dispatchSort(sortHandler());
+    dispatchPrice(priceHandler());
+  }, [stateObject, dispatchCategory, dispatchSort, dispatchPrice]);
   return { sortSetter, categorySetter, priceSetter, resetSetter };
 };
 

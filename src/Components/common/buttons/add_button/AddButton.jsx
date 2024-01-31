@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import useCart from "../../../hooks/useCart";
 import { toast } from "react-toastify";
 import { cartAdd, fetchCart } from "../../../redux/store/ApiStore";
+import { useState } from "react";
+import { PuffLoader } from "react-spinners";
 
 const AddButton = ({
   summaryQuantity,
@@ -14,30 +16,45 @@ const AddButton = ({
   const ToastAdd = () => {
     toast.success(`Added ${currentProductName} to cart`);
   };
+  const [isPending, setIsPending] = useState(false);
   // Dispatching
   const dispatchCart = useDispatch();
   async function addToCart() {
     const currentItemData = {
       id: productId,
-      quantity: summaryQuantity,
+      quantity: summaryQuantity ? summaryQuantity : 1,
     };
     try {
       await cartAdd(currentItemData);
       dispatchCart(fetchCart());
       ToastAdd();
+      setIsPending(false);
     } catch (error) {
       console.error(error);
     }
   }
   return (
     <button
-      className={`main-button font-secondary ${withStyle} ${
+      className={`main-button font-secondary relative ${withStyle} ${
         isFoundedInCart && "button-disabled"
-      }`}
-      onClick={addToCart}
-      disabled={isFoundedInCart}
+      } ${isPending && "hover:bg-[#12342f]"}`}
+      onClick={() => {
+        addToCart();
+        setIsPending(true);
+      }}
+      disabled={isFoundedInCart || isPending}
     >
-      Add to cart
+      {isPending && (
+        <PuffLoader
+          color="#ffffff"
+          size={20}
+          className=""
+          cssOverride={{ position: "absolute" }}
+        />
+      )}
+      <span className={`${isPending && "invisible"}`}>
+        {isFoundedInCart ? "Added to cart" : "Add to cart"}
+      </span>
     </button>
   );
 };

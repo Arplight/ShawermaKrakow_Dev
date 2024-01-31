@@ -10,7 +10,6 @@ import { BeatLoader } from "react-spinners";
 const ProductSummary = () => {
   const [summaryQuantity, setSummaryQuantity] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
-
   const currentProduct = useSelector((state) => state.currentProduct.data);
 
   return (

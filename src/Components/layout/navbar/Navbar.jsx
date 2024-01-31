@@ -10,11 +10,12 @@ import useDistance from "../../hooks/useDistance";
 import { blockerSetter } from "../../redux/slices/BlockerSlice";
 // icons
 import { SlMagnifier } from "react-icons/sl";
-import { TbShoppingBagPlus } from "react-icons/tb";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoLanguage } from "react-icons/io5";
 import { cartTotal } from "../../redux/slices/CartSlice";
 import { fetchCart } from "../../redux/store/ApiStore";
+import { BsCart4 } from "react-icons/bs";
+
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
   const location = useLocation().pathname;
@@ -78,7 +79,7 @@ const Navbar = () => {
             className="large-paragrapgh font-primary relative"
             onClick={() => dispatchBlocker(blockerSetter("cart"))}
           >
-            <TbShoppingBagPlus className="nav-icon" />
+            <BsCart4 className="nav-icon" />
             <div className="cart-badge">
               <span>{cartTotalItems}</span>
             </div>

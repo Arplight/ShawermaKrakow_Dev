@@ -22,41 +22,53 @@ const ProductsBoardSlice = createSlice({
     stateObjectSetter(state, action) {
       state.stateObject = action.payload;
     },
+
     // Sort Handler
     sortHandler(state) {
-      const fullProducts = state.data;
-      switch (state.stateObject.sortBy) {
-        case "Top Rated":
-          {
-            state.currentProducts = produce(fullProducts, (draft) => {
-              return draft.filter((top) => top.top_product);
-            });
-          }
-          break;
-        case "Price (Lowest First)":
-          {
-            state.currentProducts = produce(fullProducts, (draft) => {
-              draft.sort(
-                (a, b) => a.price_before_discount - b.price_before_discount
+      if (state.currentProducts) {
+        switch (state.stateObject.sortBy) {
+          case "Top Rated":
+            {
+              state.currentProducts = produce(
+                state.currentProducts,
+                (draft) => {
+                  return draft.filter((top) => top.top_product);
+                }
               );
-            });
-          }
-          break;
+            }
+            break;
+          case "Price (Lowest First)":
+            {
+              state.currentProducts = produce(
+                state.currentProducts,
+                (draft) => {
+                  draft.sort(
+                    (a, b) => a.price_before_discount - b.price_before_discount
+                  );
+                }
+              );
+            }
+            break;
 
-        case "Price (Highest First)":
-          {
-            state.currentProducts = produce(fullProducts, (draft) => {
-              draft.sort(
-                (b, a) => a.price_before_discount - b.price_before_discount
+          case "Price (Highest First)":
+            {
+              state.currentProducts = produce(
+                state.currentProducts,
+                (draft) => {
+                  draft.sort(
+                    (b, a) => a.price_before_discount - b.price_before_discount
+                  );
+                }
               );
-            });
+            }
+            break;
+          default: {
+            return;
           }
-          break;
-        // default: {
-        //   state.currentProducts = fullProducts;
-        // }
+        }
       }
     },
+
     // Category Handler
     categoryHandler(state) {
       const fullProducts = state.data;
@@ -71,7 +83,24 @@ const ProductsBoardSlice = createSlice({
         state.currentProducts = fullProducts;
       }
     },
+    // PriceHandler
+    priceHandler(state) {
+      const currentPrice = state.stateObject.priceRange;
+      if (state.currentProducts) {
+        state.currentProducts = produce(state.currentProducts, (draft) => {
+          return draft.filter(
+            (product) => product.price_before_discount < currentPrice
+          );
+        });
+      }
+    },
+    // resetHandler
+    resetHandler(state) {
+      const fullProducts = state.data;
+      state.currentProducts = fullProducts;
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -91,5 +120,10 @@ const ProductsBoardSlice = createSlice({
 });
 
 export default ProductsBoardSlice.reducer;
-export const { stateObjectSetter, sortHandler, categoryHandler } =
-  ProductsBoardSlice.actions;
+export const {
+  stateObjectSetter,
+  sortHandler,
+  categoryHandler,
+  priceHandler,
+  resetHandler,
+} = ProductsBoardSlice.actions;
