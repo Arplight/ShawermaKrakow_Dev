@@ -4,7 +4,7 @@ import ProductsSection from "../../../../common/sections/products_section/Produc
 import useProducts from "../../../../hooks/useProducts";
 
 const Products = () => {
-  const HomeProducts = useProducts();
+  const { products } = useProducts();
 
   return (
     <ProductsSection isPaginated={false} isSingle={true}>
@@ -15,8 +15,8 @@ const Products = () => {
         withStyle={"mb-3"}
       />
       <ul className="w-full grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-        {HomeProducts &&
-          HomeProducts.slice(0, 8).map((product) => (
+        {products &&
+          products.slice(0, 8).map((product) => (
             <li key={product.id} className="flex justify-center">
               <ProductCard
                 cardCategory={product.category}

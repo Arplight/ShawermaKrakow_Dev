@@ -26,65 +26,66 @@ const WishListTable = () => {
         </tr>
       </thead>
       <tbody>
-        {wishListItems.map((item) => (
-          <tr key={item.itemId}>
-            <td className="relative">
-              <Link to={`/Details/${item.itemTitle.replaceAll(" ", "-")}`}>
-                <LazyLoad offset={200} className="h-[100px]">
-                  <img
-                    src={item.itemImage}
-                    alt={item.itemTitle}
-                    className="w-full h-full object-contain"
-                    onLoad={() => setIsLoaded(true)}
+        {wishListItems &&
+          [...wishListItems].reverse().map((item) => (
+            <tr key={item.itemId}>
+              <td className="relative">
+                <Link to={`/Details/${item.itemTitle.replaceAll(" ", "-")}`}>
+                  <LazyLoad offset={200} className="h-[100px]">
+                    <img
+                      src={item.itemImage}
+                      alt={item.itemTitle}
+                      className="w-full h-full object-contain"
+                      onLoad={() => setIsLoaded(true)}
+                    />
+                  </LazyLoad>
+                </Link>
+                {!isLoaded && (
+                  <FadeLoader
+                    color="#12342f"
+                    cssOverride={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "48%",
+                    }}
                   />
-                </LazyLoad>
-              </Link>
-              {!isLoaded && (
-                <FadeLoader
-                  color="#12342f"
-                  cssOverride={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "48%",
-                  }}
+                )}
+              </td>
+              <td>
+                <Link
+                  to={`/Details/${item.itemTitle.replaceAll(" ", "-")}`}
+                  className="text-center flex items-center justify-center"
+                >
+                  <b className="large-paragrapgh font-primary ">
+                    {item.itemTitle}
+                  </b>
+                </Link>
+              </td>
+              <td className="text-center ">
+                <p className="large-paragrapgh font-primary">
+                  ${item.itemPrice.toFixed(2).toLocaleString()}
+                </p>
+              </td>
+              <td>
+                <AddButton
+                  summaryQuantity={null}
+                  productId={item.itemId}
+                  withStyle={"m-auto"}
+                  currentProductName={item.itemTitle}
                 />
-              )}
-            </td>
-            <td>
-              <Link
-                to={`/Details/${item.itemTitle.replaceAll(" ", "-")}`}
-                className="text-center flex items-center justify-center"
-              >
-                <b className="large-paragrapgh font-primary ">
-                  {item.itemTitle}
-                </b>
-              </Link>
-            </td>
-            <td className="text-center ">
-              <p className="large-paragrapgh font-primary">
-                ${item.itemPrice.toFixed(2).toLocaleString()}
-              </p>
-            </td>
-            <td>
-              <AddButton
-                summaryQuantity={null}
-                productId={item.itemId}
-                withStyle={"m-auto"}
-                currentProductName={item.itemTitle}
-              />
-            </td>
-            <td className="flex items-center justify-center">
-              <button
-                className="remove-button"
-                onClick={() =>
-                  dispatchRemoveWishListItem(removeWishListItem(item.itemId))
-                }
-              >
-                <IoTrashBinOutline />
-              </button>
-            </td>
-          </tr>
-        ))}
+              </td>
+              <td className="flex items-center justify-center">
+                <button
+                  className="remove-button"
+                  onClick={() =>
+                    dispatchRemoveWishListItem(removeWishListItem(item.itemId))
+                  }
+                >
+                  <IoTrashBinOutline />
+                </button>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );

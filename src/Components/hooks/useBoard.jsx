@@ -8,15 +8,18 @@ import {
 } from "../redux/slices/ProductsBoardSlice";
 import { produce } from "immer";
 import { useEffect } from "react";
+import useProducts from "./useProducts";
 
 const useBoard = () => {
   const stateObject = useSelector((state) => state.Board.stateObject);
+  const data = useSelector((state) => state.Board.data);
   // Dispatching
   const dispatchStateObject = useDispatch();
   const dispatchSort = useDispatch();
   const dispatchCategory = useDispatch();
   const dispatchReset = useDispatch();
   const dispatchPrice = useDispatch();
+  const { topPrice } = useProducts();
   // Sort Setter
   function sortSetter(e) {
     const currentSort = e.target.getAttribute("data-sort");
@@ -56,7 +59,7 @@ const useBoard = () => {
     const stateObjectInitial = {
       sortBy: null,
       currentCategories: [],
-      priceRange: 50,
+      priceRange: topPrice,
       isCleared: true,
     };
     dispatchStateObject(stateObjectSetter(stateObjectInitial));
@@ -65,7 +68,7 @@ const useBoard = () => {
   useEffect(() => {
     const clearedSort = stateObject.sortBy === null;
     const clearedFilters =
-      stateObject.priceRange === 50 &&
+      stateObject.priceRange === topPrice &&
       stateObject.currentCategories.length === 0;
     if (clearedFilters && clearedSort) {
       const nextState = produce(stateObject, (draft) => {
@@ -86,7 +89,7 @@ const useBoard = () => {
     dispatchCategory(categoryHandler());
     dispatchSort(sortHandler());
     dispatchPrice(priceHandler());
-  }, [stateObject, dispatchCategory, dispatchSort, dispatchPrice]);
+  }, [stateObject, dispatchCategory, dispatchSort, dispatchPrice, data]);
   return { sortSetter, categorySetter, priceSetter, resetSetter };
 };
 

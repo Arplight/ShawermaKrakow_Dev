@@ -6,12 +6,13 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import useBoard from "../../../../hooks/useBoard";
-
+import useProducts from "../../../../hooks/useProducts";
 const FilterBoardMobile = () => {
   const [boardIsOpened, setBoardIsOpened] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
   const stateObject = useSelector((state) => state.Board.stateObject);
   const { sortSetter, categorySetter, priceSetter, resetSetter } = useBoard();
+  const { topPrice } = useProducts();
   return (
     <div className="flex md:hidden">
       {/* Mobile board */}
@@ -142,7 +143,7 @@ const FilterBoardMobile = () => {
                 id="range-mobile"
                 className="p-0 w-full"
                 min={10}
-                max={50}
+                max={topPrice}
                 onChange={(e) => priceSetter(e)}
                 value={stateObject.priceRange}
               />

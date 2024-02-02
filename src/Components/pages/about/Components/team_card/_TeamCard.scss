@@ -7,7 +7,7 @@
   align-items: center;
   gap: 10px;
   position: relative;
-  padding: $cardPadding;
+  // padding: $cardPadding;
   .member-image {
     overflow: hidden;
     width: 100%;
@@ -27,7 +27,7 @@
     transition: $transitionDuration;
   }
   .member-info {
-    bottom: -35px;
+    bottom: -34px;
     width: 70%;
     text-align: center;
     position: absolute;

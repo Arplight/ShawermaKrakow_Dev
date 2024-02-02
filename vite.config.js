@@ -9,5 +9,5 @@ export default defineConfig({
     build: "vite build",
     preview: "vite preview",
   },
-  base: "",
+  base: "/shawermakrakow",
 });

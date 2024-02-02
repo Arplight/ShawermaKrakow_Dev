@@ -29,7 +29,7 @@ const CartMenu = () => {
 
   return (
     <div
-      className="cart-menu relative h-full bg-[#ffffff] ml-[auto] overflow-y-scroll p-1 max-w-[85%] flex flex-col gap-2 shadow-xl shadow-gray-800 "
+      className="cart-menu relative h-full bg-[#ffffff] ml-[auto] overflow-y-scroll p-1 max-w-[85%] flex flex-col gap-2 shadow-xl shadow-[#000000b5] "
       onClick={(e) => e.stopPropagation()}
     >
       <button

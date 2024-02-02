@@ -4,6 +4,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
+import { Fade } from "react-awesome-reveal";
 // Data
 import useProducts from "../../../../hooks/useProducts";
 import useImages from "../../../../hooks/useImages";
@@ -16,7 +17,7 @@ import { BeatLoader } from "react-spinners";
 
 const Slider = () => {
   const images = useImages();
-  const products = useProducts();
+  const { products } = useProducts();
   const [topProducts, setTopProducts] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -51,7 +52,7 @@ const Slider = () => {
             speed={900}
             loop={true}
             autoplay={{
-              delay: 3000,
+              delay: 5000,
               disableOnInteraction: false,
             }}
             pagination={{
@@ -65,31 +66,41 @@ const Slider = () => {
               <SwiperSlide key={product.id}>
                 <div className="slider-container container m-auto flex flex-col md:flex-row gap-10 relative items-center h-[70vh] md:h-[60vh] 2xl:h-[70vh]">
                   <span className="w-full h-full md:w-1/2  flex items-center justify-center slider-image">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      onLoad={() => setIsLoaded(true)}
-                    />
+                    <Fade duration={1500}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        onLoad={() => setIsLoaded(true)}
+                      />
+                    </Fade>
                   </span>
                   <span className="slider-info w-full h-full md:w-1/2 flex items-center justify-center z-[10]">
                     <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
-                      <h3 className="font-primary italic font-thin">
-                        Save up to $
-                        {product.price_before_discount
-                          .toFixed(2)
-                          .toLocaleString()}
-                      </h3>
-                      <h1 className="font-primary">{product.name}</h1>
-                      <p className="large-paragrapgh font-primary text-justify w-full md:w-4/5">
-                        {product.description}
-                      </p>
-                      <Link
-                        to={`Details/${product.name.replaceAll(" ", "-")}`}
-                        className="link-btn font-primary hollow-button"
-                      >
-                        Buy now
-                        <IoIosArrowForward className="text-[20px] button-arrow" />
-                      </Link>
+                      <Fade duration={1500}>
+                        <h3 className="font-primary italic font-thin">
+                          Save up to $
+                          {product.price_before_discount
+                            .toFixed(2)
+                            .toLocaleString()}
+                        </h3>
+                      </Fade>
+                      <Fade duration={1500} delay={500}>
+                        <h1 className="font-primary">{product.name}</h1>
+                      </Fade>
+                      <Fade duration={1500} delay={1000}>
+                        <p className="large-paragrapgh font-primary text-justify w-full md:w-4/5">
+                          {product.description}
+                        </p>
+                      </Fade>
+                      <Fade duration={1500} direction="up" delay={1000}>
+                        <Link
+                          to={`Details/${product.name.replaceAll(" ", "-")}`}
+                          className="link-btn font-primary hollow-button"
+                        >
+                          Buy now
+                          <IoIosArrowForward className="text-[20px] button-arrow" />
+                        </Link>
+                      </Fade>
                     </div>
                   </span>
                 </div>

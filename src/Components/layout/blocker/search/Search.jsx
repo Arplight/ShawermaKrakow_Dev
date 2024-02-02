@@ -29,7 +29,7 @@ const Search = () => {
   return (
     <section className="w-full flex flex-col items-center relative ">
       <div
-        className="search w-4/5 lg:w-1/2 flex items-center h-[40px] shadow-lg shadow-gray-800"
+        className="search w-4/5 lg:w-1/2 flex items-center h-[40px] shadow-lg shadow-[#000000b5]"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -42,7 +42,7 @@ const Search = () => {
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}
         />
-        <span className="h-full text-[23px] text-[#ffffff] bg-[#12342f] p-[8px] flex items-center rounded-r-[5px]">
+        <span className="h-full text-[18px] text-[#ffffff] bg-[#12342f] p-[8px] flex items-center rounded-r-[5px]">
           <GoSearch />
         </span>
       </div>

@@ -6,21 +6,27 @@ const ProductsBoardSlice = createSlice({
   name: "productsBoard",
   initialState: {
     data: null,
-    currentProducts: null,
+    currentProducts: [],
     loading: false,
     error: null,
     // StateObject
-    stateObject: {
-      sortBy: null,
-      currentCategories: [],
-      priceRange: 50,
-      isCleared: true,
-    },
+    stateObject: sessionStorage.getItem("stateObject")
+      ? JSON.parse(sessionStorage.getItem("stateObject"))
+      : {
+          sortBy: null,
+          currentCategories: [],
+          priceRange: 44,
+          isCleared: true,
+        },
   },
   reducers: {
     // State Object Setter
     stateObjectSetter(state, action) {
-      state.stateObject = action.payload;
+      if (state.data) {
+        state.stateObject = action.payload;
+        // Session Storage
+        sessionStorage.setItem("stateObject", JSON.stringify(action.payload));
+      }
     },
 
     // Sort Handler
@@ -73,7 +79,8 @@ const ProductsBoardSlice = createSlice({
     categoryHandler(state) {
       const fullProducts = state.data;
       const length = state.stateObject.currentCategories.length;
-      if (length > 0) {
+
+      if (length > 0 && state.data) {
         state.currentProducts = produce(fullProducts, (draft) => {
           return draft.filter((item) =>
             state.stateObject.currentCategories.includes(item.category)
@@ -89,7 +96,7 @@ const ProductsBoardSlice = createSlice({
       if (state.currentProducts) {
         state.currentProducts = produce(state.currentProducts, (draft) => {
           return draft.filter(
-            (product) => product.price_before_discount < currentPrice
+            (product) => product.price_before_discount <= currentPrice
           );
         });
       }
@@ -109,8 +116,8 @@ const ProductsBoardSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         const response = action.payload[0].products;
         state.data = response;
-        state.currentProducts = response;
         state.loading = false;
+        state.currentProducts = response;
       })
       .addCase(fetchProducts.rejected, (state) => {
         state.error = "Something went wrong!";

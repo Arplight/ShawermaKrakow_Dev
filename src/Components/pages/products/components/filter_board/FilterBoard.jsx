@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
 import { filterBoardData } from "../../../../../Data/filter_board/Filter_board";
 import useBoard from "../../../../hooks/useBoard";
+import useProducts from "../../../../hooks/useProducts";
 
 const FilterBoard = () => {
   const { sortSetter, categorySetter, priceSetter, resetSetter } = useBoard();
   const stateObject = useSelector((state) => state.Board.stateObject);
+  const { topPrice } = useProducts();
   return (
     <aside className="filter-board w-1/5 hidden md:flex flex-col py-6 gap-2">
       <button
@@ -87,7 +89,7 @@ const FilterBoard = () => {
                 id="range"
                 className="p-0 w-full"
                 min={10}
-                max={50}
+                max={topPrice}
                 onChange={(e) => priceSetter(e)}
                 value={stateObject.priceRange}
               />

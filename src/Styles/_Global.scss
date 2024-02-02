@@ -19,6 +19,7 @@ body {
 }
 img {
   user-select: none;
+  font-size: 18px;
 }
 ::selection {
   background-color: $primaryColor;

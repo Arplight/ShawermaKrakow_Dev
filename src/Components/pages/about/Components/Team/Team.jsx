@@ -27,7 +27,7 @@ const Team = () => {
         isCentered={true}
         withStyle={"mb-3"}
       />
-      <ul className="flex flex-col lg:flex-row justify-evenly flex-wrap items-center lg:items-start gap-y-4">
+      <ul className="flex flex-col lg:flex-row justify-evenly flex-wrap items-center lg:items-start gap-4">
         {teamData &&
           teamData.map((team) => (
             <li key={team.id}>
