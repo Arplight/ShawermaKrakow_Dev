@@ -9,6 +9,7 @@ import FilterBoardMobile from "./components/filter_board/FilterBoardMobile";
 import { fetchProducts } from "../../redux/store/ApiStore";
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 import { MdErrorOutline } from "react-icons/md";
+import Seo from "../../Seo/Seo";
 
 const Products = () => {
   const dispatchProducts = useDispatch();
@@ -39,6 +40,8 @@ const Products = () => {
 
   return (
     <div className="products">
+      {/* Seo */}
+      <Seo currentPage={"Products"} currentPath={"Products"} />
       {/* BreadCrumbs */}
       <Breadcrumb />
 

@@ -7,6 +7,8 @@ import WishListTable from "./components/WishListTable";
 import { useEffect } from "react";
 import WishListEmpty from "./components/WishListEmpty";
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
+import Seo from "../../Seo/Seo";
+
 const Wishlist = () => {
   const wishListItems = useSelector((state) => state.wishList.products);
   const dispatchWishList = useDispatch();
@@ -23,6 +25,8 @@ const Wishlist = () => {
   }, [wishListItems, dispatchSpinner]);
   return (
     <div>
+      {/* Seo */}
+      <Seo currentPage={"Wishlist"} currentPath={"Wishlist"} />
       {/* BreadCrumbs */}
       <Breadcrumb />
 

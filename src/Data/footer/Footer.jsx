@@ -5,14 +5,17 @@ export const footerSocial = [
   {
     socialLink: "https://www.facebook.com/shawermahaus/",
     socialIcon: FaFacebook,
+    label: "facebook",
   },
   {
     socialLink: "https://www.instagram.com/Shawermaklubhaus_krk/",
     socialIcon: FaInstagram,
+    label: "instagram",
   },
   {
     socialLink: "https://www.youtube.com/@shawermaklubhaus007",
     socialIcon: FaYoutube,
+    label: "youtube",
   },
 ];
 

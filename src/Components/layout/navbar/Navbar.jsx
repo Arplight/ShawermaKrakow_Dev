@@ -71,7 +71,7 @@ const Navbar = () => {
             <LangMenu />
           </li>
           <li className="large-paragrapgh font-primary ">
-            <Link to="/Wishlist">
+            <Link to="/Wishlist" aria-label="wishlist">
               <IoMdHeartEmpty className="nav-icon" />
             </Link>
           </li>

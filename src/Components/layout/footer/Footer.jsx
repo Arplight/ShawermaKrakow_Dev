@@ -35,7 +35,12 @@ const Footer = () => {
             <ul className="flex gap-1">
               {footerSocial.map((social, index) => (
                 <li key={index}>
-                  <a href={social.socialLink} target="_blank" rel="noreferrer">
+                  <a
+                    href={social.socialLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={social.label}
+                  >
                     {<social.socialIcon />}
                   </a>
                 </li>

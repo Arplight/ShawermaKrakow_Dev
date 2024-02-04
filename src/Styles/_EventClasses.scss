@@ -25,6 +25,7 @@
   background-color: $primaryColor;
   box-shadow: $bigShadow;
   z-index: 20;
+
   .menu-large {
     & li::after {
       background-color: rgba(255, 255, 255, 0.788) !important;

@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 
 const RelatedProducts = () => {
-  const products = useProducts();
+  const { products } = useProducts();
   const [relatedProducts, setRelatedProducts] = useState(null);
   const currentProduct = useSelector((state) => state.currentProduct.data);
 

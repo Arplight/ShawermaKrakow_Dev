@@ -4,13 +4,18 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { Store } from "./Components/redux/store/Store.jsx";
+import { HelmetProvider } from "react-helmet-async";
+
+const helmetContext = {};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/shawermakrakow">
-      <Provider store={Store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <HelmetProvider context={helmetContext}>
+      <BrowserRouter basename="/shawermakrakow">
+        <Provider store={Store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>
 );

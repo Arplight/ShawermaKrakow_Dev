@@ -3,12 +3,12 @@
 nav {
   background-color: $secondaryColor;
   z-index: 10;
-  top: 0px;
+  top: -1px;
   position: sticky;
   transition: $transitionDuration;
   .container:first-child {
     border-bottom: 1px solid $primaryLight;
-    transition: $transitionDuration;
+    transition: padding 0.4s linear;
   }
   li {
     cursor: pointer;

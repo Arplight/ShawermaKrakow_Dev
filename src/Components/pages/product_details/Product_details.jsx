@@ -7,6 +7,8 @@ import Breadcrumb from "../../common/sections/breadcrumb/Breadcrumb";
 import { fetchProducts } from "../../redux/store/ApiStore";
 import { setTargetPathName } from "../../redux/slices/CurrentProductSlice";
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
+import Seo from "../../Seo/Seo";
+
 const Product_details = () => {
   const dispatchCurrent = useDispatch();
   const dispatchProducts = useDispatch();
@@ -26,6 +28,8 @@ const Product_details = () => {
   }, [productsState, dispatchSpinner]);
   return (
     <div className="product-details">
+      {/* Seo */}
+      <Seo currentPage={"Details"} currentPath={`Details/${pathName}`} />
       {/* BreadCrumbs */}
       <Breadcrumb />
 

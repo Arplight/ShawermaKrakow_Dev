@@ -9,6 +9,7 @@ import CartItem from "../../common/cart/order_list/CartItem/CartItem";
 import MainSection from "../../common/sections/main_section/MainSection";
 import { cartTotal } from "../../redux/slices/CartSlice";
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
+import Seo from "../../Seo/Seo";
 
 const Cart = () => {
   const dispatchCart = useDispatch();
@@ -32,6 +33,9 @@ const Cart = () => {
   }, [dispatchSpinner, cartItems]);
   return (
     <div className="cart">
+      {/* Seo */}
+      <Seo currentPage={"Cart"} currentPath={"Cart"} />
+      {/* Breadcrumb */}
       <Breadcrumb />
       {/* OrderList */}
       {cartItems.length > 0 ? (

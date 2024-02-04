@@ -7,6 +7,7 @@ import Breadcrumb from "../../common/sections/breadcrumb/Breadcrumb";
 import Excellence from "./Components/Excellence/Excellence";
 import Quality from "./Components/Quality/Quality";
 import Reasons from "./Components/Reasons/Reasons";
+import Seo from "../../Seo/Seo";
 // Api fetching
 import { fetchImages } from "../../redux/store/ApiStore";
 // Reducers
@@ -30,6 +31,8 @@ const Service = () => {
   }, [imagesState, dispatchSpinner]);
   return (
     <div className="service">
+      {/* Seo */}
+      <Seo currentPage={"Services"} currentPath={"Service"} />
       {/* BreadCrumbs */}
       <Breadcrumb />
 

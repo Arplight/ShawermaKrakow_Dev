@@ -14,7 +14,7 @@ import Quality from "./components/Quality/Quality";
 import Mission from "./components/Mission/Mission";
 import Clients from "./components/Clients/Clients";
 import Instagram from "./components/Instagram/Instagram";
-
+import Seo from "../../Seo/Seo";
 const Home = () => {
   const dispatchProducts = useDispatch();
   const dispatchImages = useDispatch();
@@ -36,6 +36,8 @@ const Home = () => {
   }, [dispatchSpinner, products, images]);
   return (
     <div className="home">
+      {/* Seo */}
+      <Seo currentPage={"Home"} currentPath={""} />
       {/* Slider */}
       <Slider />
       {/* Reasons */}

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 // Reducers
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
+import Seo from "../../Seo/Seo";
 
 const Error = () => {
   const dispatchSpinner = useDispatch();
@@ -14,6 +15,8 @@ const Error = () => {
   }, [dispatchSpinner]);
   return (
     <div>
+      {/* Seo */}
+      <Seo currentPage={"Error"} currentPath={"Error"} />
       <MainSection
         withBackground={false}
         withStyle={

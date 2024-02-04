@@ -7,6 +7,7 @@ import Tradition from "./Components/Tradition/Tradition";
 import Team from "./Components/Team/Team";
 import Clients from "./Components/Clients/Clients";
 import Breadcrumb from "../../common/sections/breadcrumb/Breadcrumb";
+import Seo from "../../Seo/Seo";
 // Data Fetching
 import { fetchImages } from "../../redux/store/ApiStore";
 // Reducers
@@ -28,6 +29,8 @@ const About = () => {
   }, [imagesState, dispatchSpinner]);
   return (
     <div className="about">
+      {/* Seo */}
+      <Seo currentPage={"About"} currentPath={"About-Us"} />
       {/* BreadCrumbs */}
       <Breadcrumb />
 
