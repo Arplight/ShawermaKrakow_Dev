@@ -3,10 +3,11 @@ import English from "../../../public/Template icons/English.svg";
 
 export const navLinks = [
   { label: "Home", route: "/" },
-  { label: "Products", route: "/Products" },
-  { label: "About Us", route: "/About-Us" },
-  { label: "Service", route: "/Service" },
-  { label: "Contact", route: "/Contact" },
+  { label: "Products", route: "/Products", mobileOnly: false },
+  { label: "About Us", route: "/About-Us", mobileOnly: false },
+  { label: "Service", route: "/Service", mobileOnly: false },
+  { label: "Contact", route: "/Contact", mobileOnly: false },
+  { label: "Order", route: "/Order", mobileOnly: true },
 ];
 
 export const navLang = [

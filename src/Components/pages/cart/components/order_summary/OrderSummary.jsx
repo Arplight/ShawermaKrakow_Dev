@@ -12,7 +12,7 @@ const OrderSummary = ({ withStyle }) => {
       </h3>
 
       <b className="large-paragrapgh font-primary">
-        Subtotal: $
+        Subtotal: zł{" "}
         {isNaN(subTotal) ? "N/A" : subTotal.toFixed(2).toLocaleString()}
       </b>
 

@@ -78,7 +78,7 @@ const Slider = () => {
                     <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
                       <Fade duration={1500}>
                         <h3 className="font-primary italic font-thin">
-                          Save up to $
+                          Save up to zł
                           {product.price_before_discount
                             .toFixed(2)
                             .toLocaleString()}

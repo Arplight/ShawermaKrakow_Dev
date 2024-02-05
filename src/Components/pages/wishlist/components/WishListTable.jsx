@@ -63,7 +63,7 @@ const WishListTable = () => {
               </td>
               <td className="text-center ">
                 <p className="large-paragrapgh font-primary">
-                  ${item.itemPrice.toFixed(2).toLocaleString()}
+                  zł {item.itemPrice.toFixed(2).toLocaleString()}
                 </p>
               </td>
               <td>

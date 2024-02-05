@@ -81,7 +81,7 @@ const FilterBoard = () => {
               className="small-paragrapgh font-primary flex items-start flex-col w-full"
             >
               <h4 className="font-primary mb-0.5">
-                Price: ${stateObject.priceRange.toFixed(2).toLocaleString()}
+                Price: zł {stateObject.priceRange.toFixed(2).toLocaleString()}
               </h4>
               <input
                 type="range"

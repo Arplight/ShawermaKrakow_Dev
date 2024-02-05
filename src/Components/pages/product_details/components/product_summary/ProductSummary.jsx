@@ -57,7 +57,7 @@ const ProductSummary = () => {
                 <li className="flex  w-full gap-3 lg:gap-0">
                   <p className="small-paragrapgh font-primary w-1/4">Price:</p>
                   <b className="small-paragrapgh font-primary ">
-                    $
+                    zł{" "}
                     {currentProduct.price_before_discount
                       .toFixed(2)
                       .toLocaleString()}

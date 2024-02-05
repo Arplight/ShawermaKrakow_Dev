@@ -82,11 +82,12 @@ const CartItem = ({
           {itemWeight && itemWeight.toFixed(2).toLocaleString()} g
         </p>
         <b className="small-paragrapgh font-primary">
-          ${itemPrice && itemPrice.toFixed(2).toLocaleString()}
+          zł {itemPrice && itemPrice.toFixed(2).toLocaleString()}
         </b>
         <QuantityButton itemStockQuantity={itemStockQuantity} itemId={itemId} />
         <b className="small-paragrapgh font-primary">
-          Total: ${itemTotalPrice && itemTotalPrice.toFixed(2).toLocaleString()}
+          Total: zł{" "}
+          {itemTotalPrice && itemTotalPrice.toFixed(2).toLocaleString()}
         </b>
       </span>
     </div>

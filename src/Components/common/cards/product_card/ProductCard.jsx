@@ -51,7 +51,7 @@ const ProductCard = ({
           <h3 className="font-primary">{cardTitle}</h3>
         </Link>
         <p className="small-paragrapgh font-primary">
-          ${cardPrice.toFixed(2).toLocaleString()}
+          zł {cardPrice.toFixed(2).toLocaleString()}
         </p>
       </div>
     </div>

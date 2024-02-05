@@ -15,6 +15,7 @@ import { IoLanguage } from "react-icons/io5";
 import { cartTotal } from "../../redux/slices/CartSlice";
 import { fetchCart } from "../../redux/store/ApiStore";
 import { BsCart4 } from "react-icons/bs";
+import { MdOutlineTrackChanges } from "react-icons/md";
 
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -43,16 +44,19 @@ const Navbar = () => {
       >
         {/* Pages */}
         <ul className="hidden xl:flex gap-[15px] menu-large nav-large">
-          {navLinks.map((link, index) => (
-            <li
-              className={`large-paragrapgh font-primary  ${
-                link.route === location ? "nav-active" : ""
-              }`}
-              key={index}
-            >
-              <Link to={link.route}>{link.label}</Link>
-            </li>
-          ))}
+          {navLinks.map(
+            (link, index) =>
+              !link.mobileOnly && (
+                <li
+                  className={`large-paragrapgh font-primary  ${
+                    link.route === location && "nav-active"
+                  } ${link.style && link.style}`}
+                  key={index}
+                >
+                  <Link to={link.route}>{link.label}</Link>
+                </li>
+              )
+          )}
         </ul>
 
         {/* Burger */}
@@ -65,6 +69,11 @@ const Navbar = () => {
             onClick={() => dispatchBlocker(blockerSetter("search"))}
           >
             <SlMagnifier className="nav-icon" />
+          </li>
+          <li className="large-paragrapgh font-primary hidden xl:block">
+            <Link to="/Order">
+              <MdOutlineTrackChanges className="nav-icon" />
+            </Link>
           </li>
           <li className="large-paragrapgh font-primary relative lang">
             <IoLanguage className="nav-icon" />

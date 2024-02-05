@@ -17,6 +17,8 @@ import Products from "./Components/pages/products/Products";
 import Product_details from "./Components/pages/product_details/Product_details";
 import Wishlist from "./Components/pages/wishlist/Wishlist";
 import Checkout from "./Components/pages/checkout/Checkout";
+import Order from "./Components/pages/Order/Order";
+
 // Components
 import { Slide, ToastContainer } from "react-toastify";
 
@@ -65,6 +67,7 @@ function App() {
           }
           <Route path="Checkout" element={<Checkout />} />
           <Route path="*" element={<Error />} />
+          <Route path="Order" element={<Order />} />
         </Route>
       </Routes>
 

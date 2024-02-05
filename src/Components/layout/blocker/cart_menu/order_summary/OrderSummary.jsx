@@ -5,7 +5,7 @@ const OrderSummary = () => {
   return (
     <div className="flex border-y-[1px] border-y-[#12342f2c] py-1 ">
       <b className="large-paragrapgh font-primary">
-        Total: &nbsp;${totalCost.toFixed(2).toLocaleString()}
+        Total: &nbsp;zł {totalCost.toFixed(2).toLocaleString()}
       </b>
     </div>
   );

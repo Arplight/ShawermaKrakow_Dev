@@ -50,7 +50,7 @@ const WishListMobile = () => {
             </Link>
 
             <p className="large-paragrapgh font-primary ">
-              {item.itemPrice.toFixed(2).toLocaleString()}
+              zł {item.itemPrice.toFixed(2).toLocaleString()}
             </p>
             <AddButton
               withStyle={"m-auto"}

@@ -26,3 +26,17 @@ export const contactSchema = Yup.object().shape({
     .required("Message is required.")
     .trim(),
 });
+
+export const trackingSchema = Yup.object().shape({
+  tracking_email: Yup.string()
+    .email("Invalid email format.")
+    .trim()
+    .required("Email is required."),
+  tracking_id: Yup.string()
+    .trim()
+    .matches(
+      /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi,
+      "Invalid Id Format."
+    )
+    .required("Id is required."),
+});

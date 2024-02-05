@@ -3,10 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { navLinks } from "../../../../../Data/navbar/navbar";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { blockerSetter } from "../../../../redux/slices/BlockerSlice";
+import { useDispatch } from "react-redux";
 
 const MobileMenu = ({ isOpened, menuSetter }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const location = useLocation().pathname;
+  const dispatchBlocker = useDispatch();
   useEffect(() => {
     if (isOpened) {
       setMenuVisible(true);
