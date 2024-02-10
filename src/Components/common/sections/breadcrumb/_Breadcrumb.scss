@@ -1,7 +1,6 @@
 @use "../../../../Styles/Variables" as *;
 .breadcrumb {
   padding-block: 80px;
-  margin-bottom: 98px;
   background-color: $primaryColor;
   h2 {
     font-size: clamp(0.32rem, 2vw, 0.5rem);
