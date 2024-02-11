@@ -29,7 +29,7 @@ const CartMenu = () => {
 
   return (
     <div
-      className="cart-menu relative h-full bg-[#ffffff] ml-[auto] overflow-y-scroll p-1 max-w-[85%] flex flex-col gap-2 shadow-xl shadow-[#000000b5] "
+      className="cart-menu relative h-full bg-[#ffffff] ml-[auto] overflow-y-scroll p-1 max-w-[85%] flex flex-col gap-1.5 shadow-xl shadow-[#000000b5] "
       onClick={(e) => e.stopPropagation()}
     >
       <button
@@ -71,6 +71,14 @@ const CartMenu = () => {
             onClick={blockerHandler}
           >
             View cart
+            <IoIosArrowForward className="text-[20px] button-arrow" />
+          </Link>
+          <Link
+            to="/Checkout"
+            className="link-btn full-button font-secondary"
+            onClick={blockerHandler}
+          >
+            Proceed to checkout
             <IoIosArrowForward className="text-[20px] button-arrow" />
           </Link>
         </>

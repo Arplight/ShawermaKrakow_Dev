@@ -8,6 +8,7 @@ const InputField = ({
   fieldPlaceHolder,
   fieldLabel,
   fieldOptions,
+  fieldStyle,
 }) => {
   let inputElement;
   if (fieldType === "input") {
@@ -23,7 +24,9 @@ const InputField = ({
       );
     } else {
       inputElement = (
-        <fieldset className="flex flex-col relative">
+        <fieldset
+          className={`flex flex-col relative  ${fieldStyle && fieldStyle}`}
+        >
           <Field
             type={inputType}
             name={fieldName}
@@ -60,7 +63,7 @@ const InputField = ({
     );
   } else if (fieldType === "select") {
     inputElement = (
-      <fieldset>
+      <>
         <Field
           as="select"
           name={fieldName}
@@ -82,7 +85,7 @@ const InputField = ({
           component="div"
           className="error-message"
         />
-      </fieldset>
+      </>
     );
   }
   return inputElement;

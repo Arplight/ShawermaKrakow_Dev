@@ -11,6 +11,7 @@ select {
   transition: $transitionDuration;
   outline: 1px solid rgba(255, 255, 255, 0.137);
   background-color: $secondaryColor;
+  width: 100%;
   &:focus {
     outline: 1px solid $primaryColor;
   }
