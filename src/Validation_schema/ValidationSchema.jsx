@@ -7,7 +7,10 @@ export const FooterSchema = Yup.object().shape({
 export const contactSchema = Yup.object().shape({
   contact_name: Yup.string()
     .trim()
-    .matches(/^[a-zA-Z][\w\s]*$/gi, "Invalid name format.")
+    .matches(
+      /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][\w\sąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/gi,
+      "Invalid name format."
+    )
     .min(3, "Name should be at least 3 characters.")
     .max(20, "Name should not exceed 20 characters."),
   contact_email: Yup.string()
@@ -16,7 +19,10 @@ export const contactSchema = Yup.object().shape({
     .trim(),
   contact_subject: Yup.string()
     .trim()
-    .matches(/^[a-zA-Z][\w\s]*$/gi, "Invalid subject format.")
+    .matches(
+      /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][\w\sąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/gi,
+      "Invalid subject format."
+    )
     .min(3, "Subject should be at least 3 characters.")
     .max(100, "Subject should not exceed 100 characters.")
     .required("Subject is required."),
@@ -39,4 +45,40 @@ export const trackingSchema = Yup.object().shape({
       "Invalid Id Format."
     )
     .required("Id is required."),
+});
+
+export const checkoutSchema = Yup.object().shape({
+  checkout_email: Yup.string()
+    .email("Invalid email format.")
+    .trim()
+    .required("Email is required."),
+  checkout_phone_number: Yup.string().matches(
+    /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/g,
+    "Invalid phone number."
+  ),
+  checkout_first_name: Yup.string()
+    .trim()
+    .matches(
+      /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][\w\sąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/gi,
+      "Invalid name format."
+    )
+    .min(3, "Name should be at least 3 characters.")
+    .max(20, "Name should not exceed 20 characters.")
+    .required("First name is required."),
+  checkout_last_name: Yup.string()
+    .trim()
+    .matches(
+      /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][\w\sąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/gi,
+      "Invalid name format."
+    )
+    .min(3, "Name should be at least 3 characters.")
+    .max(20, "Name should not exceed 20 characters.")
+    .required("Last name is required."),
+  checkout_address: Yup.string()
+    .trim()
+    .matches(/[\w]/gi, "Invalid address format.")
+    .min(10, "Address should be at least 10 characters.")
+    .max(100, "Address should not exceed 100 characters.")
+    .required("Address is required."),
+  checkout_city: Yup.string().required("City is required."),
 });
