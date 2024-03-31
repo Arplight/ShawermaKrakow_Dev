@@ -15,8 +15,6 @@ export default defineConfig({
         display: "standalone",
         background_color: "#ffffff",
         theme_color: "#12342f",
-        // "scope":"/",
-        // "start_url":"/",
         icons: [
           {
             src: "./Brand/192x192.png",
@@ -36,5 +34,5 @@ export default defineConfig({
     build: "vite build",
     preview: "vite preview",
   },
-  base: "/shawermakrakow",
+  // base: "/shawermakrakow",
 });

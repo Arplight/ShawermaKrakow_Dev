@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import ProductCard from "../../../../common/cards/product_card/ProductCard";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import ProductsSection from "../../../../common/sections/products_section/ProductsSection";
@@ -5,12 +6,12 @@ import useProducts from "../../../../hooks/useProducts";
 
 const Products = () => {
   const { products } = useProducts();
-
+  const { t } = useTranslation();
   return (
     <ProductsSection isPaginated={false} isSingle={true}>
       <HeroHeadings
-        topHeading={"Shop Trending Products"}
-        bottomHeading={"Discover Our Departments"}
+        topHeading={t("shopTrendingProducts")}
+        bottomHeading={t("discoverOurDepartments")}
         isCentered={true}
         withStyle={"mb-3"}
       />

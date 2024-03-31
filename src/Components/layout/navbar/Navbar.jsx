@@ -16,6 +16,7 @@ import { cartTotal } from "../../redux/slices/CartSlice";
 import { fetchCart } from "../../redux/store/ApiStore";
 import { BsCart4 } from "react-icons/bs";
 import { MdOutlineTrackChanges } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -27,6 +28,7 @@ const Navbar = () => {
   const dispatchBlocker = useDispatch();
   const dispatchCart = useDispatch();
   const dispatchTotalItems = useDispatch();
+  const { t } = useTranslation();
   // CALLING THE CART
   useEffect(() => {
     dispatchCart(fetchCart());
@@ -53,7 +55,7 @@ const Navbar = () => {
                   } ${link.style && link.style}`}
                   key={index}
                 >
-                  <Link to={link.route}>{link.label}</Link>
+                  <Link to={link.route}>{t(link.label)}</Link>
                 </li>
               )
           )}

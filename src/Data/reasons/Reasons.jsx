@@ -5,20 +5,17 @@ import Frozen from "../../../public/Template icons/Frozen Safety.avif";
 export const InfoData = [
   {
     infoIcon: Shipping,
-    infoTitle: "Shipping Overall",
-    infoDescription:
-      "Delivering savory delights across Poland from our restaurant's kitchen to your doorstep.",
+    infoTitle: "shippingOverall",
+    infoDescription: "deliveringSavoryDelights",
   },
   {
     infoIcon: Halal,
-    infoTitle: "Halal Food",
-    infoDescription:
-      "Delighting nationwide with authentic Halal flavors, delivered from our kitchen to you.",
+    infoTitle: "halalFood",
+    infoDescription: "delightingWithHalalFlavors",
   },
   {
     infoIcon: Frozen,
-    infoTitle: "Frozen Safety",
-    infoDescription:
-      "Ensuring frozen safety nationwide, our standards ensure freshness delivered to your doorstep.",
+    infoTitle: "frozenSafety",
+    infoDescription: "ensuringFrozenSafety",
   },
 ];

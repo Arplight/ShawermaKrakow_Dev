@@ -39,9 +39,9 @@ export const footerContact = [
 ];
 
 export const footerPages = [
-  { label: "Home", route: "/" },
-  { label: "Products", route: "/Products" },
-  { label: "About Us", route: "/About-Us" },
-  { label: "Service", route: "/Service" },
-  { label: "Contact", route: "/Contact" },
+  { label: "home", route: "/" },
+  { label: "products", route: "/Products" },
+  { label: "aboutUs", route: "/About-Us" },
+  { label: "service", route: "/Service" },
+  { label: "contact", route: "/Contact" },
 ];

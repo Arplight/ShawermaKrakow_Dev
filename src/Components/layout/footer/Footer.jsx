@@ -10,27 +10,27 @@ import {
 import useDate from "../../hooks/useDate";
 // Components
 import SubscriptionForm from "./Components/SubscriptionForm";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const [currentYear] = useDate();
+  const { t } = useTranslation();
   return (
     <footer>
       <section className="bg-[#12342f] py-3 ">
         <div className="flex flex-col md:flex-row gap-y-2 container m-auto relative ">
           <span className="flex flex-col gap-1 w-full md:w-1/2">
-            <h3 className="font-secondary">Keep in touch</h3>
+            <h3 className="font-secondary">{t("keepInTouch")}</h3>
             {/* Footer Form */}
             <SubscriptionForm />
             <p className="small-paragrapgh paragraph-secondary w-full sm:w-3/5 	">
-              Stay updated with our latest offers and news by subscribing to our
-              newsletter!
+              {t("newsletterSubscription")}
             </p>
           </span>
           <span className="flex flex-col gap-1 w-full md:w-1/2">
-            <h3 className="font-secondary">Follow us</h3>
+            <h3 className="font-secondary">{t("followUs")}</h3>
             <p className="small-paragrapgh paragraph-secondary  w-full sm:w-3/5 	">
-              Connect with us on social media for more updates and
-              behind-the-scenes content!
+              {t("socialMediaConnection")}
             </p>
             <ul className="flex gap-1">
               {footerSocial.map((social, index) => (
@@ -79,7 +79,7 @@ const Footer = () => {
             </ul>
           </span>
           <span className="flex flex-col gap-1 w-full md:w-1/2">
-            <h3 className="font-secondary">Pages</h3>
+            <h3 className="font-secondary">{t("pages")}</h3>
             <ul className="flex flex-col gap-1">
               {footerPages.map((page, index) => (
                 <li key={index} className="flex">
@@ -87,7 +87,7 @@ const Footer = () => {
                     to={page.route}
                     className="paragraph-secondary small-paragrapgh"
                   >
-                    {page.label}
+                    {t(page.label)}
                   </Link>
                 </li>
               ))}
@@ -99,7 +99,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row gap-y-1 container m-auto py-[20px] flex items-center">
           <span className="flex w-full md:w-1/2 items-center justify-center md:justify-start">
             <p className="paragraph-secondary small-paragrapgh text-center">
-              Shawerma-Krakow &copy; {currentYear} All Rights Reserved
+              Shawerma-Krakow &copy; {currentYear} {t("allRightsReserved")}
             </p>
           </span>
           <span className="flex justify-center md:justify-start w-full md:w-1/2">

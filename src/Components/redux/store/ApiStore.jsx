@@ -1,26 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const apiBaseUrl = "https://shawermakrakow.com/api";
+const BASE_URL = "https://shawermakrakow.com/api";
 
 // Products APi
 export const fetchProducts = createAsyncThunk(
   "productsApi/fetchData",
   async () => {
-    const response = await axios.get(`${apiBaseUrl}/products`);
+    const response = await axios.get(`${BASE_URL}/products`);
     return response.data;
   }
 );
 
 // Images APi
 export const fetchImages = createAsyncThunk("imagesApi/fetchData", async () => {
-  const response = await axios.get(`${apiBaseUrl}/images`);
+  const response = await axios.get(`${BASE_URL}/images`);
   return response.data;
 });
 
 // Cart Reading
 export const fetchCart = createAsyncThunk("cartApi/fetchData", async () => {
-  const response = await axios.get(`${apiBaseUrl}/cart/list`, {
+  const response = await axios.get(`${BASE_URL}/cart/list`, {
     withCredentials: true,
     withXSRFToken: true,
   });
@@ -30,7 +30,7 @@ export const fetchCart = createAsyncThunk("cartApi/fetchData", async () => {
 // Cart Adding
 export const cartAdd = async (currentItemData) => {
   try {
-    await axios.post(`${apiBaseUrl}/cart/add`, currentItemData, {
+    await axios.post(`${BASE_URL}/cart/add`, currentItemData, {
       withCredentials: true,
       withXSRFToken: true,
     });
@@ -43,7 +43,7 @@ export const cartAdd = async (currentItemData) => {
 export const cartRemove = async (currentItemId) => {
   try {
     await axios.post(
-      `${apiBaseUrl}/cart/remove/${currentItemId}`,
+      `${BASE_URL}/cart/remove/${currentItemId}`,
       currentItemId,
       {
         withCredentials: true,
@@ -59,7 +59,7 @@ export const cartRemove = async (currentItemId) => {
 export const cartUpdate = async (currentItemData) => {
   try {
     await axios.post(
-      `${apiBaseUrl}/cart/update/${currentItemData.id}`,
+      `${BASE_URL}/cart/update/${currentItemData.id}`,
       currentItemData,
       {
         withCredentials: true,

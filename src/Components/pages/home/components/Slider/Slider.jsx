@@ -14,13 +14,14 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 // Loader
 import { BeatLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
 
 const Slider = () => {
   const images = useImages();
   const { products } = useProducts();
   const [topProducts, setTopProducts] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const { t } = useTranslation();
   useEffect(() => {
     if (products) {
       setTopProducts(products.filter((n) => n.top_product));
@@ -78,7 +79,7 @@ const Slider = () => {
                     <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
                       <Fade duration={1500}>
                         <h3 className="font-primary italic font-thin">
-                          Save up to zł
+                          {t("saveUpTo")} zł
                           {product.price_before_discount
                             .toFixed(2)
                             .toLocaleString()}
@@ -97,7 +98,7 @@ const Slider = () => {
                           to={`Details/${product.name.replaceAll(" ", "-")}`}
                           className="link-btn font-primary hollow-button"
                         >
-                          Buy now
+                          {t("buyNow")}
                           <IoIosArrowForward className="text-[20px] button-arrow" />
                         </Link>
                       </Fade>

@@ -1,14 +1,16 @@
+import { useTranslation } from "react-i18next";
 import { InfoData } from "../../../../../Data/reasons/Reasons";
 import InfoCard from "../../../../common/cards/info_card/InfoCard";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import MainSection from "../../../../common/sections/main_section/MainSection";
 
 const Reasons = () => {
+  const { t } = useTranslation();
   return (
     <MainSection withBackground={false}>
       <HeroHeadings
-        topHeading={"What more do you need ?"}
-        bottomHeading={"Reasons to buy from us"}
+        topHeading={t("whatMoreDoYouNeed")}
+        bottomHeading={t("reasonsToBuyFromUs")}
         isCentered={true}
         withStyle={"mb-3"}
       />
@@ -16,9 +18,9 @@ const Reasons = () => {
         {InfoData.map((info, index) => (
           <li key={index}>
             <InfoCard
-              infoDescription={info.infoDescription}
+              infoDescription={t(info.infoDescription)}
               infoIcon={info.infoIcon}
-              infoTitle={info.infoTitle}
+              infoTitle={t(info.infoTitle)}
             />
           </li>
         ))}

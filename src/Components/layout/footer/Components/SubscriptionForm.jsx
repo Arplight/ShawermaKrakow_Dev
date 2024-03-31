@@ -2,8 +2,10 @@ import { Formik, Form } from "formik";
 import InputField from "../../../common/forms/input_field/InputField";
 import { FooterSchema } from "../../../../Validation_schema/ValidationSchema";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const SubscriptionForm = () => {
+  const { t } = useTranslation();
   return (
     <Formik
       validationSchema={FooterSchema}
@@ -28,7 +30,7 @@ const SubscriptionForm = () => {
             fieldType={"input"}
             fieldId={"subscription_email"}
             fieldName={"subscription_email"}
-            fieldPlaceHolder={"Enter your email"}
+            fieldPlaceHolder={t("enterYourEmail")}
           />
           <button
             className={`dark-button ${
@@ -37,7 +39,7 @@ const SubscriptionForm = () => {
             type="submit"
             disabled={!isValid || !dirty}
           >
-            Subscribe
+            {t("subscribe")}
           </button>
         </Form>
       )}

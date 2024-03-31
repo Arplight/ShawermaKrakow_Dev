@@ -11,7 +11,7 @@ const helmetContext = {};
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider context={helmetContext}>
-      <BrowserRouter basename="/shawermakrakow">
+      <BrowserRouter>
         <Provider store={Store}>
           <App />
         </Provider>

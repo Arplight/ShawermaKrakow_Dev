@@ -3,13 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { navLinks } from "../../../../../Data/navbar/navbar";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { blockerSetter } from "../../../../redux/slices/BlockerSlice";
-import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const MobileMenu = ({ isOpened, menuSetter }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const location = useLocation().pathname;
-  const dispatchBlocker = useDispatch();
+  const { t } = useTranslation();
   useEffect(() => {
     if (isOpened) {
       setMenuVisible(true);
@@ -40,7 +39,7 @@ const MobileMenu = ({ isOpened, menuSetter }) => {
           >
             {link.route === location && <MdKeyboardDoubleArrowRight />}
 
-            <Link to={link.route}>{link.label}</Link>
+            <Link to={link.route}>{t(link.label)}</Link>
           </li>
         ))}
       </ul>
