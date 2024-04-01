@@ -5,7 +5,7 @@ export const contactInfo = [
   {
     contactInfo: "+48 662 966 656",
     contactIcon: <FaPhoneAlt />,
-    contactTitle: "Phone",
+    contactTitle: "phone",
   },
   {
     contactInfo: "Hassan@shawermakrakow.com",
@@ -16,6 +16,6 @@ export const contactInfo = [
   {
     contactInfo: "Shawerma Klub Haus, Wiślna 3, 31-007 Kraków, Poland",
     contactIcon: <IoLocation />,
-    contactTitle: "Address",
+    contactTitle: "address",
   },
 ];

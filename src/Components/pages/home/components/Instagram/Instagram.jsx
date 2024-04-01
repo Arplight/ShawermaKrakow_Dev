@@ -4,12 +4,14 @@ import useImages from "../../../../hooks/useImages";
 import { FaInstagram } from "react-icons/fa6";
 import LazyLoad from "react-lazy-load";
 import { FadeLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
 
 const Instagram = () => {
   const Images = useImages();
   const [filteredImages, setFilteredImages] = useState([]);
   // loadingState
   const [isLoaded, setIsLoaded] = useState(false);
+  const { t } = useTranslation();
   function instagramFilter() {
     if (Images) {
       const instagramImages = Images.filter(
@@ -41,8 +43,8 @@ const Instagram = () => {
     <section>
       <div className="container m-auto">
         <HeroHeadings
-          topHeading={"Our Gallery"}
-          bottomHeading={`Join our instagram community`}
+          topHeading={t("ourGallery")}
+          bottomHeading={t("joinInstagramCommunity")}
           isCentered={true}
           withStyle={"mb-3"}
         />

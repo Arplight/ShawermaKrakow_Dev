@@ -6,12 +6,13 @@ import AddButton from "../../../../common/buttons/add_button/AddButton";
 import AddWishList from "../../../../common/buttons/add_wishlist/AddWishList";
 // Loader
 import { BeatLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
 
 const ProductSummary = () => {
   const [summaryQuantity, setSummaryQuantity] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
   const currentProduct = useSelector((state) => state.currentProduct.data);
-
+  const { t } = useTranslation();
   return (
     <div className="min-h-[50vh] relative">
       {!isLoaded && (
@@ -55,7 +56,9 @@ const ProductSummary = () => {
               </p>
               <ul className="flex flex-col gap-1">
                 <li className="flex  w-full gap-3 lg:gap-0">
-                  <p className="small-paragrapgh font-primary w-1/4">Price:</p>
+                  <p className="small-paragrapgh font-primary w-1/4">
+                    {t("price")}:
+                  </p>
                   <b className="small-paragrapgh font-primary ">
                     zł{" "}
                     {currentProduct.price_before_discount
@@ -64,14 +67,16 @@ const ProductSummary = () => {
                   </b>
                 </li>
                 <li className="flex  w-full gap-3 lg:gap-0">
-                  <p className="small-paragrapgh font-primary w-1/4">Weight:</p>
+                  <p className="small-paragrapgh font-primary w-1/4">
+                    {t("weight")}:
+                  </p>
                   <b className="small-paragrapgh font-primary ">
                     {currentProduct.weight.toFixed(2).toLocaleString()} g
                   </b>
                 </li>
                 <li className="flex w-full gap-3 lg:gap-0">
                   <p className="small-paragrapgh font-primary w-1/4">
-                    Category:
+                    {t("category")}:
                   </p>
                   <b className="small-paragrapgh font-primary">
                     {currentProduct.category}
@@ -79,7 +84,7 @@ const ProductSummary = () => {
                 </li>
                 <li className="flex w-full gap-3 lg:gap-0">
                   <p className="small-paragrapgh font-primary w-1/4">
-                    Availability:
+                    {t("availability")}:
                   </p>
                   <b
                     className={`small-paragrapgh ${
@@ -88,7 +93,9 @@ const ProductSummary = () => {
                         : "text-[#ff0000d8]"
                     }`}
                   >
-                    {currentProduct.availability ? "In stock" : "Out of stock"}
+                    {currentProduct.availability
+                      ? t("inStock")
+                      : t("outOfStock")}
                   </b>
                 </li>
                 <li className="flex w-full items-end gap-3 lg:gap-0">

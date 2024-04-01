@@ -6,20 +6,21 @@ import { Link } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
 import { FadeLoader } from "react-spinners";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const WishListTable = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const wishListItems = useSelector((state) => state.wishList.products);
   const dispatchRemoveWishListItem = useDispatch();
-
+  const { t } = useTranslation();
   return (
     <table className="hidden md:table">
       <thead className="bg-[#e9e9e9]">
         <tr className="h-[20px]">
-          {["IMAGE", "PRODUCT", "PRICE", "PURCHASE", "REMOVE"].map(
+          {["image", "product", "priceTable", "purchase", "remove"].map(
             (head, index) => (
               <th key={index} className="p-[10px]">
-                <h4 className="font-primary">{head}</h4>
+                <h4 className="font-primary">{t(head)}</h4>
               </th>
             )
           )}

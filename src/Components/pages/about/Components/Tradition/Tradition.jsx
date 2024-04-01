@@ -1,14 +1,16 @@
+import { useTranslation } from "react-i18next";
 import { traditionData } from "../../../../../Data/tradition/Tradition";
 import InfoCard from "../../../../common/cards/info_card/InfoCard";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import MainSection from "../../../../common/sections/main_section/MainSection";
 
 const Tradition = () => {
+  const { t } = useTranslation();
   return (
     <MainSection withBackground={true} withStyle={"flex flex-col"}>
       <HeroHeadings
-        topHeading={"What we provide"}
-        bottomHeading={`30 Years of tradition`}
+        topHeading={t("whatWeProvide")}
+        bottomHeading={t("yearsOfTradition")}
         isCentered={true}
         withStyle={"mb-3"}
       />
@@ -17,9 +19,9 @@ const Tradition = () => {
         {traditionData.map((tradition, index) => (
           <li key={index}>
             <InfoCard
-              infoDescription={tradition.traditionDescription}
+              infoDescription={t(tradition.traditionDescription)}
               infoIcon={tradition.traditionIcon}
-              infoTitle={tradition.traditionTitle}
+              infoTitle={t(tradition.traditionTitle)}
             />
           </li>
         ))}

@@ -5,6 +5,7 @@ import { fetchProducts } from "../../../redux/store/ApiStore";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { blockerSetter } from "../../../redux/slices/BlockerSlice";
+import { useTranslation } from "react-i18next";
 
 const Search = () => {
   const dispatchProducts = useDispatch();
@@ -12,7 +13,7 @@ const Search = () => {
   const { products } = useProducts();
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchResults, setSearchResults] = useState(null);
-
+  const { t } = useTranslation();
   useEffect(() => {
     dispatchProducts(fetchProducts());
   }, [dispatchProducts]);
@@ -37,7 +38,7 @@ const Search = () => {
           name="search-input"
           id="search-input"
           className="w-full h-full"
-          placeholder="Search our store"
+          placeholder={t("searchOurStore")}
           maxLength={"50"}
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}

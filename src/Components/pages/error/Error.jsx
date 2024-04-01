@@ -7,9 +7,11 @@ import { useEffect } from "react";
 // Reducers
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 import Seo from "../../Seo/Seo";
+import { useTranslation } from "react-i18next";
 
 const Error = () => {
   const dispatchSpinner = useDispatch();
+  const { t } = useTranslation();
   useEffect(() => {
     dispatchSpinner(loadingHandler(false));
   }, [dispatchSpinner]);
@@ -24,12 +26,10 @@ const Error = () => {
         }
       >
         <TbError404 className="text-[#12342f] text-[150px]" />
-        <h2 className="font-primary">Not Found</h2>
-        <h3 className="font-primary">
-          Sorry, the requested page was not found.
-        </h3>
+        <h2 className="font-primary">{t("notFound")}</h2>
+        <h3 className="font-primary">{t("pageNotFound")}</h3>
         <Link to="/" className="link-btn main-button font-secondary">
-          Go Home
+          {t("goHome")}
         </Link>
       </MainSection>
     </div>

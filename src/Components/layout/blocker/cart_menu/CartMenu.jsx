@@ -10,6 +10,7 @@ import OrderList from "../../../common/cart/order_list/OrderList";
 import OrderSummary from "./order_summary/OrderSummary";
 import EmptyCart from "../../../common/cart/empty_cart/EmptyCart";
 import { blockerSetter } from "../../../redux/slices/BlockerSlice";
+import { useTranslation } from "react-i18next";
 
 const CartMenu = () => {
   const dispatchTotal = useDispatch();
@@ -18,6 +19,7 @@ const CartMenu = () => {
 
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalItems = useSelector((state) => state.cart.cartTotalItems);
+  const { t } = useTranslation();
   useEffect(() => {
     dispatchTotal(cartTotal());
     dispatchCartList(fetchCart());
@@ -42,7 +44,7 @@ const CartMenu = () => {
       {cartItems.length > 0 ? (
         <>
           <h3 className="font-primary">
-            Your cart {`( x${totalItems} Item )`}
+            {t("yourCart")} {`( x${totalItems} ${t("item")} )`}
           </h3>
           <OrderList withStyle={"w-full max-h-[50%] overflow-y-scroll"}>
             <ul className="h-full p-0 md:py-1 flex flex-col gap-1">
@@ -70,7 +72,7 @@ const CartMenu = () => {
             className="link-btn full-button font-secondary"
             onClick={blockerHandler}
           >
-            View cart
+            {t("viewCart")}
             <IoIosArrowForward className="text-[20px] button-arrow" />
           </Link>
           <Link
@@ -78,7 +80,7 @@ const CartMenu = () => {
             className="link-btn full-button font-secondary"
             onClick={blockerHandler}
           >
-            Proceed to checkout
+            {t("proceedToCheckout")}
             <IoIosArrowForward className="text-[20px] button-arrow" />
           </Link>
         </>

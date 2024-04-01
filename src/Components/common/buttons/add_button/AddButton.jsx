@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { cartAdd, fetchCart } from "../../../redux/store/ApiStore";
 import { useState } from "react";
 import { PuffLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
 
 const AddButton = ({
   summaryQuantity,
@@ -19,6 +20,7 @@ const AddButton = ({
   const [isPending, setIsPending] = useState(false);
   // Dispatching
   const dispatchCart = useDispatch();
+  const { t } = useTranslation();
   async function addToCart() {
     const currentItemData = {
       id: productId,
@@ -53,7 +55,7 @@ const AddButton = ({
         />
       )}
       <span className={`${isPending && "invisible"}`}>
-        {isFoundedInCart ? "Added to cart" : "Add to cart"}
+        {isFoundedInCart ? t("addedToCart") : t("addToCart")}
       </span>
     </button>
   );

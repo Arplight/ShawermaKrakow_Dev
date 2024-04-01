@@ -1,13 +1,15 @@
+import { useTranslation } from "react-i18next";
 import { clients } from "../../../../../Data/clients/Clients";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import MainSection from "../../../../common/sections/main_section/MainSection";
 
 const Clients = () => {
+  const { t } = useTranslation();
   return (
     <MainSection withBackground={false} withStyle={"flex flex-col"}>
       <HeroHeadings
-        topHeading={"Our Clients"}
-        bottomHeading={`Our happy clients`}
+        topHeading={t("ourClients")}
+        bottomHeading={t("happyClients")}
         isCentered={true}
         withStyle={"mb-3"}
       />

@@ -8,6 +8,7 @@ import { blockerSetter } from "../../../../redux/slices/BlockerSlice";
 import { cartRemove, fetchCart } from "../../../../redux/store/ApiStore";
 import { useState } from "react";
 import { FadeLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
 
 const CartItem = ({
   itemImage,
@@ -23,7 +24,7 @@ const CartItem = ({
   // loadingState
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPending, setIsPending] = useState(false);
-
+  const { t } = useTranslation();
   // Remove Handler
   async function removeFromCart() {
     try {
@@ -86,7 +87,7 @@ const CartItem = ({
         </b>
         <QuantityButton itemStockQuantity={itemStockQuantity} itemId={itemId} />
         <b className="small-paragrapgh font-primary">
-          Total: zł{" "}
+          {t("total")} zł{" "}
           {itemTotalPrice && itemTotalPrice.toFixed(2).toLocaleString()}
         </b>
       </span>

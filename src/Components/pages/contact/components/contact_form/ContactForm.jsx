@@ -5,8 +5,10 @@ import { contactSchema } from "../../../../../Validation_schema/ValidationSchema
 import axios from "axios";
 import InputField from "../../../../common/forms/input_field/InputField";
 import { IoIosArrowForward } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const ContactForm = () => {
+  const { t } = useTranslation();
   return (
     <>
       <MainSection
@@ -14,8 +16,8 @@ const ContactForm = () => {
         withStyle={"flex flex-col items-center"}
       >
         <HeroHeadings
-          topHeading={"Contact Us"}
-          bottomHeading={"Reach Out to Us"}
+          topHeading={t("contactUs")}
+          bottomHeading={t("reachOutToUs")}
           isCentered={true}
           withStyle={"mb-3"}
         />
@@ -49,7 +51,7 @@ const ContactForm = () => {
                 inputType={"text"}
                 fieldId={"contact_name"}
                 fieldName={"contact_name"}
-                fieldPlaceHolder={"Name"}
+                fieldPlaceHolder={t("name")}
                 fieldMaxLength={21}
               />
               <InputField
@@ -64,14 +66,14 @@ const ContactForm = () => {
                 inputType={"text"}
                 fieldId={"contact_subject"}
                 fieldName={"contact_subject"}
-                fieldPlaceHolder={"Subject"}
+                fieldPlaceHolder={t("subject")}
                 fieldMaxLength={101}
               />
               <InputField
                 fieldType={"textArea"}
                 fieldId={"contact_message"}
                 fieldName={"contact_message"}
-                fieldPlaceHolder={"Message"}
+                fieldPlaceHolder={t("message")}
                 fieldMaxLength={1001}
               />
               <button
@@ -81,7 +83,7 @@ const ContactForm = () => {
                 type="submit"
                 disabled={!isValid || !dirty}
               >
-                Send
+                {t("send")}
                 <IoIosArrowForward className="text-[20px] button-arrow" />
               </button>
             </Form>

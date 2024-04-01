@@ -4,9 +4,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import useImages from "../../../../hooks/useImages";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
+import { useTranslation } from "react-i18next";
 
 const Mission = () => {
   const Images = useImages();
+  const { t } = useTranslation();
   return (
     <MainSection
       withBackground={false}
@@ -14,21 +16,19 @@ const Mission = () => {
     >
       <span className="w-full md:w-1/2 flex flex-col gap-3">
         <HeroHeadings
-          topHeading={"About Us"}
-          bottomHeading={`Mission Driven, Flavor Focused`}
+          topHeading={t("aboutUs")}
+          bottomHeading={t("missionDrivenFlavorFocused")}
           isCentered={false}
         />
         <p className="small-paragrapgh font-primary text-justify w-full lg:w-4/5">
-          Driven by a mission to deliver culinary excellence, we remain
-          relentlessly focused on flavor. Our commitment to quality ingredients
-          and taste mastery defines every dish, ensuring an unforgettable dining
-          experience that&apos;s both purposeful and flavorful.
+          {t("drivenByMission")}
         </p>
         <Link
           to={"/About-Us"}
           className="link-btn font-primary arrow-button pl-[0px]"
         >
-          Our story <IoIosArrowForward className="text-[20px] button-arrow " />
+          {t("ourStory")}
+          <IoIosArrowForward className="text-[20px] button-arrow " />
         </Link>
       </span>
       <span className="w-full md:w-1/2 flex">

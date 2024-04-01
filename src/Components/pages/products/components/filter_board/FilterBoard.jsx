@@ -2,11 +2,13 @@ import { useSelector } from "react-redux";
 import { filterBoardData } from "../../../../../Data/filter_board/Filter_board";
 import useBoard from "../../../../hooks/useBoard";
 import useProducts from "../../../../hooks/useProducts";
+import { useTranslation } from "react-i18next";
 
 const FilterBoard = () => {
   const { sortSetter, categorySetter, priceSetter, resetSetter } = useBoard();
   const stateObject = useSelector((state) => state.Board.stateObject);
   const { topPrice } = useProducts();
+  const { t } = useTranslation();
   return (
     <aside className="filter-board w-1/5 hidden md:flex flex-col py-6 gap-2">
       <button
@@ -16,11 +18,11 @@ const FilterBoard = () => {
         onClick={resetSetter}
         disabled={stateObject.isCleared}
       >
-        Clear Filters
+        {t("clearFilters")}
       </button>
       <div>
         <h3 className="font-primary pb-0.5 mb-1 border-b-[1px] border-b-[#12342f2c] ">
-          Sort By
+          {t("sortBy")}
         </h3>
 
         <ul className="flex flex-col gap-0.5">
@@ -39,7 +41,7 @@ const FilterBoard = () => {
                   data-sort={item}
                   onChange={(e) => sortSetter(e)}
                 />
-                {item}
+                {t(item)}
               </label>
             </li>
           ))}
@@ -47,12 +49,12 @@ const FilterBoard = () => {
       </div>
       <div>
         <h3 className="font-primary pb-0.5 mb-1 border-b-[1px] border-b-[#12342f2c]">
-          Filter By
+          {t("filterBy")}
         </h3>
 
         <div className="flex flex-col gap-1">
           <span>
-            <h4 className="font-primary mb-0.5">Category</h4>
+            <h4 className="font-primary mb-0.5">{t("category")}</h4>
             <ul className="flex flex-col gap-0.5">
               {filterBoardData[0].categoryMenu.map((item, index) => (
                 <li key={index}>
@@ -81,7 +83,8 @@ const FilterBoard = () => {
               className="small-paragrapgh font-primary flex items-start flex-col w-full"
             >
               <h4 className="font-primary mb-0.5">
-                Price: zł {stateObject.priceRange.toFixed(2).toLocaleString()}
+                {t("price")}: zł{" "}
+                {stateObject.priceRange.toFixed(2).toLocaleString()}
               </h4>
               <input
                 type="range"

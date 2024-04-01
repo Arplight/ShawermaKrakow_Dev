@@ -3,13 +3,15 @@ import InputField from "../../../../common/forms/input_field/InputField";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import { IoIosArrowForward } from "react-icons/io";
 import { trackingSchema } from "../../../../../Validation_schema/ValidationSchema";
+import { useTranslation } from "react-i18next";
 
 const TrackingForm = () => {
+  const { t } = useTranslation();
   return (
     <>
       <HeroHeadings
-        topHeading={"Order Tracking"}
-        bottomHeading={"Submit to track your order"}
+        topHeading={t("orderTracking")}
+        bottomHeading={t("submitToTrack")}
         isCentered={true}
         withStyle={"mb-3"}
       />
@@ -28,14 +30,14 @@ const TrackingForm = () => {
               inputType={"email"}
               fieldId={"tracking_email"}
               fieldName={"tracking_email"}
-              fieldPlaceHolder={"Order Email"}
+              fieldPlaceHolder={t("orderEmail")}
             />
             <InputField
               fieldType={"input"}
               inputType={"text"}
               fieldId={"tracking_id"}
               fieldName={"tracking_id"}
-              fieldPlaceHolder={"Order Id"}
+              fieldPlaceHolder={t("orderId")}
               fieldMaxLength={37}
             />
             <button
@@ -45,7 +47,7 @@ const TrackingForm = () => {
               type="submit"
               disabled={!isValid || !dirty}
             >
-              Submit
+              {t("submit")}
               <IoIosArrowForward className="text-[20px] button-arrow" />
             </button>
           </Form>

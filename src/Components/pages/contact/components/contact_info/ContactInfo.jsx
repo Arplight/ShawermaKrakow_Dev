@@ -1,7 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { contactInfo } from "../../../../../Data/contact/Contact";
 import ContactCard from "../contact_card/ContactCard";
 
 const ContactInfo = () => {
+  const { t } = useTranslation();
   return (
     <section className=" w-full py-6">
       <div className="container m-auto flex flex-col justify-center gap-4">
@@ -21,7 +23,7 @@ const ContactInfo = () => {
                 <ContactCard
                   cardIcon={contact.contactIcon}
                   cardInfo={contact.contactInfo}
-                  cardTitle={contact.contactTitle}
+                  cardTitle={t(contact.contactTitle)}
                 />
               </li>
             ))}

@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import MainSection from "../../../../common/sections/main_section/MainSection";
 import useImages from "../../../../hooks/useImages";
 
 const AboutUs = () => {
   const Images = useImages();
+  const { t } = useTranslation();
   return (
     <MainSection
       withBackground={false}
@@ -16,16 +18,13 @@ const AboutUs = () => {
       </span>
       <span className="w-full md:w-1/2 flex flex-col gap-3">
         <HeroHeadings
-          topHeading={"About Us"}
-          bottomHeading={`Mission Driven, Flavor Focused`}
+          topHeading={t("aboutUs")}
+          bottomHeading={t("missionDrivenFlavorFocused")}
           isCentered={false}
           withStyle={"w-full lg:w-4/5"}
         />
         <p className="small-paragrapgh font-primary text-justify w-full lg:w-4/5">
-          Driven by a mission to deliver culinary excellence, we remain
-          relentlessly focused on flavor. Our commitment to quality ingredients
-          and taste mastery defines every dish, ensuring an unforgettable dining
-          experience that&apos;s both purposeful and flavorful.
+          {t("drivenByMission")}
         </p>
       </span>
     </MainSection>

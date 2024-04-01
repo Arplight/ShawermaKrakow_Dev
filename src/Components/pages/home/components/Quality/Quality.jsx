@@ -6,9 +6,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import { qualityData } from "../../../../../Data/quality/Quality";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
+import { useTranslation } from "react-i18next";
 
 const Quality = () => {
   const Images = useImages();
+  const { t } = useTranslation();
   return (
     <MainSection
       withBackground={true}
@@ -23,27 +25,25 @@ const Quality = () => {
       </span>
       <span className="w-full md:w-1/2 flex flex-col gap-3">
         <HeroHeadings
-          topHeading={"Check Us Out"}
-          bottomHeading={"Quality of our hand cut steaks and roasts"}
+          topHeading={t("checkUsOut")}
+          bottomHeading={t("qualityOfSteaksAndRoasts")}
           isCentered={false}
         />
         <p className="small-paragrapgh font-primary text-justify w-full lg:w-4/5">
-          Discover top-quality beef, sausage, and meats, crafted for exceptional
-          flavor and excellence. Indulge in our premium selection, where every
-          bite embodies superior taste and quality.
+          {t("discoverTopQuality")}
         </p>
         <ul className="flex flex-col gap-2">
           {qualityData.map((badge, index) => (
             <li key={index}>
               <QualityBadge
                 BadgeIcon={badge.badgeIcon}
-                BadgeLabel={badge.badgeLabel}
+                BadgeLabel={t(badge.badgeLabel)}
               />
             </li>
           ))}
         </ul>
         <Link to={"/Service"} className="link-btn main-button font-secondary">
-          Learn more
+          {t("learnMore")}
           <IoIosArrowForward className="text-[20px] button-arrow" />
         </Link>
       </span>

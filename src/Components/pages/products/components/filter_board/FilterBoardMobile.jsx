@@ -7,12 +7,14 @@ import { IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import useBoard from "../../../../hooks/useBoard";
 import useProducts from "../../../../hooks/useProducts";
+import { useTranslation } from "react-i18next";
 const FilterBoardMobile = () => {
   const [boardIsOpened, setBoardIsOpened] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("");
   const stateObject = useSelector((state) => state.Board.stateObject);
   const { sortSetter, categorySetter, priceSetter, resetSetter } = useBoard();
   const { topPrice } = useProducts();
+  const { t } = useTranslation();
   return (
     <div className="flex md:hidden">
       {/* Mobile board */}
@@ -20,11 +22,11 @@ const FilterBoardMobile = () => {
         <span className="container m-auto ">
           <button onClick={() => setCurrentMenu("sort")}>
             <BiSort />
-            Sort
+            {t("sort")}
           </button>
           <button onClick={() => setCurrentMenu("filter")}>
             <FaFilter />
-            Filter
+            {t("filter")}
           </button>
           <button
             className={`main-button font-secondary ${
@@ -33,7 +35,7 @@ const FilterBoardMobile = () => {
             onClick={resetSetter}
             disabled={stateObject.isCleared}
           >
-            Clear Filters
+            {t("clearFilters")}
           </button>
         </span>
 
@@ -63,7 +65,7 @@ const FilterBoardMobile = () => {
             <IoClose />
           </button>
           <h3 className="font-primary pb-0.5 mb-1 border-b-[1px] border-b-[#12342f2c] ">
-            Sort By
+            {t("sortBy")}
           </h3>
           <ul className="flex flex-col gap-0.5">
             {filterBoardData[0].sortMenu.map((item, index) => (
@@ -81,7 +83,7 @@ const FilterBoardMobile = () => {
                     data-sort={item}
                     onChange={(e) => sortSetter(e)}
                   />
-                  {item}
+                  {t(item)}
                 </label>
               </li>
             ))}
@@ -103,10 +105,10 @@ const FilterBoardMobile = () => {
             <IoClose />
           </button>
           <h3 className="font-primary pb-0.5 mb-1 border-b-[1px] border-b-[#12342f2c]">
-            Filter By
+            {t("filterBy")}
           </h3>
           <span>
-            <h4 className="font-primary mb-0.5">Category</h4>
+            <h4 className="font-primary mb-0.5">{t("category")}</h4>
             <ul className="flex flex-col gap-0.5">
               {filterBoardData[0].categoryMenu.map((item, index) => (
                 <li key={index}>
@@ -123,7 +125,7 @@ const FilterBoardMobile = () => {
                       data-category={item}
                       onChange={(e) => categorySetter(e)}
                     />
-                    {item}
+                    {t(item)}
                   </label>
                 </li>
               ))}
@@ -135,7 +137,8 @@ const FilterBoardMobile = () => {
               className="small-paragrapgh font-primary flex items-start flex-col w-full"
             >
               <h4 className="font-primary mb-0.5">
-                Price: zł {stateObject.priceRange.toFixed(2).toLocaleString()}
+                {t("price")}: zł{" "}
+                {stateObject.priceRange.toFixed(2).toLocaleString()}
               </h4>
               <input
                 type="range"

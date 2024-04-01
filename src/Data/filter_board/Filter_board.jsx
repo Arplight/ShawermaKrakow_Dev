@@ -1,6 +1,6 @@
 export const filterBoardData = [
   {
-    sortMenu: ["Top Rated", "Price (Lowest First)", "Price (Highest First)"],
+    sortMenu: ["topRated", "priceLowestFirst", "priceHighestFirst"],
     categoryMenu: [
       "bayonne",
       "beef",
