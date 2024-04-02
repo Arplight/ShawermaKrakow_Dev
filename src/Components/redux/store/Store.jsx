@@ -8,6 +8,7 @@ import WishlistSlice from "../slices/WishlistSlice";
 import SpinnerSlice from "../slices/SpinnerSlice";
 import ProductsBoardSlice from "../slices/ProductsBoardSlice";
 import LanguageSlice from "../slices/LanguageSlice";
+import OrderTrackingSlice from "../slices/OrderTrackingSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const Store = configureStore({
     wishList: WishlistSlice,
     Board: ProductsBoardSlice,
     language: LanguageSlice,
+    orderTracking: OrderTrackingSlice,
   },
 });

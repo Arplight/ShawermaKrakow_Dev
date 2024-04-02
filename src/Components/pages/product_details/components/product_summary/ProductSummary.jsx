@@ -100,7 +100,7 @@ const ProductSummary = () => {
                 </li>
                 <li className="flex w-full items-end gap-3 lg:gap-0">
                   <p className="small-paragrapgh font-primary w-1/4">
-                    Quantity:
+                    {t("quantity")}{" "}
                   </p>
                   <span>
                     <QuantityButton

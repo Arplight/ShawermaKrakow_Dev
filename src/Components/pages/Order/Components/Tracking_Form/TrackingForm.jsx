@@ -4,9 +4,12 @@ import HeroHeadings from "../../../../common/hero_headings/HeroHeadings";
 import { IoIosArrowForward } from "react-icons/io";
 import { trackingSchema } from "../../../../../Validation_schema/ValidationSchema";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { OrderTracking } from "../../../../redux/store/ApiStore";
 
 const TrackingForm = () => {
   const { t } = useTranslation();
+  const dispatchOrderTracking = useDispatch();
   return (
     <>
       <HeroHeadings
@@ -18,9 +21,11 @@ const TrackingForm = () => {
 
       <Formik
         validationSchema={trackingSchema}
-        initialValues={{ tracking_email: "", tracking_id: "" }}
+        initialValues={{ checkout_email: "", checkout_token: "" }}
         onSubmit={(values, { resetForm }) => {
-          resetForm();
+          dispatchOrderTracking(OrderTracking(values)).then(() => {
+            resetForm();
+          });
         }}
       >
         {({ isValid, dirty }) => (
@@ -28,15 +33,15 @@ const TrackingForm = () => {
             <InputField
               fieldType={"input"}
               inputType={"email"}
-              fieldId={"tracking_email"}
-              fieldName={"tracking_email"}
+              fieldId={"checkout_email"}
+              fieldName={"checkout_email"}
               fieldPlaceHolder={t("orderEmail")}
             />
             <InputField
               fieldType={"input"}
               inputType={"text"}
-              fieldId={"tracking_id"}
-              fieldName={"tracking_id"}
+              fieldId={"checkout_token"}
+              fieldName={"checkout_token"}
               fieldPlaceHolder={t("orderId")}
               fieldMaxLength={37}
             />

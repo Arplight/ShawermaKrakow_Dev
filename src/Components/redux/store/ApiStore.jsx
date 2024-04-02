@@ -70,3 +70,12 @@ export const cartUpdate = async (currentItemData) => {
     console.error(error);
   }
 };
+
+// Order tracking
+export const OrderTracking = createAsyncThunk(
+  "order/tracking",
+  async (orderAuth) => {
+    const response = await axios.post(`${BASE_URL}/orders/show`, orderAuth);
+    return response.data;
+  }
+);
