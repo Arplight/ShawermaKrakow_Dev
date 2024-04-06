@@ -15,7 +15,7 @@ const ProductsBoardSlice = createSlice({
       : {
           sortBy: null,
           currentCategories: [],
-          priceRange: 44,
+          priceRange: 0,
           isCleared: true,
         },
   },
@@ -33,7 +33,7 @@ const ProductsBoardSlice = createSlice({
     sortHandler(state) {
       if (state.currentProducts) {
         switch (state.stateObject.sortBy) {
-          case "Top Rated":
+          case "topRated":
             {
               state.currentProducts = produce(
                 state.currentProducts,
@@ -43,7 +43,7 @@ const ProductsBoardSlice = createSlice({
               );
             }
             break;
-          case "Price (Lowest First)":
+          case "priceLowestFirst":
             {
               state.currentProducts = produce(
                 state.currentProducts,
@@ -56,7 +56,7 @@ const ProductsBoardSlice = createSlice({
             }
             break;
 
-          case "Price (Highest First)":
+          case "priceHighestFirst":
             {
               state.currentProducts = produce(
                 state.currentProducts,
@@ -118,6 +118,12 @@ const ProductsBoardSlice = createSlice({
         state.data = response;
         state.loading = false;
         state.currentProducts = response;
+        const topPrice = produce(response, (draft) => {
+          draft.sort(
+            (a, b) => b.price_before_discount - a.price_before_discount
+          );
+        });
+        state.stateObject.priceRange = topPrice[0]?.price_before_discount;
       })
       .addCase(fetchProducts.rejected, (state) => {
         state.error = "Something went wrong!";

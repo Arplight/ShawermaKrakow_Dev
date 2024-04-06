@@ -12,7 +12,8 @@ export const contactSchema = Yup.object().shape({
       "Invalid name format."
     )
     .min(3, "Name should be at least 3 characters.")
-    .max(20, "Name should not exceed 20 characters."),
+    .max(20, "Name should not exceed 20 characters.")
+    .required("Name is required."),
   contact_email: Yup.string()
     .email("Invalid email format.")
     .required("Email is required.")

@@ -82,7 +82,7 @@ const useBoard = () => {
       });
       dispatchStateObject(stateObjectSetter(nextState));
     }
-  }, [stateObject, dispatchStateObject, dispatchReset]);
+  }, [stateObject, dispatchStateObject, dispatchReset, topPrice]);
 
   // CALLING HANDLERS
   useEffect(() => {

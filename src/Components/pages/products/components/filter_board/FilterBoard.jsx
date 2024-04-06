@@ -84,7 +84,7 @@ const FilterBoard = () => {
             >
               <h4 className="font-primary mb-0.5">
                 {t("price")}: zł{" "}
-                {stateObject.priceRange.toFixed(2).toLocaleString()}
+                {stateObject?.priceRange?.toFixed(2).toLocaleString()}
               </h4>
               <input
                 type="range"

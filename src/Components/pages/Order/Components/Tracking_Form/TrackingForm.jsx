@@ -23,8 +23,8 @@ const TrackingForm = () => {
         validationSchema={trackingSchema}
         initialValues={{ checkout_email: "", checkout_token: "" }}
         onSubmit={(values, { resetForm }) => {
-          dispatchOrderTracking(OrderTracking(values)).then(() => {
-            resetForm();
+          dispatchOrderTracking(OrderTracking(values)).then((response) => {
+            response.payload && resetForm();
           });
         }}
       >
