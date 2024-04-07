@@ -29,7 +29,7 @@ const Footer = () => {
           </span>
           <span className="flex flex-col gap-1 w-full md:w-1/2">
             <h3 className="font-secondary">{t("followUs")}</h3>
-            <p className="small-paragrapgh paragraph-secondary  w-full sm:w-3/5 	">
+            <p className="small-paragrapgh paragraph-secondary  w-full sm:w-3/5  	">
               {t("socialMediaConnection")}
             </p>
             <ul className="flex gap-1">
