@@ -10,25 +10,16 @@ const CartSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {
-    // Calculations
-    cartTotal(state) {
-      if (state.cartItems) {
-        const totalCost = state.cartItems.reduce((a, c) => a + c.subtotal, 0);
-        const totalItems = state.cartItems.reduce((a, c) => a + c.quantity, 0);
-        state.cartTotalCost = state.cartItems.length > 0 ? totalCost : 0;
-        state.cartTotalItems = state.cartItems.length > 0 ? totalItems : 0;
-      }
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCart.pending, (state) => {
         (state.loading = true), (state.error = null);
       })
       .addCase(fetchCart.fulfilled, (state, action) => {
-        const data = action.payload.cartItems;
-        state.cartItems = data;
+        state.cartItems = action.payload.cartItems;
+        state.cartTotalCost = action.payload.total;
+        state.cartTotalItems = action.payload.itemCount;
       })
       .addCase(fetchCart.rejected, (state) => {
         state.error = "Failed to fetch products";
@@ -38,5 +29,4 @@ const CartSlice = createSlice({
 });
 
 export default CartSlice.reducer;
-export const { cartTotal } = CartSlice.actions;
 export const currentActions = CartSlice.actions;

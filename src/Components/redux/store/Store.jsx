@@ -9,6 +9,7 @@ import SpinnerSlice from "../slices/SpinnerSlice";
 import ProductsBoardSlice from "../slices/ProductsBoardSlice";
 import LanguageSlice from "../slices/LanguageSlice";
 import OrderTrackingSlice from "../slices/OrderTrackingSlice";
+import ShippingSlice from "../slices/ShippingSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -22,5 +23,6 @@ export const Store = configureStore({
     Board: ProductsBoardSlice,
     language: LanguageSlice,
     orderTracking: OrderTrackingSlice,
+    shipping: ShippingSlice,
   },
 });

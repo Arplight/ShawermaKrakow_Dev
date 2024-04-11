@@ -7,21 +7,18 @@ import { useEffect } from "react";
 import Breadcrumb from "../../common/sections/breadcrumb/Breadcrumb";
 import CartItem from "../../common/cart/order_list/CartItem/CartItem";
 import MainSection from "../../common/sections/main_section/MainSection";
-import { cartTotal } from "../../redux/slices/CartSlice";
 import { loadingHandler } from "../../redux/slices/SpinnerSlice";
 import Seo from "../../Seo/Seo";
 
 const Cart = () => {
   const dispatchCart = useDispatch();
-  const dispatchTotal = useDispatch();
   const dispatchCartList = useDispatch();
   const dispatchSpinner = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   useEffect(() => {
     dispatchCartList(fetchCart());
-    dispatchTotal(cartTotal());
-  }, [dispatchCart, dispatchTotal, dispatchCartList]);
+  }, [dispatchCart, dispatchCartList]);
 
   // PreLoading Spinner
   useEffect(() => {

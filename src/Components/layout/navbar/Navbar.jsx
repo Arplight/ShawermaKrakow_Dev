@@ -12,7 +12,6 @@ import { blockerSetter } from "../../redux/slices/BlockerSlice";
 import { SlMagnifier } from "react-icons/sl";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoLanguage } from "react-icons/io5";
-import { cartTotal } from "../../redux/slices/CartSlice";
 import { fetchCart } from "../../redux/store/ApiStore";
 import { BsCart4 } from "react-icons/bs";
 import { MdOutlineTrackChanges } from "react-icons/md";
@@ -23,19 +22,14 @@ const Navbar = () => {
   const location = useLocation().pathname;
   const navRef = useRef(null);
   const { isDistance } = useDistance(navRef);
-  const cartItems = useSelector((state) => state.cart.cartItems);
   const cartTotalItems = useSelector((state) => state.cart.cartTotalItems);
   const dispatchBlocker = useDispatch();
   const dispatchCart = useDispatch();
-  const dispatchTotalItems = useDispatch();
   const { t } = useTranslation();
   // CALLING THE CART
   useEffect(() => {
     dispatchCart(fetchCart());
   }, [dispatchCart]);
-  useEffect(() => {
-    dispatchTotalItems(cartTotal());
-  }, [cartItems, dispatchTotalItems]);
 
   return (
     <nav className={`${isDistance ? "sticky-nav" : ""} `} ref={navRef}>

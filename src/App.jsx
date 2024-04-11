@@ -62,9 +62,6 @@ function App() {
           <Route path="Products" element={<Products />} />
           <Route path="Details/:pathName" element={<Product_details />} />
           <Route path="Wishlist" element={<Wishlist />} />
-          {
-            "spinner not finished yet                                            "
-          }
           <Route path="Checkout" element={<Checkout />} />
           <Route path="*" element={<Error />} />
           <Route path="Order" element={<Order />} />

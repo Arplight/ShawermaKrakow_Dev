@@ -79,3 +79,14 @@ export const OrderTracking = createAsyncThunk(
     return response.data;
   }
 );
+
+// Shipping API
+export const OrderShipping = createAsyncThunk(
+  "Order/shipping",
+  async (shippingCity) => {
+    const response = await axios.post(`${BASE_URL}shippings/show`, {
+      shipping_city: shippingCity,
+    });
+    return response.data;
+  }
+);

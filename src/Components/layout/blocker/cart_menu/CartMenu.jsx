@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import CartItem from "../../../common/cart/order_list/CartItem/CartItem";
-import { cartTotal } from "../../../redux/slices/CartSlice";
 import OrderList from "../../../common/cart/order_list/OrderList";
 import OrderSummary from "./order_summary/OrderSummary";
 import EmptyCart from "../../../common/cart/empty_cart/EmptyCart";
@@ -13,7 +12,6 @@ import { blockerSetter } from "../../../redux/slices/BlockerSlice";
 import { useTranslation } from "react-i18next";
 
 const CartMenu = () => {
-  const dispatchTotal = useDispatch();
   const dispatchBlocker = useDispatch();
   const dispatchCartList = useDispatch();
 
@@ -21,9 +19,8 @@ const CartMenu = () => {
   const totalItems = useSelector((state) => state.cart.cartTotalItems);
   const { t } = useTranslation();
   useEffect(() => {
-    dispatchTotal(cartTotal());
     dispatchCartList(fetchCart());
-  }, [dispatchTotal, dispatchCartList]);
+  }, [dispatchCartList]);
 
   function blockerHandler() {
     dispatchBlocker(blockerSetter(null));

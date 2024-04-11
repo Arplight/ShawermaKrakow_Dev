@@ -4,14 +4,14 @@ import InputField from "../../../../common/forms/input_field/InputField";
 import { useState } from "react";
 import { checkoutSchema } from "../../../../../Validation_schema/ValidationSchema";
 
-const CheckoutForm = () => {
-  const [paymentMethod, setPaymentMethod] = useState("card");
+const CheckoutForm = () => { 
+  const [paymentMethod, setPaymentMethod] = useState("cash");
   const formCities = Cities.map((i) => i.city);
   return (
     <div className="w-full md:w-1/2 pr-0 md:pr-2 py-4">
       <Formik
         onSubmit={(values, { resetForm }) => {
-          // console.log(values);
+          console.log(values);
           resetForm();
         }}
         initialValues={{
@@ -20,6 +20,7 @@ const CheckoutForm = () => {
           checkout_first_name: "",
           checkout_last_name: "",
           checkout_address: "",
+          checkout_country: "POLAND",
           checkout_payment_method: paymentMethod,
         }}
         validationSchema={checkoutSchema}
@@ -84,8 +85,8 @@ const CheckoutForm = () => {
               />
             </span>
             <span className="flex flex-col gap-1 w-full">
-              <h3 className="font-primary">Payment</h3>
-              <label
+              {/* <h3 className="font-primary">Payment</h3> */}
+              {/* <label
                 htmlFor="checkout_payment_method"
                 className="flex gap-0.5 items-center"
               >
@@ -101,7 +102,7 @@ const CheckoutForm = () => {
                   }}
                 />
                 <p className="small-paragrapgh font-primary">Cash payment</p>
-              </label>
+              </label> */}
               {paymentMethod === "card" && <div>Stripe</div>}
             </span>
 
