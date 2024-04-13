@@ -63,14 +63,9 @@ const InputField = ({
     );
   } else if (fieldType === "select") {
     inputElement = (
-      <>
-        <Field
-          as="select"
-          name={fieldName}
-          id={fieldId}
-          defaultValue={"default"}
-        >
-          <option value="default" disabled>
+      <fieldset className="relative leading-[20px]">
+        <Field as="select" name={fieldName} id={fieldId}>
+          <option value="" disabled>
             {fieldLabel}
           </option>
           {fieldOptions.map((option, index) => (
@@ -85,7 +80,7 @@ const InputField = ({
           component="div"
           className="error-message"
         />
-      </>
+      </fieldset>
     );
   }
   return inputElement;

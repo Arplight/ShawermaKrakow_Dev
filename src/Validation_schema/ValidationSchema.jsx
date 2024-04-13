@@ -53,10 +53,12 @@ export const checkoutSchema = Yup.object().shape({
     .email("Invalid email format.")
     .trim()
     .required("Email is required."),
-  checkout_phone_number: Yup.string().matches(
-    /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/g,
-    "Invalid phone number."
-  ),
+  checkout_phone_number: Yup.string()
+    .matches(
+      /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/g,
+      "Invalid phone number."
+    )
+    .required("Phone number is required."),
   checkout_first_name: Yup.string()
     .trim()
     .matches(

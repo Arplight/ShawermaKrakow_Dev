@@ -6,7 +6,7 @@ const ShippingSlice = createSlice({
   initialState: {
     loading: false,
     error: null,
-    shippingPrice: 0,
+    shippingPrice: null,
   },
   extraReducers: (builder) => {
     builder
@@ -15,7 +15,7 @@ const ShippingSlice = createSlice({
         state.error = null;
       })
       .addCase(OrderShipping.fulfilled, (state, action) => {
-        state.shippingPrice = action.payload;
+        state.shippingPrice = action.payload.shipping_amount;
         state.loading = false;
       })
       .addCase(OrderShipping.rejected, (state, action) => {

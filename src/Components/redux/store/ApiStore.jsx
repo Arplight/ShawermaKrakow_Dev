@@ -71,6 +71,17 @@ export const cartUpdate = async (currentItemData) => {
   }
 };
 
+// Order Store api
+export const OrderStoring = createAsyncThunk(
+  "Order/store",
+  async (orderData) => {
+    const response = await axios.post(`${BASE_URL}/orders/store`, orderData, {
+      withCredentials: true,
+      withXSRFToken: true,
+    });
+    return response.data;
+  }
+);
 // Order tracking
 export const OrderTracking = createAsyncThunk(
   "order/tracking",
@@ -84,9 +95,13 @@ export const OrderTracking = createAsyncThunk(
 export const OrderShipping = createAsyncThunk(
   "Order/shipping",
   async (shippingCity) => {
-    const response = await axios.post(`${BASE_URL}shippings/show`, {
-      shipping_city: shippingCity,
-    });
+    const response = await axios.post(
+      `${BASE_URL}/shippings/show`,
+      {
+        shipping_city: shippingCity,
+      },
+      { withCredentials: true, withXSRFToken: true }
+    );
     return response.data;
   }
 );

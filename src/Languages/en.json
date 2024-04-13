@@ -126,5 +126,13 @@
   "shippingTaxesDiscounts": "Shipping, taxes, and discounts will be calculated at checkout.",
   "pageNotFound": "Sorry, the requested page was not found.",
   "goHome": "Go Home",
-  "notFound": "Not Found"
+  "notFound": "Not Found",
+  "delivery": "Delivery",
+  "email": "Email",
+  "mobile_phone_number": "Mobile phone number",
+  "city": "City",
+  "first_name": "First name",
+  "last_name": "Last name",
+  "place_order": "Place order",
+  "shipping": "Shipping"
 }

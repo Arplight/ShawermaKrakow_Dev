@@ -1,18 +1,32 @@
 import { Formik, Form } from "formik";
 import Cities from "../../../../../Data/Cities/Cities.json";
 import InputField from "../../../../common/forms/input_field/InputField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { checkoutSchema } from "../../../../../Validation_schema/ValidationSchema";
+import { useDispatch } from "react-redux";
+import { OrderShipping, OrderStoring } from "../../../../redux/store/ApiStore";
+import { useTranslation } from "react-i18next";
 
-const CheckoutForm = () => { 
-  const [paymentMethod, setPaymentMethod] = useState("cash");
+const CheckoutForm = () => {
+  // const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [currentCity, setCurrentCity] = useState("");
   const formCities = Cities.map((i) => i.city);
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  // Getting current shipping price
+  useEffect(() => {
+    if (currentCity.trim() !== "") {
+      const formattedCity = currentCity.replaceAll(" ", "-");
+      dispatch(OrderShipping(formattedCity));
+    }
+  }, [currentCity, dispatch]);
   return (
     <div className="w-full md:w-1/2 pr-0 md:pr-2 py-4">
       <Formik
         onSubmit={(values, { resetForm }) => {
-          console.log(values);
-          resetForm();
+          dispatch(OrderStoring(values)).then(() => {
+            resetForm();
+          });
         }}
         initialValues={{
           checkout_email: "",
@@ -20,73 +34,76 @@ const CheckoutForm = () => {
           checkout_first_name: "",
           checkout_last_name: "",
           checkout_address: "",
+          checkout_city: "",
           checkout_country: "POLAND",
-          checkout_payment_method: paymentMethod,
+          checkout_payment_method: "cash",
         }}
         validationSchema={checkoutSchema}
       >
-        {({ isValid, dirty, setFieldValue }) => (
-          <Form className="flex flex-col gap-2">
-            <span className="flex flex-col gap-1 w-full">
-              <h3 className="font-primary">Contact</h3>
-              <InputField
-                fieldType={"input"}
-                inputType={"email"}
-                fieldId={"checkout_email"}
-                fieldName={"checkout_email"}
-                fieldPlaceHolder={"Email"}
-                fieldMaxLength={100}
-              />
-              <InputField
-                fieldType={"input"}
-                inputType={"text"}
-                fieldId={"checkout_phone_number"}
-                fieldName={"checkout_phone_number"}
-                fieldPlaceHolder={"Mobile phone number (optional)"}
-                fieldMaxLength={16}
-              />
-            </span>
-            <span className="flex flex-col gap-1 w-full">
-              <h3 className="font-primary">Delivery</h3>
-              <InputField
-                fieldType={"select"}
-                fieldId={"checkout_city"}
-                fieldName={"checkout_city"}
-                fieldOptions={[...formCities]}
-                fieldLabel={"City"}
-              />
-              <div className="flex flex-col lg:flex-row w-full gap-1">
+        {({ values, isValid, dirty }) => {
+          values.checkout_city && setCurrentCity(values.checkout_city);
+          return (
+            <Form className="flex flex-col gap-2">
+              <span className="flex flex-col gap-1 w-full">
+                <h3 className="font-primary">{t("Contact")}</h3>
                 <InputField
                   fieldType={"input"}
-                  inputType={"text"}
-                  fieldId={"checkout_first_name"}
-                  fieldName={"checkout_first_name"}
-                  fieldPlaceHolder={"First name "}
-                  fieldStyle={"w-full lg:w-1/2"}
-                  fieldMaxLength={21}
+                  inputType={"email"}
+                  fieldId={"checkout_email"}
+                  fieldName={"checkout_email"}
+                  fieldPlaceHolder={t("email")}
+                  fieldMaxLength={100}
                 />
                 <InputField
                   fieldType={"input"}
                   inputType={"text"}
-                  fieldId={"checkout_last_name"}
-                  fieldName={"checkout_last_name"}
-                  fieldPlaceHolder={"Last name "}
-                  fieldStyle={"w-full lg:w-1/2"}
-                  fieldMaxLength={21}
+                  fieldId={"checkout_phone_number"}
+                  fieldName={"checkout_phone_number"}
+                  fieldPlaceHolder={t("mobile_phone_number")}
+                  fieldMaxLength={16}
                 />
-              </div>
-              <InputField
-                fieldType={"input"}
-                inputType={"text"}
-                fieldId={"checkout_address"}
-                fieldName={"checkout_address"}
-                fieldPlaceHolder={"Address"}
-                fieldMaxLength={101}
-              />
-            </span>
-            <span className="flex flex-col gap-1 w-full">
-              {/* <h3 className="font-primary">Payment</h3> */}
-              {/* <label
+              </span>
+              <span className="flex flex-col gap-1 w-full">
+                <h3 className="font-primary">{t("delivery")}</h3>
+                <InputField
+                  fieldType={"select"}
+                  fieldId={"checkout_city"}
+                  fieldName={"checkout_city"}
+                  fieldOptions={formCities}
+                  fieldLabel={t("city")}
+                />
+                <div className="flex flex-col lg:flex-row w-full gap-1">
+                  <InputField
+                    fieldType={"input"}
+                    inputType={"text"}
+                    fieldId={"checkout_first_name"}
+                    fieldName={"checkout_first_name"}
+                    fieldPlaceHolder={t("first_name")}
+                    fieldStyle={"w-full lg:w-1/2"}
+                    fieldMaxLength={21}
+                  />
+                  <InputField
+                    fieldType={"input"}
+                    inputType={"text"}
+                    fieldId={"checkout_last_name"}
+                    fieldName={"checkout_last_name"}
+                    fieldPlaceHolder={t("last_name")}
+                    fieldStyle={"w-full lg:w-1/2"}
+                    fieldMaxLength={21}
+                  />
+                </div>
+                <InputField
+                  fieldType={"input"}
+                  inputType={"text"}
+                  fieldId={"checkout_address"}
+                  fieldName={"checkout_address"}
+                  fieldPlaceHolder={t("address")}
+                  fieldMaxLength={101}
+                />
+              </span>
+              {/* <span className="flex flex-col gap-1 w-full">
+              <h3 className="font-primary">Payment</h3>
+              <label
                 htmlFor="checkout_payment_method"
                 className="flex gap-0.5 items-center"
               >
@@ -102,21 +119,22 @@ const CheckoutForm = () => {
                   }}
                 />
                 <p className="small-paragrapgh font-primary">Cash payment</p>
-              </label> */}
+              </label>
               {paymentMethod === "card" && <div>Stripe</div>}
-            </span>
+            </span> */}
 
-            <button
-              className={`full-button font-secondary ${
-                !isValid || !dirty ? "button-disabled" : ""
-              }`}
-              type="submit"
-              disabled={!isValid || !dirty}
-            >
-              Place order
-            </button>
-          </Form>
-        )}
+              <button
+                className={`full-button font-secondary ${
+                  !isValid || !dirty ? "button-disabled" : ""
+                }`}
+                type="submit"
+                disabled={!isValid || !dirty}
+              >
+                {t("place_order")}
+              </button>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

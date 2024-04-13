@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCart } from "../../../redux/store/ApiStore";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import CartItem from "../../../common/cart/order_list/CartItem/CartItem";
@@ -18,6 +18,8 @@ const CartMenu = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalItems = useSelector((state) => state.cart.cartTotalItems);
   const { t } = useTranslation();
+  let location = useLocation().pathname;
+
   useEffect(() => {
     dispatchCartList(fetchCart());
   }, [dispatchCartList]);
@@ -64,22 +66,26 @@ const CartMenu = () => {
             </ul>
           </OrderList>
           <OrderSummary />
-          <Link
-            to="/Cart"
-            className="link-btn full-button font-secondary"
-            onClick={blockerHandler}
-          >
-            {t("viewCart")}
-            <IoIosArrowForward className="text-[20px] button-arrow" />
-          </Link>
-          <Link
-            to="/Checkout"
-            className="link-btn full-button font-secondary"
-            onClick={blockerHandler}
-          >
-            {t("proceedToCheckout")}
-            <IoIosArrowForward className="text-[20px] button-arrow" />
-          </Link>
+          {location.slice(1) !== "Cart" && (
+            <Link
+              to="/Cart"
+              className="link-btn full-button font-secondary"
+              onClick={blockerHandler}
+            >
+              {t("viewCart")}
+              <IoIosArrowForward className="text-[20px] button-arrow" />
+            </Link>
+          )}
+          {location.slice(1) !== "Checkout" && (
+            <Link
+              to="/Checkout"
+              className="link-btn full-button font-secondary"
+              onClick={blockerHandler}
+            >
+              {t("proceedToCheckout")}
+              <IoIosArrowForward className="text-[20px] button-arrow" />
+            </Link>
+          )}
         </>
       ) : (
         <EmptyCart />

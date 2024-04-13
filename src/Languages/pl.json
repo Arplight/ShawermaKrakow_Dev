@@ -126,5 +126,13 @@
   "shippingTaxesDiscounts": "Koszty wysyłki, podatki i zniżki zostaną obliczone podczas realizacji zamówienia.",
   "pageNotFound": "Przepraszamy, żądana strona nie została znaleziona.",
   "goHome": "Przejdź do strony głównej",
-  "notFound": "Nie znaleziono"
+  "notFound": "Nie znaleziono",
+  "delivery": "Dostawa",
+  "email": "Email",
+  "mobile_phone_number": "Numer telefonu komórkowego",
+  "city": "Miasto",
+  "first_name": "Imię",
+  "last_name": "Nazwisko",
+  "place_order": "Złóż zamówienie",
+  "shipping": "Wysyłka"
 }

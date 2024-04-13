@@ -1,10 +1,14 @@
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { FadeLoader } from "react-spinners";
 
 const CheckoutSummary = () => {
   // Reading state values
   const cartItems = useSelector((state) => state.cart.cartItems);
   const cartTotalCost = useSelector((state) => state.cart.cartTotalCost);
   const shippingPrice = useSelector((state) => state.shipping.shippingPrice);
+  const isLoading = useSelector((state) => state.shipping.loading);
+  const { t } = useTranslation();
   return (
     <div className="w-full  md:w-1/2 bg-[#f5f5f5] pl-0 md:pl-2 py-4 border-x-[#d6d6d6] border-x-[1px]">
       <ul>
@@ -37,28 +41,31 @@ const CheckoutSummary = () => {
             </li>
           ))}
       </ul>
-      <ul className="mt-2">
+      <ul className="mt-2 relative">
         {[
-          { label: "Subtotal", value: cartTotalCost },
+          { label: "subtotal", value: cartTotalCost },
           {
-            label: "Shipping",
+            label: "shipping",
             value: shippingPrice,
             withMessage:
-              shippingPrice === 0 ? "Please select a country" : false,
+              shippingPrice === null ? "Please select a country" : false,
           },
           {
-            label: "Total",
+            label: "total",
             value: cartTotalCost + shippingPrice,
             isLarge: true,
           },
         ].map((price, index) => (
-          <li key={index} className="mb-0.5 w-full flex gap-1">
+          <li
+            key={index}
+            className={`mb-0.5 w-full flex gap-1 ${isLoading && "opacity-50"}`}
+          >
             <b
               className={`font-primary  min-w-[200px] w-1/2 ${
                 price.isLarge ? "text-[22px]" : "small-paragrapgh"
               }`}
             >
-              {`${price.label} :`}
+              {`${t(price.label)} :`}
             </b>
             <p
               className={`font-primary  ${
@@ -73,6 +80,12 @@ const CheckoutSummary = () => {
             </p>
           </li>
         ))}
+        {isLoading && (
+          <FadeLoader
+            color="#12342f"
+            cssOverride={{ position: "absolute", inset: "40% 60% auto auto" }}
+          />
+        )}
       </ul>
     </div>
   );
