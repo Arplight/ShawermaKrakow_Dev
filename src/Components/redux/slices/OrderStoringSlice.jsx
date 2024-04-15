@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { OrderStoring } from "../store/ApiStore";
+import { toast } from "react-toastify";
 
 const OrderStoringSlice = createSlice({
   name: "orderStoring",
@@ -13,9 +14,10 @@ const OrderStoringSlice = createSlice({
         state.error = null;
         state.loading = true;
       })
-      .addCase(OrderStoring.fulfilled, (state) => {
+      .addCase(OrderStoring.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        toast.success(action.payload.message);
       })
       .addCase(OrderStoring.rejected, (state, action) => {
         state.error = action.payload;

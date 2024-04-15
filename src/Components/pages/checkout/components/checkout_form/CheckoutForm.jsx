@@ -4,28 +4,41 @@ import InputField from "../../../../common/forms/input_field/InputField";
 import { useEffect, useState } from "react";
 import { checkoutSchema } from "../../../../../Validation_schema/ValidationSchema";
 import { useDispatch } from "react-redux";
-import { OrderShipping, OrderStoring } from "../../../../redux/store/ApiStore";
+import {
+  OrderShipping,
+  OrderStoring,
+  cartReset,
+  fetchCart,
+} from "../../../../redux/store/ApiStore";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   // const [paymentMethod, setPaymentMethod] = useState("cash");
   const [currentCity, setCurrentCity] = useState("");
-  const formCities = Cities.map((i) => i.city);
+  const formCities = Cities.map((i) => i.shipping_city);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   // Getting current shipping price
   useEffect(() => {
     if (currentCity.trim() !== "") {
-      const formattedCity = currentCity.replaceAll(" ", "-");
-      dispatch(OrderShipping(formattedCity));
+      // const formattedCity = currentCity.replaceAll(" ", "-");
+      dispatch(OrderShipping(currentCity));
     }
   }, [currentCity, dispatch]);
   return (
     <div className="w-full md:w-1/2 pr-0 md:pr-2 py-4">
       <Formik
-        onSubmit={(values, { resetForm }) => {
-          dispatch(OrderStoring(values)).then(() => {
-            resetForm();
+        onSubmit={async (values, { resetForm }) => {
+          dispatch(OrderStoring(values)).then((response) => {
+            if (response.payload) {
+              resetForm();
+              navigate("/");
+              dispatch(cartReset());
+              // Cant execute the next line
+              dispatch(fetchCart());
+            }
           });
         }}
         initialValues={{

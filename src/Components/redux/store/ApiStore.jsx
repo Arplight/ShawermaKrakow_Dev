@@ -18,8 +18,8 @@ export const fetchImages = createAsyncThunk("imagesApi/fetchData", async () => {
   return response.data;
 });
 
-// Cart Reading
-export const fetchCart = createAsyncThunk("cartApi/fetchData", async () => {
+// Cart get
+export const fetchCart = createAsyncThunk("cart/fetch", async () => {
   const response = await axios.get(`${BASE_URL}/cart/list`, {
     withCredentials: true,
     withXSRFToken: true,
@@ -39,7 +39,7 @@ export const cartAdd = async (currentItemData) => {
   }
 };
 
-// Cat Removing
+// Cart Removing
 export const cartRemove = async (currentItemId) => {
   try {
     await axios.post(
@@ -61,6 +61,21 @@ export const cartUpdate = async (currentItemData) => {
     await axios.post(
       `${BASE_URL}/cart/update/${currentItemData.id}`,
       currentItemData,
+      {
+        withCredentials: true,
+        withXSRFToken: true,
+      }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+// Cart Reset
+export const cartReset = async () => {
+  try {
+    await axios.post(
+      `${BASE_URL}/cart/clear`,
+      {},
       {
         withCredentials: true,
         withXSRFToken: true,
