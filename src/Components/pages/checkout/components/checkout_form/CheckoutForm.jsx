@@ -27,6 +27,7 @@ const CheckoutForm = () => {
       dispatch(OrderShipping(currentCity));
     }
   }, [currentCity, dispatch]);
+
   return (
     <div className="w-full md:w-1/2 pr-0 md:pr-2 py-4">
       <Formik
@@ -34,10 +35,10 @@ const CheckoutForm = () => {
           dispatch(OrderStoring(values)).then((response) => {
             if (response.payload) {
               resetForm();
-              navigate("/");
-              dispatch(cartReset());
-              // Cant execute the next line
-              dispatch(fetchCart());
+              dispatch(cartReset()).then(() => {
+                dispatch(fetchCart());
+                navigate("/");
+              });
             }
           });
         }}

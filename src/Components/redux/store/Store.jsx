@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware, configureStore } from "@reduxjs/toolkit";
 import BlockerSlice from "../slices/BlockerSlice";
 import Api_1 from "../slices/productsApiSlice";
 import Api_2 from "../slices/imagesApiSlice";

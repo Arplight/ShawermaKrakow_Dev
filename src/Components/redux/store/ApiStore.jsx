@@ -71,7 +71,7 @@ export const cartUpdate = async (currentItemData) => {
   }
 };
 // Cart Reset
-export const cartReset = async () => {
+export const cartReset = createAsyncThunk("cart/reset", async () => {
   try {
     await axios.post(
       `${BASE_URL}/cart/clear`,
@@ -84,7 +84,7 @@ export const cartReset = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+});
 
 // Order Store api
 export const OrderStoring = createAsyncThunk(
