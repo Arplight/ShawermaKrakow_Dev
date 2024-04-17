@@ -3,7 +3,7 @@ import Cities from "../../../../../Data/Cities/Cities.json";
 import InputField from "../../../../common/forms/input_field/InputField";
 import { useEffect, useState } from "react";
 import { checkoutSchema } from "../../../../../Validation_schema/ValidationSchema";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   OrderShipping,
   OrderStoring,
@@ -12,6 +12,7 @@ import {
 } from "../../../../redux/store/ApiStore";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { PuffLoader } from "react-spinners";
 
 const CheckoutForm = () => {
   // const [paymentMethod, setPaymentMethod] = useState("cash");
@@ -20,6 +21,7 @@ const CheckoutForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const isLoading = useSelector((state) => state.orderStoring.loading);
   // Getting current shipping price
   useEffect(() => {
     if (currentCity.trim() !== "") {
@@ -138,13 +140,22 @@ const CheckoutForm = () => {
             </span> */}
 
               <button
-                className={`full-button font-secondary ${
+                className={`full-button font-secondary leading-[0px] py-[20px] ${
                   !isValid || !dirty ? "button-disabled" : ""
                 }`}
                 type="submit"
                 disabled={!isValid || !dirty}
               >
-                {t("place_order")}
+                {isLoading ? (
+                  <PuffLoader
+                    color="#ffffff"
+                    size={20}
+                    className=""
+                    cssOverride={{ position: "absolute" }}
+                  />
+                ) : (
+                  t("place_order")
+                )}
               </button>
             </Form>
           );

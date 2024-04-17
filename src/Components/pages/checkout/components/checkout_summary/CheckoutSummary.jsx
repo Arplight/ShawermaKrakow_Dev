@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
 
 const CheckoutSummary = () => {
@@ -9,6 +11,12 @@ const CheckoutSummary = () => {
   const shippingPrice = useSelector((state) => state.shipping.shippingPrice);
   const isLoading = useSelector((state) => state.shipping.loading);
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (cartItems?.length === 0) {
+      navigate("/");
+    }
+  }, [navigate, cartItems]);
   return (
     <div className="w-full  md:w-1/2 md:bg-[#f5f5f5] pl-0 md:pl-2 py-4 md:border-x-[#d6d6d6] md:border-x-[1px]">
       <ul>

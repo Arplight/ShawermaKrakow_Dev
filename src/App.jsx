@@ -34,7 +34,6 @@ function App() {
   return (
     <div>
       <Spinner />
-
       <Blocker />
       <Header />
       <Navbar />
@@ -51,7 +50,6 @@ function App() {
         theme="light"
         transition={Slide}
       />
-
       <Routes>
         <Route path="/" element={<Main />}>
           <Route path="" element={<Home />} />
@@ -67,7 +65,6 @@ function App() {
           <Route path="Order" element={<Order />} />
         </Route>
       </Routes>
-
       <Footer />
       <TopButton />
     </div>
