@@ -80,7 +80,7 @@ export const checkoutSchema = Yup.object().shape({
   checkout_address: Yup.string()
     .trim()
     .matches(/[\w]/gi, "Invalid address format.")
-    .min(10, "Address should be at least 10 characters.")
+    .min(5, "Address should be at least 5 characters.")
     .max(100, "Address should not exceed 100 characters.")
     .required("Address is required."),
   checkout_city: Yup.string().required("City is required."),

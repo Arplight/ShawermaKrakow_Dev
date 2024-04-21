@@ -7,15 +7,17 @@ import PropTypes from "prop-types";
 import { fetchCart, cartAdd, cartRemove } from "../../../redux/store/ApiStore";
 import { toast } from "react-toastify";
 import { PuffLoader } from "react-spinners";
+import { useTranslation } from "react-i18next";
 
 const AddCart = ({ currentId, currentTitle }) => {
   const [isPending, setIsPending] = useState(false);
+  const { t } = useTranslation();
   // Toastifier
   const ToastAdd = () => {
-    toast.success(`Added ${currentTitle} to cart`);
+    toast.success(`${t("added")} ${currentTitle} ${t("toCart")}`);
   };
   const ToastRemove = () => {
-    toast.success("Cart updated successfully");
+    toast.success(t("cartUpdatedSuccessfully"));
   };
   // state
   const { isFoundedInCart } = useCart(currentId);

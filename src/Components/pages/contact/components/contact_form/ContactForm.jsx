@@ -36,7 +36,9 @@ const ContactForm = () => {
                 values
               );
               alert(
-                `Thank you ${values.contact_name} for your submission! We'll be in touch soon.`
+                `${t("thankYou")} ${values.contact_name} ${t(
+                  "submissionConfirmation"
+                )}`
               );
               resetForm();
             } catch (error) {

@@ -134,5 +134,11 @@
   "first_name": "Imię",
   "last_name": "Nazwisko",
   "place_order": "Złóż zamówienie",
-  "shipping": "Wysyłka"
+  "shipping": "Wysyłka",
+  "cartUpdatedSuccessfully": "Koszyk został pomyślnie zaktualizowany",
+  "added": "Dodano",
+  "toCart": "do koszyka",
+  "thankYou": "Dziękuję",
+  "submissionConfirmation": "Dziękujemy za przesłanie! Wkrótce się skontaktujemy.",
+  "subscriptionConfirmation": "Dziękujemy, jesteś zapisany/a do otrzymywania naszego cotygodniowego biuletynu."
 }

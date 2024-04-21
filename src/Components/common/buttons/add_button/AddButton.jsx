@@ -13,14 +13,14 @@ const AddButton = ({
   withStyle,
   currentProductName,
 }) => {
+  const { t } = useTranslation();
   const { isFoundedInCart } = useCart(productId);
   const ToastAdd = () => {
-    toast.success(`Added ${currentProductName} to cart`);
+    toast.success(`${t("added")} ${currentProductName} ${t("toCart")}`);
   };
   const [isPending, setIsPending] = useState(false);
   // Dispatching
   const dispatchCart = useDispatch();
-  const { t } = useTranslation();
   async function addToCart() {
     const currentItemData = {
       id: productId,

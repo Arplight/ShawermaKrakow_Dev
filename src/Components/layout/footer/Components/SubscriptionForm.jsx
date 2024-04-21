@@ -16,7 +16,7 @@ const SubscriptionForm = () => {
             "https://shawermakrakow.com/api/subscription/store",
             values
           );
-          alert("Thankyou, you are subscribed to receive our daily newsletter");
+          alert(t("subscriptionConfirmation"));
           resetForm();
         } catch (error) {
           console.error(error, "error");

@@ -25,7 +25,6 @@ const CheckoutForm = () => {
   // Getting current shipping price
   useEffect(() => {
     if (currentCity.trim() !== "") {
-      // const formattedCity = currentCity.replaceAll(" ", "-");
       dispatch(OrderShipping(currentCity));
     }
   }, [currentCity, dispatch]);

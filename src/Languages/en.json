@@ -134,5 +134,11 @@
   "first_name": "First name",
   "last_name": "Last name",
   "place_order": "Place order",
-  "shipping": "Shipping"
+  "shipping": "Shipping",
+  "cartUpdatedSuccessfully": "Cart updated successfully",
+  "added": "Added",
+  "toCart": "to cart",
+  "thankYou": "Thank you",
+  "submissionConfirmation": "For your submission! We'll be in touch soon.",
+  "subscriptionConfirmation": "Thank you, you are subscribed to receive our daily newsletter."
 }
